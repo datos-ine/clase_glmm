@@ -1,0 +1,365 @@
+---
+title: "GLMM"
+lang: es
+bibliography: references.bib
+---
+
+```{r}
+#| id: Configuración y carga de paquetes
+#| echo: false
+# Configuración global
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+
+# Cargar paquetes
+pacman::p_load(
+   patchwork,
+    flextable,
+    glmmTMB,
+    broom.mixed,
+    easystats,
+    janitor,
+    tidyverse
+)
+
+# Cargar sleepstudy
+sleepstudy = tibble(lme4::sleepstudy) |>
+# Estandarizar nombres de columnas
+  janitor::clean_names()
+```
+
+### Introducción
+
+-   En muchos estudios epidemiológicos, las observaciones no son independientes entre sí. Por ejemplo:
+
+    -   Estudios longitudinales con medidas repetidas sobre los mismos individuos.
+
+    -   Estudios transversales o caso-control con datos agrupados por unidades espaciales (provincias, ciudades, barrios, etc.).
+
+    -   Estudios experimentales donde los participantes se asignan a distintos grupos y se evalúan en diferentes momentos.
+
+------------------------------------------------------------------------
+
+-   Estos contextos generan dependencia espacial y/o temporal, dando lugar a una estructura de datos **agrupada** o **jerárquica**.
+
+-   Las observaciones se organizan en **clústers** (individuos, grupos, unidades geográficas, etc.) y suelen estar **correlacionadas**.
+
+-   Los modelos lineales y lineales generalizados asumen independencia entre observaciones. Ignorar la correlación dentro de los clústers, puede llevar a la **subestimación de los errores estándar** y a inferencias incorrectas.
+
+------------------------------------------------------------------------
+
+#### ¿Qué son los modelos mixtos?
+
+-   Son una extensión de los GLM, que incorporan **efectos aleatorios** en el predictor lineal.
+
+-   Esto permite modelar simultáneamente:
+
+    -   La relación sistemática entre la media y las covariables.
+
+    -   La estructura de correlación entre observaciones dentro de un mismo grupo.
+
+-   De este modo, el modelo genera una distribución multivariada de la respuesta, capturando la dependencia intra-clúster.
+
+------------------------------------------------------------------------
+
+#### Componentes del modelo
+
+-   Los modelos mixtos se componen de dos partes:
+
+    -   **Efectos fijos:** covariables cuyo efecto se estima sobre la media de la respuesta. Son parámetros comunes a toda la población bajo estudio.
+
+    -   **Efectos aleatorios:** variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y contribuyen a la varianza de la respuesta. Los niveles de esta variable no son de interés directo.
+
+        ::: {.callout-warning appearance="simple"}
+        Los efectos fijos explican tendencias promedio en la población, mientras que los efectos aleatorios capturan variabilidad no explicada entre clústers.
+        :::
+
+------------------------------------------------------------------------
+
+#### ¿Cuándo incluir efectos aleatorios?
+
+-   La variable que define los clústers tiene al menos **cinco niveles**.
+-   Los niveles representan una **muestra aleatoria** de una población de posibles clústers.
+-   Se busca modelar la **correlación intra-clúster**.
+-   La variable es parte de la **estructura de diseño** del estudio**.**
+-   El efecto de esa variable **no es de interés directo**.
+-   No nos interesa realizar **comparaciones** ni **inferencias** sobre sus niveles.
+
+------------------------------------------------------------------------
+
+### Modelos mixtos con distribución normal (LMM)
+
+-   Extensión del modelo lineal general que incluye un término aleatorio asociado a cada clúster:
+
+    $$ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad asumiendo:~\epsilon_{ij} ~ N(0, \sigma^2_\epsilon)$$
+
+-   Esto permite que cada grupo tenga su propio nivel promedio y/o su propia tendencia en la variable respuesta.
+
+-   Supone normalidad e independencia de los errores y los efectos aleatorios.
+
+------------------------------------------------------------------------
+
+#### Intercepto aleatorio
+
+-   Cuando $z_{ij} = 1$, el efecto aleatorio está dado por una **variable categórica** que identifica los clústers.
+
+-   En este caso, cada clúster va a tener su propio **intercepto** para la variable respuesta.
+
+-   Las rectas de regresión para cada clúster serán paralelas (misma pendiente).
+
+-   Las **diferencias entre clústers** reflejan distintos promedios de la respuesta.
+
+-   Similar al ANOVA de medidas repetidas o por bloques.
+
+------------------------------------------------------------------------
+
+#### Pendiente aleatoria
+
+-   Cada clúster puede responder de forma **diferente** a una covariable numérica.
+
+-   Las pendientes aleatorias permiten que la **magnitud y/o dirección** del efecto varíe entre clústers.
+
+-   Es conveniente incorporarlas cuando:
+
+    -   Los parámetros específicos de cada clúster muestran una alta variabilidad.
+
+    -   La variabilidad intra-clúste**r** es baja.
+
+    -   Hay un gran número de observaciones por clúster.
+
+------------------------------------------------------------------------
+
+### Modelos mixtos en R
+
+-   Los paquetes más comunes para ajustar GLMMs son:
+
+    | Paquete   | Función/es                         | Modelos             |
+    |-----------|------------------------------------|---------------------|
+    | `nlme`    | `lme()`                            | LMM                 |
+    | `lmer`    | `lmer()`, `glmer()` y `glmer.nb()` | LMM y GLMM          |
+    | `glmmTMB` | `glmmTMB()`                        | LM, GLM, LMM y GLMM |
+
+-   Usaremos `glmmTMB` por su **mayor flexibilidad,** ya que es compatible con la mayoría de las familias no gaussianas.
+
+------------------------------------------------------------------------
+
+#### Ejemplo: estudio de privación de sueño
+
+-   El dataset `sleepstudy` contiene información sobre el tiempo de reacción diario en 18 personas con privación de sueño.
+
+-   Variables:
+
+    -   `reaction`: tiempo de reacción promedio (ms)
+
+    -   `days`: número de días de insomnio
+
+    -   `subject`: identificador de participante
+
+-   Evaluaremos la relación entre días de privación de sueño y tiempo de reacción.
+
+------------------------------------------------------------------------
+
+##### Regresión lineal simple
+
+```{r}
+#| id: RLS
+mod <- glmmTMB(reaction ~ days, data = sleepstudy)
+
+parameters(mod, effects = "fixed", include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### LMM con intercepto aleatorio
+
+```{r}
+#| id: LMM con intercepto aleatorio
+mod1 <- glmmTMB(reaction ~ days + (1 | subject), data = sleepstudy)
+
+parameters(mod1, include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### Regresión lineal múltiple (`subject` como efecto fijo)
+
+```{r}
+#| id: RLM
+mod2 <- glmmTMB(reaction ~ days + subject, data = sleepstudy)
+
+parameters(mod2, effects = "fixed", include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### LMM con intercepto y pendiente aleatorios
+
+```{r}
+#| id: LMM con intercepto y pendiente aleatorios
+mod3 <- glmmTMB(reaction ~ days + (days | subject), data = sleepstudy)
+
+parameters(mod3, include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### RLM con interacción entre `subject` y `days`
+
+```{r}
+#| id: RLM con interacción
+mod4 <- glmmTMB(reaction ~ days + days:subject, data = sleepstudy)
+
+parameters(mod4, effects = "fixed", include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### Comparar performance de los modelos
+
+```{r}
+#| id: Comparar modelos
+compare_performance(mod, mod1, mod2, mod3, mod4, metrics = "common")
+
+compare_performance(mod, mod1, mod2, mod3, mod4, metrics = "common", rank = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### Representación gráfica de los efectos aleatorios
+
+```{r}
+#| id: Gráfico efectos aleatorios
+#| echo: false
+## Añadir predicciones al dataset
+datos_plot <- sleepstudy |>
+  mutate(pred_i = predict(mod1, type = "response")) |>
+
+  mutate(pred_p = predict(mod3, type = "response"))
+
+## Spaghetti plot para intercepto aleatorio
+g1 <- datos_plot |>
+  ggplot(aes(x = days, y = pred_i, group = subject, color = subject)) +
+   labs(x = "Días", y = "Respuesta", title = "Intercepto aleatorio")
+
+## Spaghetti plot para pendiente aleatoria
+g2 <- datos_plot |>
+  ggplot(aes(x = days, y = pred_p, group = subject, color = subject)) +
+  labs(x = "Días", y = "Respuesta", title = "Intercepto y pendiente aleatorios")
+
+## Unir gráficos
+g1 +
+  g2 +
+  plot_layout(ncol = 2, guides = "collect", axes = "collect") &
+ geom_point(aes(x = days, y = reaction, group = subject)) &
+  geom_line() &
+  scale_color_viridis_d() &
+  theme_minimal() &
+  theme(
+      legend.position = "bottom",  
+      legend.byrow = TRUE,
+      title = element_text(face = "bold")
+  )
+```
+
+------------------------------------------------------------------------
+
+#### Modelos multinivel
+
+-   En algunos estudios, las observaciones se organizan en **niveles jerárquicos** o **anidados** (por ejemplo, pacientes dentro de hospitales, y hospitales dentro de ciudades).
+
+-   Cada nivel jerárquico tiene su **propio intercepto aleatorio**, permitiendo capturar la variabilidad entre unidades dentro de cada nivel.
+
+-   Estos modelos permiten incluir variables explicativas **individuales y contextuales**.
+
+-   La variabilidad total se descompone en distintos **componentes de varianza**, uno por cada nivel jerárquico.
+
+------------------------------------------------------------------------
+
+Supongamos que los pacientes del ejemplo anterior se distribuyen en tres hospitales:
+
+```{r}
+#| id: Crear variable para hospital
+sleepstudy <- sleepstudy |>
+mutate(hospital = case_when(
+    between(subject, "308", "332") ~ "Hosp1",
+    between(subject, "333", "350") ~ "Hosp2",
+    .default = "Hosp3"
+))
+
+# Tabla frecuencias
+tabyl(sleepstudy, hospital) |>
+adorn_pct_formatting()
+```
+
+------------------------------------------------------------------------
+
+Ajustamos el modelo multinivel:
+
+```{r}
+#| id: LMM multinivel
+mod5 <- glmmTMB(reaction ~ days + (1 | hospital/subject), data = sleepstudy)
+
+parameters(mod5, include_info = TRUE)
+```
+
+-   El término `(1|hospital/subject)` indica que los pacientes están anidados en hospitales.
+
+------------------------------------------------------------------------
+
+### Modelos mixtos generalizados (GLMM)
+
+-   Permiten analizar datos agrupados o repetidos con variables respuesta dicotómicas o de conteo, incorporando **efectos aleatorios**.
+-   Los efectos fijos representan el **efecto promedio** de las covariables sobre la respuesta transformada (logit o log).
+-   Los efectos aleatorios capturan la **variabilidad no explicada** entre grupos o unidades de análisis.
+-   Permiten modelar la **dependencia intra-clúster** sin violar el supuesto de independencia de los residuos
+
+------------------------------------------------------------------------
+
+#### Diferencias entre LMM y GLMM
+
+```{r}
+#| id: Tabla LMM vs GLMM
+#| echo: false
+
+# Crear dataset
+tibble(
+    "Característica" = c(
+        "Distribución de la VR",
+        "Escala de interpretación",
+        "Efectos fijos",
+        "Efectos aleatorios",
+        "Método de estimación",
+        "Interpretación varianza"),
+    LMM = c(
+        "Normal",
+        "Original de la VR",
+        "Cambios absolutos en la media",
+        "Desvíos del intercepto y/o pendiente en la media",
+        "ML o REML",
+        "Escala original"),
+    GLMM = c(
+        "Binomial, Poisson, Gamma, etc.",
+        "Escala de la función de enlace",
+        "Cambios en la media transformada",
+        "Desvíos del intercepto y/o pendiente en la escala transformada",
+        "ML con integración",
+        "Escala transformada"
+    )
+) |>
+flextable() |>
+bold(part = "header") |>
+font(fontname = "Calibri", part = "all") |>
+fontsize(size = 20, part = "all") |>
+autofit()
+```
+
+------------------------------------------------------------------------
+
+#### Referencias
+
+::: hidden
+[@agresti2015; @fieberg2024; @mixed-ef2000; @bates2015; @brooks2017]
+:::

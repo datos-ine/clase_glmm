@@ -1,0 +1,57 @@
+/* Cambia color del texto */
+.reveal {
+  color: #2F2E4E;
+}
+
+/* Cambiar el color del título principal */
+.reveal h1 {
+  background: #2F2E4E;
+  color: white;
+  font-size: 1.75em;
+  border: 2px solid white;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 450px;
+}
+
+/* Cambiar el color de los títulos y elementos de lista*/
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal ul li,
+.reveal ol li {
+  color: #2F2E4E;
+}
+
+/* Estilo para diapos separadoras de clase */
+.reveal .titulo-clase h1 {
+  background: #2F2E4E;
+  color: white;
+  font-size: 3em;
+  text-indent: 10px;
+  /* Ajusta la sangría en píxeles */
+  padding: 10px;
+  /* Espaciado interno para que el texto no esté pegado al borde */
+  border-radius: 20px;
+  /* Bordes redondeados opcionales */
+  margin-top: 0px;
+}
+
+/* Cambiar el tamaño de letra */
+ol {
+  font-size: 0.5em !important;
+}
+
+/* ==== SALIDA DEL CÓDIGO (output) ==== */
+.reveal .cell-output pre {
+  font-size: 0.95rem !important;
+  /* tamaño más pequeño para el output */
+  line-height: 1.3 !important;
+  max-height: none !important;
+  max-width: fit-content !important;
+  /* sin límite de altura */
+  overflow: visible !important;
+  /* evita el scroll */
+  white-space: pre-wrap !important;
+  /* permite salto de línea */
+}

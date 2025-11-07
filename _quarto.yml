@@ -1,0 +1,20 @@
+project:
+  title: ""
+
+editor: visual
+
+format: 
+  revealjs: 
+    title-slide-attributes: 
+      data-background-image: fondo_ppt_title.png
+    center-title-slide: true
+    code-link: true
+    code-overflow: wrap
+    chalkboard:
+      theme: whiteboard
+    logo: logos_ine.svg
+    incremental: true
+    slide-number: true
+    theme: simple
+    css: custom.css
+
