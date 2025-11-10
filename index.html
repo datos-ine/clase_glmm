@@ -114,7 +114,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-<link rel="stylesheet" href="clase_glmm_files/libs/revealjs/dist/theme/quarto-864c5404f4710dceefb0a9fe440f50a1.css">
+<link rel="stylesheet" href="clase_glmm_files/libs/revealjs/dist/theme/quarto-b2ea8485757088548dc38a328a999849.css">
 <link rel="stylesheet" href="custom.css">
 <link href="clase_glmm_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="clase_glmm_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -234,7 +234,7 @@
 </ul></section><section class="slide level2"><ul>
 <li class="fragment"><p>Estos contextos generan dependencia espacial y/o temporal, dando lugar a una estructura de datos <strong>agrupada</strong> o <strong>jerárquica</strong>.</p></li>
 <li class="fragment"><p>Las observaciones se organizan en <strong>clústers</strong> (individuos, grupos, unidades geográficas, etc.) y suelen estar <strong>correlacionadas</strong>.</p></li>
-<li class="fragment"><p>Los modelos lineales y lineales generalizados asumen independencia entre observaciones. Ignorar la correlación dentro de los clústeres puede llevar a subestimar los errores estándar y, en consecuencia, a realizar inferencias incorrectas.</p></li>
+<li class="fragment"><p>Ignorar la correlación dentro de los clústers puede llevar a subestimar los errores estándar y, en consecuencia, a realizar inferencias incorrectas.</p></li>
 </ul></section><section class="slide level2"><h4 id="qué-son-los-modelos-mixtos">¿Qué son los modelos mixtos?</h4>
 <ul>
 <li class="fragment"><p>Son una extensión de los GLM, que incorporan <strong>efectos aleatorios</strong> en el predictor lineal.</p></li>
@@ -245,29 +245,29 @@
 <li class="fragment"><p>La estructura de correlación entre observaciones dentro de un mismo grupo.</p></li>
 </ul>
 </li>
-<li class="fragment"><p>De este modo, el modelo permite capturar la dependencia entre observaciones mediante la inclusión explícita de componentes aleatorios que representan la variabilidad entre clústeres.</p></li>
+<li class="fragment"><p>De este modo, se captura la dependencia entre observaciones mediante la inclusión de componentes aleatorios que representan la variabilidad entre clústers.</p></li>
 </ul></section><section class="slide level2"><h4 id="componentes-del-modelo">Componentes del modelo</h4>
 <ul>
 <li class="fragment">
 <p>Los modelos mixtos se componen de dos partes:</p>
 <ul>
 <li class="fragment"><p><strong>Efectos fijos:</strong> covariables cuyo efecto se estima sobre la media de la respuesta. Son parámetros comunes a toda la población bajo estudio.</p></li>
-<li class="fragment">
-<p><strong>Efectos aleatorios:</strong> variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y representan la variabilidad no explicada entre unidades del mismo grupo.</p>
+<li class="fragment"><p><strong>Efectos aleatorios:</strong> variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y representan la variabilidad no explicada entre unidades del mismo grupo.</p></li>
+</ul>
+</li>
+</ul></section><section class="slide level2"><div style="font-size: 2em;">
 <div class="callout callout-warning callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Los efectos fijos describen la tendencia promedio en la población, mientras que los efectos aleatorios capturan la variabilidad entre los distintos clústeres.</p>
+<p>Los efectos fijos describen la tendencia promedio en la población, mientras que los efectos aleatorios capturan la variabilidad entre los distintos clústers.</p>
 </div>
 </div>
 </div>
-</li>
-</ul>
-</li>
-</ul></section><section class="slide level2"><h4 id="cuándo-incluir-efectos-aleatorios">¿Cuándo incluir efectos aleatorios?</h4>
+</div>
+</section><section class="slide level2"><h4 id="cuándo-incluir-efectos-aleatorios">¿Cuándo incluir efectos aleatorios?</h4>
 <ul>
 <li class="fragment">La variable que define los clústers tiene al menos <strong>cinco niveles</strong>.</li>
 <li class="fragment">Los niveles representan una <strong>muestra aleatoria</strong> de una población de posibles clústers.</li>
@@ -288,7 +288,7 @@
 <li class="fragment"><p>Cuando <span class="math inline">\(z_{ij} = 1\)</span>, el efecto aleatorio está dado por una <strong>variable categórica</strong> que identifica los clústers.</p></li>
 <li class="fragment"><p>En este caso, cada clúster va a tener su propio <strong>intercepto</strong> para la variable respuesta.</p></li>
 <li class="fragment"><p>Las rectas de regresión para cada clúster serán paralelas (misma pendiente).</p></li>
-<li class="fragment"><p>Las <strong>diferencias entre clústeres</strong> reflejan distintos promedios de la respuesta y permiten modelar la heterogeneidad entre grupos sin estimar un parámetro específico para cada uno.</p></li>
+<li class="fragment"><p>Las <strong>diferencias entre clústers</strong> permiten modelar la heterogeneidad entre grupos sin estimar un parámetro específico para cada uno.</p></li>
 <li class="fragment"><p>Similar al ANOVA de medidas repetidas o por bloques.</p></li>
 </ul></section><section class="slide level2"><h4 id="pendiente-aleatoria">Pendiente aleatoria</h4>
 <ul>
@@ -319,7 +319,7 @@
 <td>LMM</td>
 </tr>
 <tr class="even">
-<td><code>lmer</code></td>
+<td><code>lme4</code></td>
 <td>
 <code>lmer()</code>, <code>glmer()</code> y <code>glmer.nb()</code>
 </td>
@@ -372,7 +372,7 @@ RMSE : 47.449
 R2: 0.286; adjusted R2: 0.278</code></pre>
 </div>
 </div>
-</section><section class="slide level2"><h5 id="regresión-lineal-múltiple-subject-como-efecto-fijo">Regresión lineal múltiple (<code>subject</code> como efecto fijo)</h5>
+</section><section class="slide level2"><h5 id="regresión-lineal-múltiple-subject-como-efecto-fijo">Regresión lineal múltiple: <code>subject</code> como efecto fijo</h5>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>mod_rlm1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> subject, <span class="at">data =</span> sleepstudy)</span>
 <span id="cb3-2"><a href=""></a></span>
@@ -408,7 +408,7 @@ RMSE : 29.310
 R2: 0.728; adjusted R2: 0.695</code></pre>
 </div>
 </div>
-</section><section class="slide level2"><h5 id="rlm-con-interacción-entre-subject-y-days">RLM con interacción entre <code>subject</code> y <code>days</code>
+</section><section class="slide level2"><h5 id="regresión-lineal-múltiple-interacción-entre-subject-y-days">Regresión lineal múltiple: interacción entre <code>subject</code> y <code>days</code>
 </h5>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>mod_rlm2 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> days<span class="sc">:</span>subject, <span class="at">data =</span> sleepstudy)</span>
@@ -641,7 +641,7 @@ mod_rlm    | glmmTMB | 11.578 |       0.150 |    1.38e-06 |            33.33%</c
 <ul>
 <li class="fragment">Usar <code>estado</code> como intercepto aleatorio mejora la performance del modelo y consume menos grados de libertad que usarlo como efecto fijo (<strong>IMPORTANTE</strong> si tenemos pocas observaciones).</li>
 <li class="fragment">Además, permite considerar los estados como una muestra aleatoria de una población mayor de posibles unidades geográficas.</li>
-</ul></section><section class="slide level2"><h4 id="modelos-multinivel">Modelos multinivel</h4>
+</ul></section><section class="slide level2"><h3 id="modelos-multinivel">Modelos multinivel</h3>
 <ul>
 <li class="fragment"><p>En algunos estudios, las observaciones se organizan en <strong>niveles jerárquicos</strong> o <strong>anidados</strong> (por ejemplo, pacientes dentro de hospitales, y hospitales dentro de ciudades).</p></li>
 <li class="fragment"><p>Cada nivel jerárquico tiene su <strong>propio intercepto aleatorio</strong>, permitiendo capturar la variabilidad entre unidades dentro de cada nivel.</p></li>
@@ -687,7 +687,7 @@ Conditional R2: 0.378; Marginal R2: 0.378</code></pre>
 </div>
 </div>
 <ul>
-<li class="fragment">Podemos observar que el componente de varianza se divide en tres partes para reflejar la estructura anidada de los datos:
+<li class="fragment">El componente de varianza se divide en tres partes:
 <ul>
 <li class="fragment">Varianza entre estados</li>
 <li class="fragment">Varianza entre condados del mismo estado</li>
@@ -800,58 +800,99 @@ mod_glm  | glmmTMB |    4.77e-57 |    5.68e-56 |             0.00%</code></pre>
 </div>
 <ul>
 <li class="fragment">Al incorporar un intercepto aleatorio por departamento, el modelo reconoce que la incidencia de dengue puede diferir sistemáticamente entre unidades geográficas, más allá de las covariables incluidas.</li>
-</ul></section><section class="slide level2"><p>Resumen: diferencias entre LMM y GLMM</p>
+</ul></section><section class="slide level2"><h3 id="resumen-diferencias-entre-lmm-y-glmm">Resumen: diferencias entre LMM y GLMM</h3>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="tabwid">
-<style>.cl-36e1e476{}.cl-36d41a12{font-family:'Calibri';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-36d41a26{font-family:'Calibri';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-36ded236{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-36dee4b0{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4b1{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4ba{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4c4{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4c5{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4c6{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4ce{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4cf{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4d8{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4d9{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4da{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4db{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4dc{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4e2{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4e3{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4e4{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4e5{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4ec{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4ed{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4ee{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-36dee4ef{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="cl-36e1e476">
+<style>.cl-533efa4e{}.cl-5331d8fa{font-family:'Calibri';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5331d904{font-family:'Calibri';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-533be098{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-533bf376{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf380{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf381{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf382{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf38a{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf38b{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf38c{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf394{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf395{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf396{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf397{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf39e{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf39f{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf3a0{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf3a1{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf3a2{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf3a8{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf3a9{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf3aa{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf3ab{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-533bf3ac{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-533efa4e">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-36dee4b0"><p class="cl-36ded236"><span class="cl-36d41a12">Característica</span></p></th>
-<th class="cl-36dee4b1"><p class="cl-36ded236"><span class="cl-36d41a12">LMM</span></p></th>
-<th class="cl-36dee4ba"><p class="cl-36ded236"><span class="cl-36d41a12">GLMM</span></p></th>
+<th class="cl-533bf376"><p class="cl-533be098"><span class="cl-5331d8fa">Característica</span></p></th>
+<th class="cl-533bf380"><p class="cl-533be098"><span class="cl-5331d8fa">LMM</span></p></th>
+<th class="cl-533bf381"><p class="cl-533be098"><span class="cl-5331d8fa">GLMM</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-36dee4c4"><p class="cl-36ded236"><span class="cl-36d41a26">Distribución de la VR</span></p></td>
-<td class="cl-36dee4c5"><p class="cl-36ded236"><span class="cl-36d41a26">Normal</span></p></td>
-<td class="cl-36dee4c6"><p class="cl-36ded236"><span class="cl-36d41a26">Binomial, Poisson, Gamma, etc.</span></p></td>
+<td class="cl-533bf382"><p class="cl-533be098"><span class="cl-5331d904">Distribución de la VR</span></p></td>
+<td class="cl-533bf38a"><p class="cl-533be098"><span class="cl-5331d904">Normal</span></p></td>
+<td class="cl-533bf38b"><p class="cl-533be098"><span class="cl-5331d904">Binomial, Poisson, Gamma, etc.</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-36dee4ce"><p class="cl-36ded236"><span class="cl-36d41a26">Escala de interpretación</span></p></td>
-<td class="cl-36dee4cf"><p class="cl-36ded236"><span class="cl-36d41a26">Original de la VR</span></p></td>
-<td class="cl-36dee4d8"><p class="cl-36ded236"><span class="cl-36d41a26">Escala de la función de enlace</span></p></td>
+<td class="cl-533bf38c"><p class="cl-533be098"><span class="cl-5331d904">Escala de interpretación</span></p></td>
+<td class="cl-533bf394"><p class="cl-533be098"><span class="cl-5331d904">Original de la VR</span></p></td>
+<td class="cl-533bf395"><p class="cl-533be098"><span class="cl-5331d904">Escala de la función de enlace</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-36dee4d9"><p class="cl-36ded236"><span class="cl-36d41a26">Efectos fijos</span></p></td>
-<td class="cl-36dee4da"><p class="cl-36ded236"><span class="cl-36d41a26">Cambios absolutos en la media</span></p></td>
-<td class="cl-36dee4db"><p class="cl-36ded236"><span class="cl-36d41a26">Cambios en la media transformada</span></p></td>
+<td class="cl-533bf396"><p class="cl-533be098"><span class="cl-5331d904">Efectos fijos</span></p></td>
+<td class="cl-533bf397"><p class="cl-533be098"><span class="cl-5331d904">Cambios absolutos en la media</span></p></td>
+<td class="cl-533bf39e"><p class="cl-533be098"><span class="cl-5331d904">Cambios en la media transformada</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-36dee4dc"><p class="cl-36ded236"><span class="cl-36d41a26">Efectos aleatorios</span></p></td>
-<td class="cl-36dee4e2"><p class="cl-36ded236"><span class="cl-36d41a26">Desvíos del intercepto y/o pendiente en la media</span></p></td>
-<td class="cl-36dee4e3"><p class="cl-36ded236"><span class="cl-36d41a26">Desvíos del intercepto y/o pendiente en la escala transformada</span></p></td>
+<td class="cl-533bf39f"><p class="cl-533be098"><span class="cl-5331d904">Efectos aleatorios</span></p></td>
+<td class="cl-533bf3a0"><p class="cl-533be098"><span class="cl-5331d904">Desvíos del intercepto y/o pendiente en la media</span></p></td>
+<td class="cl-533bf3a1"><p class="cl-533be098"><span class="cl-5331d904">Desvíos del intercepto y/o pendiente en la escala transformada</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-36dee4e4"><p class="cl-36ded236"><span class="cl-36d41a26">Método de estimación</span></p></td>
-<td class="cl-36dee4e5"><p class="cl-36ded236"><span class="cl-36d41a26">ML o REML</span></p></td>
-<td class="cl-36dee4ec"><p class="cl-36ded236"><span class="cl-36d41a26">ML con integración</span></p></td>
+<td class="cl-533bf3a2"><p class="cl-533be098"><span class="cl-5331d904">Método de estimación</span></p></td>
+<td class="cl-533bf3a8"><p class="cl-533be098"><span class="cl-5331d904">ML o REML</span></p></td>
+<td class="cl-533bf3a9"><p class="cl-533be098"><span class="cl-5331d904">ML con integración</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-36dee4ed"><p class="cl-36ded236"><span class="cl-36d41a26">Interpretación varianza</span></p></td>
-<td class="cl-36dee4ee"><p class="cl-36ded236"><span class="cl-36d41a26">Escala original</span></p></td>
-<td class="cl-36dee4ef"><p class="cl-36ded236"><span class="cl-36d41a26">Escala transformada</span></p></td>
+<td class="cl-533bf3aa"><p class="cl-533be098"><span class="cl-5331d904">Interpretación varianza</span></p></td>
+<td class="cl-533bf3ab"><p class="cl-533be098"><span class="cl-5331d904">Escala original</span></p></td>
+<td class="cl-533bf3ac"><p class="cl-533be098"><span class="cl-5331d904">Escala transformada</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-</section><section class="slide level2 smaller scrollable" id="references"><h4 id="referencias">Referencias</h4>
+</section><section class="slide level2"><h3 id="alternativas-a-los-modelos-mixtos">Alternativas a los modelos mixtos</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="tabwid">
+<style>.cl-536c7f46{}.cl-536793f0{font-family:'Calibri';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-536793fa{font-family:'Calibri';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-53698d2c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-53699eca{width:1.942in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ecb{width:7.435in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ecc{width:9.314in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ed4{width:2.846in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ed5{width:1.942in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ed6{width:7.435in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ed7{width:9.314in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ed8{width:2.846in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ede{width:1.942in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699edf{width:7.435in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ee8{width:9.314in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ee9{width:2.846in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699eea{width:1.942in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699eeb{width:7.435in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699eec{width:9.314in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ef2{width:2.846in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ef3{width:1.942in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699ef4{width:7.435in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699efc{width:9.314in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-53699efd{width:2.846in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-536c7f46">
+<thead><tr style="overflow-wrap:break-word;">
+<th class="cl-53699eca"><p class="cl-53698d2c"><span class="cl-536793f0">Modelo</span></p></th>
+<th class="cl-53699ecb"><p class="cl-53698d2c"><span class="cl-536793f0">Enfoque</span></p></th>
+<th class="cl-53699ecc"><p class="cl-53698d2c"><span class="cl-536793f0">Utilidad</span></p></th>
+<th class="cl-53699ed4"><p class="cl-53698d2c"><span class="cl-536793f0">Paquetes</span></p></th>
+</tr></thead>
+<tbody>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-53699ed5"><p class="cl-53698d2c"><span class="cl-536793fa">GLMM</span></p></td>
+<td class="cl-53699ed6"><p class="cl-53698d2c"><span class="cl-536793fa">Efectos específicos (nivel o unidad de agrupamiento)</span></p></td>
+<td class="cl-53699ed7"><p class="cl-53698d2c"><span class="cl-536793fa">Datos jerárquicos o medidas repetidas con variabilidad entre clústers</span></p></td>
+<td class="cl-53699ed8"><p class="cl-53698d2c"><span class="cl-536793fa">nlme, lme4, glmmTMB</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-53699ede"><p class="cl-53698d2c"><span class="cl-536793fa">GLS</span></p></td>
+<td class="cl-53699edf"><p class="cl-53698d2c"><span class="cl-536793fa">Efectos promedio con estructura de correlación definida</span></p></td>
+<td class="cl-53699ee8"><p class="cl-53698d2c"><span class="cl-536793fa">Dependencia temporal o espacial sin necesidad de efectos aleatorios explícitos</span></p></td>
+<td class="cl-53699ee9"><p class="cl-53698d2c"><span class="cl-536793fa">nlme</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-53699eea"><p class="cl-53698d2c"><span class="cl-536793fa">GAM o GAMM</span></p></td>
+<td class="cl-53699eeb"><p class="cl-53698d2c"><span class="cl-536793fa">Relaciones no lineales mediante funciones suaves</span></p></td>
+<td class="cl-53699eec"><p class="cl-53698d2c"><span class="cl-536793fa">Captura de curvaturas, estacionalidad o patrones no lineales</span></p></td>
+<td class="cl-53699ef2"><p class="cl-53698d2c"><span class="cl-536793fa">mgcv</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-53699ef3"><p class="cl-53698d2c"><span class="cl-536793fa">Bayesianos</span></p></td>
+<td class="cl-53699ef4"><p class="cl-53698d2c"><span class="cl-536793fa">Estimación completa de parámetros bajo distribuciones a priori</span></p></td>
+<td class="cl-53699efc"><p class="cl-53698d2c"><span class="cl-536793fa">Datos escasos, modelos complejos o incumplimiento de supuestos frecuentistas</span></p></td>
+<td class="cl-53699efd"><p class="cl-53698d2c"><span class="cl-536793fa">brms, INLA</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section><section class="slide level2 smaller scrollable" id="references"><h3 id="referencias">Referencias</h3>
 <div class="hidden">
 <p><span class="citation" data-cites="agresti2015 fieberg2024 mixed-ef2000 bates2015 brooks2017">(<a href="#/references" role="doc-biblioref" onclick="">Agresti 2015</a>; <a href="#/references" role="doc-biblioref" onclick="">Fieberg 2024</a>; <a href="#/references" role="doc-biblioref" onclick="">Pinheiro y Bates 2000</a>; <a href="#/references" role="doc-biblioref" onclick="">Bates et&nbsp;al. 2015</a>; <a href="#/references" role="doc-biblioref" onclick="">Brooks et&nbsp;al. 2017</a>)</span></p>
 </div>
-
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-agresti2015" class="csl-entry" role="listitem">
 Agresti, A. 2015. <em>Foundations of Linear and Generalized Linear Models</em>. Wiley Series En Probability y Statistics. Hoboken, New Jersey: John Wiley &amp; Sons, Inc.
@@ -869,6 +910,7 @@ Fieberg, JR. 2024. <em>Statistics for Ecologists: A Frequentist and Bayesian Tre
 Pinheiro, JC, y DM Bates. 2000. <em>Mixed-Effects Models in S and S-PLUS</em>. Springer-Verlag. <a href="https://doi.org/10.1007/b98882">https://doi.org/10.1007/b98882</a>.
 </div>
 </div>
+
 </section>
 </div>
   <div class="quarto-auto-generated-content" style="display: none;">
