@@ -166,7 +166,7 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 
 ```{r}
 #| id: RLS
-mod <- glmmTMB(reaction ~ days, data = sleepstudy)
+mod <- glmmTMB(reaction ~ days, data = sleepstudy) 
 
 parameters(mod, effects = "fixed", include_info = TRUE)
 ```
@@ -266,6 +266,61 @@ g1 +
 
 ------------------------------------------------------------------------
 
+#### Ejemplo: mortalidad por cáncer en la costa Este de EEUU
+
+En la [Unidad 3](https://datos-ine.github.io/curso_avanzada_2025/unidad_3/01_est_ecologicos.html) trabajamos con el dataset `cancer_USA.txt` como ejemplo del modelo lineal general. Ahora veremos como ajustar un modelo multinivel a partir de estos datos:
+
+```{r}
+#| id: Cargar dataset cáncer
+cancer <- read_csv2("cancer_USA.txt")
+glimpse(cancer)
+```
+
+------------------------------------------------------------------------
+
+Cada estado contiene observaciones de distintos condados:
+
+```{r}
+#| id: Frecuencia x estado
+tabyl(cancer, estado)
+```
+
+------------------------------------------------------------------------
+
+En el ejemplo de regresión lineal múltiple habíamos encontrado asociaciones significativas con las siguientes variables:
+
+```{r}
+#| id: RLM cáncer
+mod <- glmmTMB(tasa_mortalidad ~ mediana_ingresos + mediana_edad + pct_desempleo + estado, data = cancer)
+
+parameters(mod, effects = "fixed", include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+Reajustamos el modelo usando `estado` como intercepto aleatorio:
+
+```{r}
+#| id: RLM con intercepto aleatorio
+mod_random <- glmmTMB(tasa_mortalidad ~ mediana_ingresos + mediana_edad + 
+    pct_desempleo + (1|estado), data = cancer)
+
+parameters(mod_random, include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+Comparamos los dos modelos:
+
+```{r}
+#| id: Comparar performance RLM y LMM
+compare_performance(mod, mod_random, metrics = "common", rank = TRUE)
+```
+
+-   Usar `estado` como intercepto aleatorio mejora la performance del modelo y consume menos grados de libertad que usarlo como efecto fijo (**IMPORTANTE** si tenemos pocas observaciones).
+
+------------------------------------------------------------------------
+
 #### Modelos multinivel
 
 -   En algunos estudios, las observaciones se organizan en **niveles jerárquicos** o **anidados** (por ejemplo, pacientes dentro de hospitales, y hospitales dentro de ciudades).
@@ -275,37 +330,6 @@ g1 +
 -   Estos modelos permiten incluir variables explicativas **individuales y contextuales**.
 
 -   La variabilidad total se descompone en distintos **componentes de varianza**, uno por cada nivel jerárquico.
-
-------------------------------------------------------------------------
-
-Supongamos que los pacientes del ejemplo anterior se distribuyen en tres hospitales:
-
-```{r}
-#| id: Crear variable para hospital
-sleepstudy <- sleepstudy |>
-mutate(hospital = case_when(
-    between(subject, "308", "332") ~ "Hosp1",
-    between(subject, "333", "350") ~ "Hosp2",
-    .default = "Hosp3"
-))
-
-# Tabla frecuencias
-tabyl(sleepstudy, hospital) |>
-adorn_pct_formatting()
-```
-
-------------------------------------------------------------------------
-
-Ajustamos el modelo multinivel:
-
-```{r}
-#| id: LMM multinivel
-mod5 <- glmmTMB(reaction ~ days + (1 | hospital/subject), data = sleepstudy)
-
-parameters(mod5, include_info = TRUE)
-```
-
--   El término `(1|hospital/subject)` indica que los pacientes están anidados en hospitales.
 
 ------------------------------------------------------------------------
 
