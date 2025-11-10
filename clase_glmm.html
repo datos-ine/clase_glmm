@@ -234,7 +234,7 @@
 </ul></section><section class="slide level2"><ul>
 <li class="fragment"><p>Estos contextos generan dependencia espacial y/o temporal, dando lugar a una estructura de datos <strong>agrupada</strong> o <strong>jerárquica</strong>.</p></li>
 <li class="fragment"><p>Las observaciones se organizan en <strong>clústers</strong> (individuos, grupos, unidades geográficas, etc.) y suelen estar <strong>correlacionadas</strong>.</p></li>
-<li class="fragment"><p>Los modelos lineales y lineales generalizados asumen independencia entre observaciones. Ignorar la correlación dentro de los clústers, puede llevar a la <strong>subestimación de los errores estándar</strong> y a inferencias incorrectas.</p></li>
+<li class="fragment"><p>Los modelos lineales y lineales generalizados asumen independencia entre observaciones. Ignorar la correlación dentro de los clústeres puede llevar a subestimar los errores estándar y, en consecuencia, a realizar inferencias incorrectas.</p></li>
 </ul></section><section class="slide level2"><h4 id="qué-son-los-modelos-mixtos">¿Qué son los modelos mixtos?</h4>
 <ul>
 <li class="fragment"><p>Son una extensión de los GLM, que incorporan <strong>efectos aleatorios</strong> en el predictor lineal.</p></li>
@@ -245,7 +245,7 @@
 <li class="fragment"><p>La estructura de correlación entre observaciones dentro de un mismo grupo.</p></li>
 </ul>
 </li>
-<li class="fragment"><p>De este modo, el modelo genera una distribución multivariada de la respuesta, capturando la dependencia intra-clúster.</p></li>
+<li class="fragment"><p>De este modo, el modelo permite capturar la dependencia entre observaciones mediante la inclusión explícita de componentes aleatorios que representan la variabilidad entre clústeres.</p></li>
 </ul></section><section class="slide level2"><h4 id="componentes-del-modelo">Componentes del modelo</h4>
 <ul>
 <li class="fragment">
@@ -253,14 +253,14 @@
 <ul>
 <li class="fragment"><p><strong>Efectos fijos:</strong> covariables cuyo efecto se estima sobre la media de la respuesta. Son parámetros comunes a toda la población bajo estudio.</p></li>
 <li class="fragment">
-<p><strong>Efectos aleatorios:</strong> variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y contribuyen a la varianza de la respuesta. Los niveles de esta variable no son de interés directo.</p>
+<p><strong>Efectos aleatorios:</strong> variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y representan la variabilidad no explicada entre unidades del mismo grupo.</p>
 <div class="callout callout-warning callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Los efectos fijos explican tendencias promedio en la población, mientras que los efectos aleatorios capturan variabilidad no explicada entre clústers.</p>
+<p>Los efectos fijos describen la tendencia promedio en la población, mientras que los efectos aleatorios capturan la variabilidad entre los distintos clústeres.</p>
 </div>
 </div>
 </div>
@@ -272,15 +272,14 @@
 <li class="fragment">La variable que define los clústers tiene al menos <strong>cinco niveles</strong>.</li>
 <li class="fragment">Los niveles representan una <strong>muestra aleatoria</strong> de una población de posibles clústers.</li>
 <li class="fragment">Se busca modelar la <strong>correlación intra-clúster</strong>.</li>
-<li class="fragment">La variable es parte de la <strong>estructura de diseño</strong> del estudio<strong>.</strong>
-</li>
+<li class="fragment">La variable es parte de la <strong>estructura de diseño</strong> del estudio.</li>
 <li class="fragment">El efecto de esa variable <strong>no es de interés directo</strong>.</li>
 <li class="fragment">No nos interesa realizar <strong>comparaciones</strong> ni <strong>inferencias</strong> sobre sus niveles.</li>
 </ul></section><section class="slide level2"><h3 id="modelos-mixtos-con-distribución-normal-lmm">Modelos mixtos con distribución normal (LMM)</h3>
 <ul>
 <li class="fragment">
 <p>Extensión del modelo lineal general que incluye un término aleatorio asociado a cada clúster:</p>
-<p><span class="math display">\[ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad asumiendo:~\epsilon_{ij} ~ N(0, \sigma^2_\epsilon)\]</span></p>
+<p><span class="math display">\[ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigma^2_u) ~ y ~ \epsilon_{ij} ~ N(0, \sigma^2_\epsilon)\]</span></p>
 </li>
 <li class="fragment"><p>Esto permite que cada grupo tenga su propio nivel promedio y/o su propia tendencia en la variable respuesta.</p></li>
 <li class="fragment"><p>Supone normalidad e independencia de los errores y los efectos aleatorios.</p></li>
@@ -289,7 +288,7 @@
 <li class="fragment"><p>Cuando <span class="math inline">\(z_{ij} = 1\)</span>, el efecto aleatorio está dado por una <strong>variable categórica</strong> que identifica los clústers.</p></li>
 <li class="fragment"><p>En este caso, cada clúster va a tener su propio <strong>intercepto</strong> para la variable respuesta.</p></li>
 <li class="fragment"><p>Las rectas de regresión para cada clúster serán paralelas (misma pendiente).</p></li>
-<li class="fragment"><p>Las <strong>diferencias entre clústers</strong> reflejan distintos promedios de la respuesta.</p></li>
+<li class="fragment"><p>Las <strong>diferencias entre clústeres</strong> reflejan distintos promedios de la respuesta y permiten modelar la heterogeneidad entre grupos sin estimar un parámetro específico para cada uno.</p></li>
 <li class="fragment"><p>Similar al ANOVA de medidas repetidas o por bloques.</p></li>
 </ul></section><section class="slide level2"><h4 id="pendiente-aleatoria">Pendiente aleatoria</h4>
 <ul>
@@ -337,7 +336,7 @@
 <li class="fragment"><p>Usaremos <code>glmmTMB</code> por su <strong>mayor flexibilidad,</strong> ya que es compatible con la mayoría de las familias no gaussianas.</p></li>
 </ul></section><section class="slide level2"><h4 id="ejemplo-estudio-de-privación-de-sueño">Ejemplo: estudio de privación de sueño</h4>
 <ul>
-<li class="fragment"><p>El dataset <code>sleepstudy</code> contiene información sobre el tiempo de reacción diario en 18 personas con privación de sueño.</p></li>
+<li class="fragment"><p>El dataset <code>sleepstudy</code>, incluido en <code>lme4</code>, contiene información sobre el tiempo de reacción diario en 18 personas con privación de sueño.</p></li>
 <li class="fragment">
 <p>Variables:</p>
 <ul>
@@ -348,10 +347,17 @@
 </li>
 <li class="fragment"><p>Evaluaremos la relación entre días de privación de sueño y tiempo de reacción.</p></li>
 </ul></section><section class="slide level2"><h5 id="regresión-lineal-simple">Regresión lineal simple</h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>mod <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days, <span class="at">data =</span> sleepstudy) </span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a><span class="fu">parameters</span>(mod, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Cargar datos</span></span>
+<span id="cb1-2"><a href=""></a>sleepstudy <span class="ot">&lt;-</span> lme4<span class="sc">::</span>sleepstudy <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href=""></a>  <span class="fu">tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href=""></a>  <span class="co"># Estandarizar nombres de columnas</span></span>
+<span id="cb1-5"><a href=""></a>  <span class="fu">clean_names</span>()</span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a><span class="co"># Ajustar RLS</span></span>
+<span id="cb1-8"><a href=""></a>mod_lm <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days, <span class="at">data =</span> sleepstudy) </span>
+<span id="cb1-9"><a href=""></a></span>
+<span id="cb1-10"><a href=""></a><span class="fu">parameters</span>(mod_lm, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Fixed Effects
 
@@ -366,37 +372,11 @@ RMSE : 47.449
 R2: 0.286; adjusted R2: 0.278</code></pre>
 </div>
 </div>
-</section><section class="slide level2"><h5 id="lmm-con-intercepto-aleatorio">LMM con intercepto aleatorio</h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>mod1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> subject), <span class="at">data =</span> sleepstudy)</span>
-<span id="cb3-2"><a href=""></a></span>
-<span id="cb3-3"><a href=""></a><span class="fu">parameters</span>(mod1, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># Fixed Effects
-
-Parameter   | Coefficient |   SE |           95% CI |     z |      p
---------------------------------------------------------------------
-(Intercept) |      251.41 | 9.51 | [232.77, 270.04] | 26.45 | &lt; .001
-days        |       10.47 | 0.80 | [  8.90,  12.04] | 13.06 | &lt; .001
-
-# Random Effects
-
-Parameter               | Coefficient |         95% CI
-------------------------------------------------------
-SD (Intercept: subject) |       36.01 | [25.36, 51.14]
-SD (Residual)           |       30.90 | [27.71, 34.45]
-
-Model: reaction ~ days (180 Observations)
-Sigma: 30.895 (df = 176)
-RMSE : 29.421
-Conditional R2: 0.698; Marginal R2: 0.288</code></pre>
-</div>
-</div>
 </section><section class="slide level2"><h5 id="regresión-lineal-múltiple-subject-como-efecto-fijo">Regresión lineal múltiple (<code>subject</code> como efecto fijo)</h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>mod2 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> subject, <span class="at">data =</span> sleepstudy)</span>
-<span id="cb5-2"><a href=""></a></span>
-<span id="cb5-3"><a href=""></a><span class="fu">parameters</span>(mod2, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>mod_rlm1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> subject, <span class="at">data =</span> sleepstudy)</span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a><span class="fu">parameters</span>(mod_rlm1, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Fixed Effects
 
@@ -428,40 +408,12 @@ RMSE : 29.310
 R2: 0.728; adjusted R2: 0.695</code></pre>
 </div>
 </div>
-</section><section class="slide level2"><h5 id="lmm-con-intercepto-y-pendiente-aleatorios">LMM con intercepto y pendiente aleatorios</h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>mod3 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> (days <span class="sc">|</span> subject), <span class="at">data =</span> sleepstudy)</span>
-<span id="cb7-2"><a href=""></a></span>
-<span id="cb7-3"><a href=""></a><span class="fu">parameters</span>(mod3, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># Fixed Effects
-
-Parameter   | Coefficient |   SE |           95% CI |     z |      p
---------------------------------------------------------------------
-(Intercept) |      251.40 | 6.63 | [238.41, 264.40] | 37.91 | &lt; .001
-days        |       10.47 | 1.50 | [  7.52,  13.41] |  6.97 | &lt; .001
-
-# Random Effects
-
-Parameter                     | Coefficient |         95% CI
-------------------------------------------------------------
-SD (Intercept: subject)       |       23.78 | [15.02, 37.66]
-SD (days: subject)            |        5.72 | [ 3.81,  8.59]
-Cor (Intercept~days: subject) |        0.08 | [-0.49,  0.59]
-SD (Residual)                 |       25.59 | [22.80, 28.72]
-
-Model: reaction ~ days (180 Observations)
-Sigma: 25.592 (df = 174)
-RMSE : 23.504
-Conditional R2: 0.793; Marginal R2: 0.288</code></pre>
-</div>
-</div>
 </section><section class="slide level2"><h5 id="rlm-con-interacción-entre-subject-y-days">RLM con interacción entre <code>subject</code> y <code>days</code>
 </h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>mod4 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> days<span class="sc">:</span>subject, <span class="at">data =</span> sleepstudy)</span>
-<span id="cb9-2"><a href=""></a></span>
-<span id="cb9-3"><a href=""></a><span class="fu">parameters</span>(mod4, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>mod_rlm2 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> days<span class="sc">:</span>subject, <span class="at">data =</span> sleepstudy)</span>
+<span id="cb5-2"><a href=""></a></span>
+<span id="cb5-3"><a href=""></a><span class="fu">parameters</span>(mod_rlm2, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Fixed Effects
 
@@ -493,48 +445,89 @@ RMSE : 27.444
 R2: 0.761; adjusted R2: 0.733</code></pre>
 </div>
 </div>
+</section><section class="slide level2"><h5 id="lmm-con-intercepto-aleatorio">LMM con intercepto aleatorio</h5>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>mod_lmm1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> subject), <span class="at">data =</span> sleepstudy)</span>
+<span id="cb7-2"><a href=""></a></span>
+<span id="cb7-3"><a href=""></a><span class="fu">parameters</span>(mod_lmm1, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Fixed Effects
+
+Parameter   | Coefficient |   SE |           95% CI |     z |      p
+--------------------------------------------------------------------
+(Intercept) |      251.41 | 9.51 | [232.77, 270.04] | 26.45 | &lt; .001
+days        |       10.47 | 0.80 | [  8.90,  12.04] | 13.06 | &lt; .001
+
+# Random Effects
+
+Parameter               | Coefficient |         95% CI
+------------------------------------------------------
+SD (Intercept: subject) |       36.01 | [25.36, 51.14]
+SD (Residual)           |       30.90 | [27.71, 34.45]
+
+Model: reaction ~ days (180 Observations)
+Sigma: 30.895 (df = 176)
+RMSE : 29.421
+Conditional R2: 0.698; Marginal R2: 0.288</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><h5 id="lmm-con-intercepto-y-pendiente-aleatorios">LMM con intercepto y pendiente aleatorios</h5>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>mod_lmm2 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(reaction <span class="sc">~</span> days <span class="sc">+</span> (days <span class="sc">|</span> subject), <span class="at">data =</span> sleepstudy)</span>
+<span id="cb9-2"><a href=""></a></span>
+<span id="cb9-3"><a href=""></a><span class="fu">parameters</span>(mod_lmm2, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Fixed Effects
+
+Parameter   | Coefficient |   SE |           95% CI |     z |      p
+--------------------------------------------------------------------
+(Intercept) |      251.40 | 6.63 | [238.41, 264.40] | 37.91 | &lt; .001
+days        |       10.47 | 1.50 | [  7.52,  13.41] |  6.97 | &lt; .001
+
+# Random Effects
+
+Parameter                     | Coefficient |         95% CI
+------------------------------------------------------------
+SD (Intercept: subject)       |       23.78 | [15.02, 37.66]
+SD (days: subject)            |        5.72 | [ 3.81,  8.59]
+Cor (Intercept~days: subject) |        0.08 | [-0.49,  0.59]
+SD (Residual)                 |       25.59 | [22.80, 28.72]
+
+Model: reaction ~ days (180 Observations)
+Sigma: 25.592 (df = 174)
+RMSE : 23.504
+Conditional R2: 0.793; Marginal R2: 0.288</code></pre>
+</div>
+</div>
 </section><section class="slide level2"><h5 id="comparar-performance-de-los-modelos">Comparar performance de los modelos</h5>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">compare_performance</span>(mod, mod1, mod2, mod3, mod4, <span class="at">metrics =</span> <span class="st">"common"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">compare_performance</span>(</span>
+<span id="cb11-2"><a href=""></a>  mod_lm,</span>
+<span id="cb11-3"><a href=""></a>  mod_rlm1, mod_rlm2,</span>
+<span id="cb11-4"><a href=""></a>  mod_lmm1, mod_lmm2,</span>
+<span id="cb11-5"><a href=""></a>  <span class="at">metrics =</span> <span class="st">"common"</span>, <span class="at">rank =</span> <span class="cn">TRUE</span></span>
+<span id="cb11-6"><a href=""></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Comparison of Model Performance Indices
 
-Name |   Model |  AIC (weights) |  BIC (weights) |   RMSE |    R2 | R2 (adj.)
------------------------------------------------------------------------------
-mod  | glmmTMB | 1906.3 (&lt;.001) | 1915.9 (&lt;.001) | 47.449 | 0.286 |     0.278
-mod1 | glmmTMB | 1802.1 (&lt;.001) | 1814.9 (&lt;.001) | 29.421 |       |          
-mod2 | glmmTMB | 1766.9 (&lt;.001) | 1830.7 (&lt;.001) | 29.310 | 0.728 |     0.695
-mod3 | glmmTMB | 1763.9 (&lt;.001) | 1783.1 (&gt;.999) | 23.504 |       |          
-mod4 | glmmTMB | 1743.2 (&gt;.999) | 1807.0 (&lt;.001) | 27.444 | 0.761 |     0.733
-
-Name | R2 (cond.) | R2 (marg.) |   ICC
---------------------------------------
-mod  |            |            |      
-mod1 |      0.698 |      0.288 | 0.576
-mod2 |            |            |      
-mod3 |      0.793 |      0.288 | 0.709
-mod4 |            |            |      </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">compare_performance</span>(mod, mod1, mod2, mod3, mod4, <span class="at">metrics =</span> <span class="st">"common"</span>, <span class="at">rank =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># Comparison of Model Performance Indices
-
-Name |   Model |   RMSE | AIC weights | BIC weights | Performance-Score
------------------------------------------------------------------------
-mod3 | glmmTMB | 23.504 |    3.11e-05 |       1.000 |            66.67%
-mod4 | glmmTMB | 27.444 |       1.000 |    6.31e-06 |            61.18%
-mod2 | glmmTMB | 29.310 |    7.19e-06 |    4.53e-11 |            25.25%
-mod1 | glmmTMB | 29.421 |    1.63e-13 |    1.27e-07 |            25.10%
-mod  | glmmTMB | 47.449 |    3.82e-36 |    1.47e-29 |             0.00%</code></pre>
+Name     |   Model |   RMSE | AIC weights | BIC weights | Performance-Score
+---------------------------------------------------------------------------
+mod_lmm2 | glmmTMB | 23.504 |    3.11e-05 |       1.000 |            66.67%
+mod_rlm2 | glmmTMB | 27.444 |       1.000 |    6.31e-06 |            61.18%
+mod_rlm1 | glmmTMB | 29.310 |    7.19e-06 |    4.53e-11 |            25.25%
+mod_lmm1 | glmmTMB | 29.421 |    1.63e-13 |    1.27e-07 |            25.10%
+mod_lm   | glmmTMB | 47.449 |    3.82e-36 |    1.47e-29 |             0.00%</code></pre>
 </div>
 </div>
-</section><section class="slide level2"><h5 id="representación-gráfica-de-los-efectos-aleatorios">Representación gráfica de los efectos aleatorios</h5>
 
-<img data-src="clase_glmm_files/figure-revealjs/Gráfico%20efectos%20aleatorios-1.png" width="960" class="r-stretch"></section><section class="slide level2"><h4 id="ejemplo-mortalidad-por-cáncer-en-la-costa-este-de-eeuu">Ejemplo: mortalidad por cáncer en la costa Este de EEUU</h4>
+<img data-src="clase_glmm_files/figure-revealjs/Gráfico%20performance-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section><section class="slide level2"><h5 id="representación-gráfica-de-los-efectos-aleatorios">Representación gráfica de los efectos aleatorios</h5>
+
+<img data-src="clase_glmm_files/figure-revealjs/Gráfico%20efectos%20aleatorios-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section><section class="slide level2"><h4 id="ejemplo-mortalidad-por-cáncer-en-la-costa-este-de-eeuu">Ejemplo: mortalidad por cáncer en la costa Este de EEUU</h4>
 <p>En la <a href="https://datos-ine.github.io/curso_avanzada_2025/unidad_3/01_est_ecologicos.html">Unidad 3</a> trabajamos con el dataset <code>cancer_USA.txt</code> como ejemplo del modelo lineal general. Ahora veremos como ajustar un modelo multinivel a partir de estos datos:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>cancer <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"cancer_USA.txt"</span>)</span>
-<span id="cb15-2"><a href=""></a><span class="fu">glimpse</span>(cancer)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>cancer <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"cancer_USA.txt"</span>)</span>
+<span id="cb13-2"><a href=""></a></span>
+<span id="cb13-3"><a href=""></a><span class="fu">glimpse</span>(cancer)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 213
 Columns: 10
@@ -550,9 +543,11 @@ $ pct_sec_incompleta &lt;dbl&gt; 15.4, 14.8, 6.1, 13.2, 6.6, 12.9, 10.9, 13.5, 6
 $ pct_desempleo      &lt;dbl&gt; 5.3, 5.8, 6.1, 6.9, 5.0, 5.9, 5.2, 5.6, 6.5, 5.8, 1…</code></pre>
 </div>
 </div>
-</section><section class="slide level2"><p>Cada estado contiene observaciones de distintos condados:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">tabyl</span>(cancer, estado)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section class="slide level2"><ul>
+<li class="fragment">
+<p>Cada estado contiene observaciones de distintos condados:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">tabyl</span>(cancer, estado)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        estado  n    percent
    Connecticut  8 0.03755869
@@ -566,11 +561,16 @@ $ pct_desempleo      &lt;dbl&gt; 5.3, 5.8, 6.1, 6.9, 5.0, 5.9, 5.2, 5.6, 6.5, 5.
        Vermont 14 0.06572770</code></pre>
 </div>
 </div>
-</section><section class="slide level2"><p>En el ejemplo de regresión lineal múltiple habíamos encontrado asociaciones significativas con las siguientes variables:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>mod <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(tasa_mortalidad <span class="sc">~</span> mediana_ingresos <span class="sc">+</span> mediana_edad <span class="sc">+</span> pct_desempleo <span class="sc">+</span> estado, <span class="at">data =</span> cancer)</span>
-<span id="cb19-2"><a href=""></a></span>
-<span id="cb19-3"><a href=""></a><span class="fu">parameters</span>(mod, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</li>
+<li class="fragment"><p>En el ejemplo de <a href="https://datos-ine.github.io/curso_avanzada_2025/unidad_3/07_reg_lineal_multiple.html">regresión lineal múltiple</a>, la tasa de mortalidad tenía asociaciones significativas con <code>mediana_edad</code>, <code>mediana_ingresos</code>, <code>pct_desempleo</code> y <code>estado</code>.</p></li>
+</ul></section><section class="slide level2"><h5 id="regresión-lineal-múltiple">Regresión lineal múltiple</h5>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>mod_rlm <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(</span>
+<span id="cb17-2"><a href=""></a>  tasa_mortalidad <span class="sc">~</span> mediana_ingresos <span class="sc">+</span> mediana_edad <span class="sc">+</span> pct_desempleo <span class="sc">+</span> estado,</span>
+<span id="cb17-3"><a href=""></a>  <span class="at">data =</span> cancer</span>
+<span id="cb17-4"><a href=""></a>)</span>
+<span id="cb17-5"><a href=""></a></span>
+<span id="cb17-6"><a href=""></a><span class="fu">parameters</span>(mod_rlm, <span class="at">effects =</span> <span class="st">"fixed"</span>, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Fixed Effects
 
@@ -595,12 +595,14 @@ RMSE : 11.578
 R2: 0.335; adjusted R2: 0.295</code></pre>
 </div>
 </div>
-</section><section class="slide level2"><p>Reajustamos el modelo usando <code>estado</code> como intercepto aleatorio:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>mod_random <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(tasa_mortalidad <span class="sc">~</span> mediana_ingresos <span class="sc">+</span> mediana_edad <span class="sc">+</span> </span>
-<span id="cb21-2"><a href=""></a>    pct_desempleo <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>estado), <span class="at">data =</span> cancer)</span>
-<span id="cb21-3"><a href=""></a></span>
-<span id="cb21-4"><a href=""></a><span class="fu">parameters</span>(mod_random, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section class="slide level2"><h5 id="lmm-con-estado-como-intercepto-aleatorio">LMM con <code>estado</code> como intercepto aleatorio</h5>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>mod_random <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(</span>
+<span id="cb19-2"><a href=""></a>  tasa_mortalidad <span class="sc">~</span> mediana_ingresos <span class="sc">+</span> mediana_edad <span class="sc">+</span> pct_desempleo <span class="sc">+</span></span>
+<span id="cb19-3"><a href=""></a>    (<span class="dv">1</span> <span class="sc">|</span> estado), <span class="at">data =</span> cancer</span>
+<span id="cb19-4"><a href=""></a>)</span>
+<span id="cb19-5"><a href=""></a></span>
+<span id="cb19-6"><a href=""></a><span class="fu">parameters</span>(mod_random, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Fixed Effects
 
@@ -625,72 +627,220 @@ Conditional R2: 0.302; Marginal R2: 0.302</code></pre>
 </div>
 </div>
 </section><section class="slide level2"><p>Comparamos los dos modelos:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">compare_performance</span>(mod, mod_random, <span class="at">metrics =</span> <span class="st">"common"</span>, <span class="at">rank =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">compare_performance</span>(mod_rlm, mod_random, <span class="at">metrics =</span> <span class="st">"common"</span>, <span class="at">rank =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Comparison of Model Performance Indices
 
 Name       |   Model |   RMSE | AIC weights | BIC weights | Performance-Score
 -----------------------------------------------------------------------------
 mod_random | glmmTMB | 11.868 |       0.850 |       1.000 |            66.67%
-mod        | glmmTMB | 11.578 |       0.150 |    1.38e-06 |            33.33%</code></pre>
+mod_rlm    | glmmTMB | 11.578 |       0.150 |    1.38e-06 |            33.33%</code></pre>
 </div>
 </div>
 <ul>
 <li class="fragment">Usar <code>estado</code> como intercepto aleatorio mejora la performance del modelo y consume menos grados de libertad que usarlo como efecto fijo (<strong>IMPORTANTE</strong> si tenemos pocas observaciones).</li>
+<li class="fragment">Además, permite considerar los estados como una muestra aleatoria de una población mayor de posibles unidades geográficas.</li>
 </ul></section><section class="slide level2"><h4 id="modelos-multinivel">Modelos multinivel</h4>
 <ul>
 <li class="fragment"><p>En algunos estudios, las observaciones se organizan en <strong>niveles jerárquicos</strong> o <strong>anidados</strong> (por ejemplo, pacientes dentro de hospitales, y hospitales dentro de ciudades).</p></li>
 <li class="fragment"><p>Cada nivel jerárquico tiene su <strong>propio intercepto aleatorio</strong>, permitiendo capturar la variabilidad entre unidades dentro de cada nivel.</p></li>
 <li class="fragment"><p>Estos modelos permiten incluir variables explicativas <strong>individuales y contextuales</strong>.</p></li>
 <li class="fragment"><p>La variabilidad total se descompone en distintos <strong>componentes de varianza</strong>, uno por cada nivel jerárquico.</p></li>
+</ul></section><section class="slide level2"><p>En el ejemplo anterior, podríamos considerar que <code>condado</code> y <code>estado</code> son efectos aleatorios anidados, entonces, podemos plantear el siguiente modelo para aquellos condados con más de 2 observaciones:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co"># Filtrar condados con más de 2 observaciones</span></span>
+<span id="cb23-2"><a href=""></a>cancer2 <span class="ot">&lt;-</span> cancer <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href=""></a><span class="fu">group_by</span>(condado) <span class="sc">|&gt;</span> </span>
+<span id="cb23-4"><a href=""></a><span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;</span> <span class="dv">2</span>) </span>
+<span id="cb23-5"><a href=""></a></span>
+<span id="cb23-6"><a href=""></a><span class="co"># Modelo mixto anidado</span></span>
+<span id="cb23-7"><a href=""></a>mod_multi <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(</span>
+<span id="cb23-8"><a href=""></a>  tasa_mortalidad <span class="sc">~</span> mediana_ingresos <span class="sc">+</span> mediana_edad <span class="sc">+</span>  pct_desempleo <span class="sc">+</span></span>
+<span id="cb23-9"><a href=""></a>    (<span class="dv">1</span> <span class="sc">|</span> estado <span class="sc">/</span> condado),  <span class="at">data =</span> cancer2</span>
+<span id="cb23-10"><a href=""></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2"><div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">parameters</span>(mod_multi, <span class="at">include_info =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Fixed Effects
+
+Parameter        | Coefficient |       SE |          95% CI |     z |      p
+----------------------------------------------------------------------------
+(Intercept)      |      177.81 |    50.38 | [79.07, 276.55] |  3.53 | &lt; .001
+mediana ingresos |   -4.92e-04 | 2.18e-04 | [ 0.00,  -0.00] | -2.26 | 0.024 
+mediana edad     |        0.28 |     0.84 | [-1.37,   1.93] |  0.33 | 0.743 
+pct desempleo    |        1.45 |     1.40 | [-1.30,   4.20] |  1.03 | 0.301 
+
+# Random Effects
+
+Parameter                      | Coefficient |           95% CI
+---------------------------------------------------------------
+SD (Intercept: condado:estado) |        2.78 | [0.00, 4.31e+65]
+SD (Intercept: estado)         |    4.33e-03 | [0.00,      Inf]
+SD (Residual)                  |       12.26 | [0.01, 27797.26]
+
+Model: tasa_mortalidad ~ mediana_ingresos + mediana_edad + pct_desempleo (28 Observations)
+Sigma: 12.255 (df = 21)
+RMSE : 11.951
+Conditional R2: 0.378; Marginal R2: 0.378</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Podemos observar que el componente de varianza se divide en tres partes para reflejar la estructura anidada de los datos:
+<ul>
+<li class="fragment">Varianza entre estados</li>
+<li class="fragment">Varianza entre condados del mismo estado</li>
+<li class="fragment">Varianza residual</li>
+</ul>
+</li>
 </ul></section><section class="slide level2"><h3 id="modelos-mixtos-generalizados-glmm">Modelos mixtos generalizados (GLMM)</h3>
 <ul>
 <li class="fragment">Permiten analizar datos agrupados o repetidos con variables respuesta dicotómicas o de conteo, incorporando <strong>efectos aleatorios</strong>.</li>
 <li class="fragment">Los efectos fijos representan el <strong>efecto promedio</strong> de las covariables sobre la respuesta transformada (logit o log).</li>
 <li class="fragment">Los efectos aleatorios capturan la <strong>variabilidad no explicada</strong> entre grupos o unidades de análisis.</li>
-<li class="fragment">Permiten modelar la <strong>dependencia intra-clúster</strong> sin violar el supuesto de independencia de los residuos</li>
-</ul></section><section class="slide level2"><h4 id="diferencias-entre-lmm-y-glmm">Diferencias entre LMM y GLMM</h4>
-<div class="cell">
+<li class="fragment">Permiten modelar la <strong>dependencia intra-clúster</strong> sin violar el supuesto de independencia de los residuos al introducir correlación estructurada mediante efectos aleatorios.</li>
+</ul></section><section class="slide level2"><h4 id="ejemplo-incidencia-de-dengue-en-la-costa-atlántica-de-pba">Ejemplo: Incidencia de dengue en la Costa Atlántica de PBA</h4>
+<ul>
+<li class="fragment">
+<p>En la <a href="https://datos-ine.github.io/curso_avanzada_2025/unidad_5/03_dispersion.html">Unidad 5</a>, usamos el dataset <code>dengue_costa.txt</code> para ejemplificar datos de conteo con sobredispersión.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>dengue <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"dengue_costa.txt"</span>)</span>
+<span id="cb26-2"><a href=""></a></span>
+<span id="cb26-3"><a href=""></a><span class="fu">glimpse</span>(dengue)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,047
+Columns: 6
+$ provincia      &lt;chr&gt; "Buenos Aires", "Buenos Aires", "Buenos Aires", "Buenos…
+$ departamento   &lt;chr&gt; "BAHIA BLANCA", "BAHIA BLANCA", "BAHIA BLANCA", "BAHIA …
+$ periodo        &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2…
+$ semana_epi     &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4…
+$ grupo_edad_cat &lt;chr&gt; "0-9 años", "10-19 años", "20-34 años", "35-65 años", "…
+$ casos          &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0…</code></pre>
+</div>
+</div>
+</li>
+<li class="fragment"><p>Ahora, usaremos estos datos para ajustar un GLMM que controle las medidas repetidas por departamento</p></li>
+</ul></section><section class="slide level2"><h5 id="glm-con-distribución-binomial-negativa">GLM con distribución binomial negativa</h5>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>mod_glm <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(casos <span class="sc">~</span> semana_epi <span class="sc">+</span> grupo_edad_cat,                </span>
+<span id="cb28-2"><a href=""></a>               <span class="at">family =</span> nbinom2, <span class="at">data =</span> dengue)  </span>
+<span id="cb28-3"><a href=""></a></span>
+<span id="cb28-4"><a href=""></a><span class="fu">parameters</span>(mod_glm, <span class="at">include_info =</span> <span class="cn">TRUE</span>, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Fixed Effects
+
+Parameter                   |  IRR |   SE |        95% CI |     z |      p
+--------------------------------------------------------------------------
+(Intercept)                 | 0.04 | 0.01 | [0.02,  0.07] | -9.78 | &lt; .001
+semana epi                  | 1.06 | 0.02 | [1.03,  1.10] |  3.92 | &lt; .001
+grupo edad cat [10-19 años] | 3.20 | 1.06 | [1.67,  6.12] |  3.52 | &lt; .001
+grupo edad cat [20-34 años] | 8.87 | 2.74 | [4.85, 16.25] |  7.07 | &lt; .001
+grupo edad cat [35-65 años] | 9.98 | 3.07 | [5.47, 18.23] |  7.49 | &lt; .001
+grupo edad cat [65+ años]   | 2.04 | 0.71 | [1.03,  4.04] |  2.04 | 0.042 
+
+# Dispersion
+
+Parameter   | Coefficient |       95% CI
+----------------------------------------
+(Intercept) |        0.47 | [0.35, 0.62]
+
+Model: casos ~ semana_epi + grupo_edad_cat (1047 Observations)
+Sigma: 0.467 (df = 1040)
+RMSE : 0.957</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><h5 id="glmm-con-intercepto-aleatorio">GLMM con intercepto aleatorio</h5>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>mod_glmm <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(casos <span class="sc">~</span> semana_epi <span class="sc">+</span> grupo_edad_cat <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>departamento),</span>
+<span id="cb30-2"><a href=""></a>               <span class="at">family =</span> nbinom2, <span class="at">data =</span> dengue)</span>
+<span id="cb30-3"><a href=""></a></span>
+<span id="cb30-4"><a href=""></a><span class="fu">parameters</span>(mod_glmm, <span class="at">include_info =</span> <span class="cn">TRUE</span>, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Fixed Effects
+
+Parameter                   |  IRR |   SE |        95% CI |     z |      p
+--------------------------------------------------------------------------
+(Intercept)                 | 0.02 | 0.01 | [0.01,  0.05] | -7.34 | &lt; .001
+semana epi                  | 1.05 | 0.01 | [1.03,  1.08] |  4.03 | &lt; .001
+grupo edad cat [10-19 años] | 3.03 | 0.94 | [1.65,  5.57] |  3.56 | &lt; .001
+grupo edad cat [20-34 años] | 7.67 | 2.20 | [4.36, 13.47] |  7.08 | &lt; .001
+grupo edad cat [35-65 años] | 8.88 | 2.54 | [5.07, 15.56] |  7.64 | &lt; .001
+grupo edad cat [65+ años]   | 2.05 | 0.68 | [1.07,  3.93] |  2.18 | 0.029 
+
+# Dispersion
+
+Parameter   | Coefficient |       95% CI
+----------------------------------------
+(Intercept) |        2.34 | [1.39, 3.94]
+
+# Random Effects Variances
+
+Parameter                    | Coefficient
+------------------------------------------
+SD (Intercept: departamento) |        1.37
+
+Model: casos ~ semana_epi + grupo_edad_cat (1047 Observations)
+Sigma: 2.340 (df = 1039)
+RMSE : 0.799
+Conditional R2: 0.661; Marginal R2: 0.190</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><h5 id="comparo-modelos">Comparo modelos</h5>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">compare_performance</span>(mod_glm, mod_glmm, <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">"AIC"</span>, <span class="st">"BIC"</span>), <span class="at">rank =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Comparison of Model Performance Indices
+
+Name     |   Model | AIC weights | BIC weights | Performance-Score
+------------------------------------------------------------------
+mod_glmm | glmmTMB |        1.00 |        1.00 |           100.00%
+mod_glm  | glmmTMB |    4.77e-57 |    5.68e-56 |             0.00%</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Al incorporar un intercepto aleatorio por departamento, el modelo reconoce que la incidencia de dengue puede diferir sistemáticamente entre unidades geográficas, más allá de las covariables incluidas.</li>
+</ul></section><section class="slide level2"><p>Resumen: diferencias entre LMM y GLMM</p>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="tabwid">
-<style>.cl-c315632e{}.cl-c30623be{font-family:'Calibri';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c30623c8{font-family:'Calibri';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c3123a28{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c3124dc4{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124dce{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124dcf{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124dd8{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124dd9{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124de2{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124de3{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124de4{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124dec{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124ded{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124dee{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124def{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124df0{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124df6{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124df7{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124df8{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124df9{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124dfa{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124dfb{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124e00{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3124e01{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="cl-c315632e">
+<style>.cl-106c6fb4{}.cl-104ed45e{font-family:'Calibri';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-104ed468{font-family:'Calibri';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-10690dba{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-106920fc{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692106{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692107{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692108{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692109{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1069210a{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692110{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692111{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692112{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1069211a{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1069211b{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1069211c{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1069211d{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692124{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692125{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692126{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692127{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1069212e{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1069212f{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692130{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-10692131{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-106c6fb4">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-c3124dc4"><p class="cl-c3123a28"><span class="cl-c30623be">Característica</span></p></th>
-<th class="cl-c3124dce"><p class="cl-c3123a28"><span class="cl-c30623be">LMM</span></p></th>
-<th class="cl-c3124dcf"><p class="cl-c3123a28"><span class="cl-c30623be">GLMM</span></p></th>
+<th class="cl-106920fc"><p class="cl-10690dba"><span class="cl-104ed45e">Característica</span></p></th>
+<th class="cl-10692106"><p class="cl-10690dba"><span class="cl-104ed45e">LMM</span></p></th>
+<th class="cl-10692107"><p class="cl-10690dba"><span class="cl-104ed45e">GLMM</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-c3124dd8"><p class="cl-c3123a28"><span class="cl-c30623c8">Distribución de la VR</span></p></td>
-<td class="cl-c3124dd9"><p class="cl-c3123a28"><span class="cl-c30623c8">Normal</span></p></td>
-<td class="cl-c3124de2"><p class="cl-c3123a28"><span class="cl-c30623c8">Binomial, Poisson, Gamma, etc.</span></p></td>
+<td class="cl-10692108"><p class="cl-10690dba"><span class="cl-104ed468">Distribución de la VR</span></p></td>
+<td class="cl-10692109"><p class="cl-10690dba"><span class="cl-104ed468">Normal</span></p></td>
+<td class="cl-1069210a"><p class="cl-10690dba"><span class="cl-104ed468">Binomial, Poisson, Gamma, etc.</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-c3124de3"><p class="cl-c3123a28"><span class="cl-c30623c8">Escala de interpretación</span></p></td>
-<td class="cl-c3124de4"><p class="cl-c3123a28"><span class="cl-c30623c8">Original de la VR</span></p></td>
-<td class="cl-c3124dec"><p class="cl-c3123a28"><span class="cl-c30623c8">Escala de la función de enlace</span></p></td>
+<td class="cl-10692110"><p class="cl-10690dba"><span class="cl-104ed468">Escala de interpretación</span></p></td>
+<td class="cl-10692111"><p class="cl-10690dba"><span class="cl-104ed468">Original de la VR</span></p></td>
+<td class="cl-10692112"><p class="cl-10690dba"><span class="cl-104ed468">Escala de la función de enlace</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-c3124ded"><p class="cl-c3123a28"><span class="cl-c30623c8">Efectos fijos</span></p></td>
-<td class="cl-c3124dee"><p class="cl-c3123a28"><span class="cl-c30623c8">Cambios absolutos en la media</span></p></td>
-<td class="cl-c3124def"><p class="cl-c3123a28"><span class="cl-c30623c8">Cambios en la media transformada</span></p></td>
+<td class="cl-1069211a"><p class="cl-10690dba"><span class="cl-104ed468">Efectos fijos</span></p></td>
+<td class="cl-1069211b"><p class="cl-10690dba"><span class="cl-104ed468">Cambios absolutos en la media</span></p></td>
+<td class="cl-1069211c"><p class="cl-10690dba"><span class="cl-104ed468">Cambios en la media transformada</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-c3124df0"><p class="cl-c3123a28"><span class="cl-c30623c8">Efectos aleatorios</span></p></td>
-<td class="cl-c3124df6"><p class="cl-c3123a28"><span class="cl-c30623c8">Desvíos del intercepto y/o pendiente en la media</span></p></td>
-<td class="cl-c3124df7"><p class="cl-c3123a28"><span class="cl-c30623c8">Desvíos del intercepto y/o pendiente en la escala transformada</span></p></td>
+<td class="cl-1069211d"><p class="cl-10690dba"><span class="cl-104ed468">Efectos aleatorios</span></p></td>
+<td class="cl-10692124"><p class="cl-10690dba"><span class="cl-104ed468">Desvíos del intercepto y/o pendiente en la media</span></p></td>
+<td class="cl-10692125"><p class="cl-10690dba"><span class="cl-104ed468">Desvíos del intercepto y/o pendiente en la escala transformada</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-c3124df8"><p class="cl-c3123a28"><span class="cl-c30623c8">Método de estimación</span></p></td>
-<td class="cl-c3124df9"><p class="cl-c3123a28"><span class="cl-c30623c8">ML o REML</span></p></td>
-<td class="cl-c3124dfa"><p class="cl-c3123a28"><span class="cl-c30623c8">ML con integración</span></p></td>
+<td class="cl-10692126"><p class="cl-10690dba"><span class="cl-104ed468">Método de estimación</span></p></td>
+<td class="cl-10692127"><p class="cl-10690dba"><span class="cl-104ed468">ML o REML</span></p></td>
+<td class="cl-1069212e"><p class="cl-10690dba"><span class="cl-104ed468">ML con integración</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-c3124dfb"><p class="cl-c3123a28"><span class="cl-c30623c8">Interpretación varianza</span></p></td>
-<td class="cl-c3124e00"><p class="cl-c3123a28"><span class="cl-c30623c8">Escala original</span></p></td>
-<td class="cl-c3124e01"><p class="cl-c3123a28"><span class="cl-c30623c8">Escala transformada</span></p></td>
+<td class="cl-1069212f"><p class="cl-10690dba"><span class="cl-104ed468">Interpretación varianza</span></p></td>
+<td class="cl-10692130"><p class="cl-10690dba"><span class="cl-104ed468">Escala original</span></p></td>
+<td class="cl-10692131"><p class="cl-10690dba"><span class="cl-104ed468">Escala transformada</span></p></td>
 </tr>
 </tbody>
 </table>

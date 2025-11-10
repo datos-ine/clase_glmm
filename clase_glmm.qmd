@@ -11,7 +11,10 @@ bibliography: references.bib
 knitr::opts_chunk$set(
   echo = TRUE,
   message = FALSE,
-  warning = FALSE
+  warning = FALSE,
+  fig.align = "center",
+  out.width = "85%",
+  dpi = 300
 )
 
 # Cargar paquetes
@@ -19,16 +22,10 @@ pacman::p_load(
    patchwork,
     flextable,
     glmmTMB,
-    broom.mixed,
     easystats,
     janitor,
     tidyverse
 )
-
-# Cargar sleepstudy
-sleepstudy = tibble(lme4::sleepstudy) |>
-# Estandarizar nombres de columnas
-  janitor::clean_names()
 ```
 
 ### Introducción
@@ -47,7 +44,7 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 
 -   Las observaciones se organizan en **clústers** (individuos, grupos, unidades geográficas, etc.) y suelen estar **correlacionadas**.
 
--   Los modelos lineales y lineales generalizados asumen independencia entre observaciones. Ignorar la correlación dentro de los clústers, puede llevar a la **subestimación de los errores estándar** y a inferencias incorrectas.
+-   Los modelos lineales y lineales generalizados asumen independencia entre observaciones. Ignorar la correlación dentro de los clústeres puede llevar a subestimar los errores estándar y, en consecuencia, a realizar inferencias incorrectas.
 
 ------------------------------------------------------------------------
 
@@ -61,7 +58,7 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 
     -   La estructura de correlación entre observaciones dentro de un mismo grupo.
 
--   De este modo, el modelo genera una distribución multivariada de la respuesta, capturando la dependencia intra-clúster.
+-   De este modo, el modelo permite capturar la dependencia entre observaciones mediante la inclusión explícita de componentes aleatorios que representan la variabilidad entre clústeres.
 
 ------------------------------------------------------------------------
 
@@ -71,10 +68,10 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 
     -   **Efectos fijos:** covariables cuyo efecto se estima sobre la media de la respuesta. Son parámetros comunes a toda la población bajo estudio.
 
-    -   **Efectos aleatorios:** variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y contribuyen a la varianza de la respuesta. Los niveles de esta variable no son de interés directo.
+    -   **Efectos aleatorios:** variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y representan la variabilidad no explicada entre unidades del mismo grupo.
 
         ::: {.callout-warning appearance="simple"}
-        Los efectos fijos explican tendencias promedio en la población, mientras que los efectos aleatorios capturan variabilidad no explicada entre clústers.
+        Los efectos fijos describen la tendencia promedio en la población, mientras que los efectos aleatorios capturan la variabilidad entre los distintos clústeres.
         :::
 
 ------------------------------------------------------------------------
@@ -84,7 +81,7 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 -   La variable que define los clústers tiene al menos **cinco niveles**.
 -   Los niveles representan una **muestra aleatoria** de una población de posibles clústers.
 -   Se busca modelar la **correlación intra-clúster**.
--   La variable es parte de la **estructura de diseño** del estudio**.**
+-   La variable es parte de la **estructura de diseño** del estudio.
 -   El efecto de esa variable **no es de interés directo**.
 -   No nos interesa realizar **comparaciones** ni **inferencias** sobre sus niveles.
 
@@ -94,7 +91,7 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 
 -   Extensión del modelo lineal general que incluye un término aleatorio asociado a cada clúster:
 
-    $$ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad asumiendo:~\epsilon_{ij} ~ N(0, \sigma^2_\epsilon)$$
+    $$ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigma^2_u) ~ y ~ \epsilon_{ij} ~ N(0, \sigma^2_\epsilon)$$
 
 -   Esto permite que cada grupo tenga su propio nivel promedio y/o su propia tendencia en la variable respuesta.
 
@@ -110,7 +107,7 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 
 -   Las rectas de regresión para cada clúster serán paralelas (misma pendiente).
 
--   Las **diferencias entre clústers** reflejan distintos promedios de la respuesta.
+-   Las **diferencias entre clústeres** reflejan distintos promedios de la respuesta y permiten modelar la heterogeneidad entre grupos sin estimar un parámetro específico para cada uno.
 
 -   Similar al ANOVA de medidas repetidas o por bloques.
 
@@ -148,7 +145,7 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 
 #### Ejemplo: estudio de privación de sueño
 
--   El dataset `sleepstudy` contiene información sobre el tiempo de reacción diario en 18 personas con privación de sueño.
+-   El dataset `sleepstudy`, incluido en `lme4`, contiene información sobre el tiempo de reacción diario en 18 personas con privación de sueño.
 
 -   Variables:
 
@@ -166,20 +163,16 @@ sleepstudy = tibble(lme4::sleepstudy) |>
 
 ```{r}
 #| id: RLS
-mod <- glmmTMB(reaction ~ days, data = sleepstudy) 
+# Cargar datos
+sleepstudy <- lme4::sleepstudy |>
+  tibble() |>
+  # Estandarizar nombres de columnas
+  clean_names()
 
-parameters(mod, effects = "fixed", include_info = TRUE)
-```
+# Ajustar RLS
+mod_lm <- glmmTMB(reaction ~ days, data = sleepstudy) 
 
-------------------------------------------------------------------------
-
-##### LMM con intercepto aleatorio
-
-```{r}
-#| id: LMM con intercepto aleatorio
-mod1 <- glmmTMB(reaction ~ days + (1 | subject), data = sleepstudy)
-
-parameters(mod1, include_info = TRUE)
+parameters(mod_lm, effects = "fixed", include_info = TRUE)
 ```
 
 ------------------------------------------------------------------------
@@ -188,20 +181,9 @@ parameters(mod1, include_info = TRUE)
 
 ```{r}
 #| id: RLM
-mod2 <- glmmTMB(reaction ~ days + subject, data = sleepstudy)
+mod_rlm1 <- glmmTMB(reaction ~ days + subject, data = sleepstudy)
 
-parameters(mod2, effects = "fixed", include_info = TRUE)
-```
-
-------------------------------------------------------------------------
-
-##### LMM con intercepto y pendiente aleatorios
-
-```{r}
-#| id: LMM con intercepto y pendiente aleatorios
-mod3 <- glmmTMB(reaction ~ days + (days | subject), data = sleepstudy)
-
-parameters(mod3, include_info = TRUE)
+parameters(mod_rlm1, effects = "fixed", include_info = TRUE)
 ```
 
 ------------------------------------------------------------------------
@@ -210,9 +192,31 @@ parameters(mod3, include_info = TRUE)
 
 ```{r}
 #| id: RLM con interacción
-mod4 <- glmmTMB(reaction ~ days + days:subject, data = sleepstudy)
+mod_rlm2 <- glmmTMB(reaction ~ days + days:subject, data = sleepstudy)
 
-parameters(mod4, effects = "fixed", include_info = TRUE)
+parameters(mod_rlm2, effects = "fixed", include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### LMM con intercepto aleatorio
+
+```{r}
+#| id: LMM con intercepto aleatorio
+mod_lmm1 <- glmmTMB(reaction ~ days + (1 | subject), data = sleepstudy)
+
+parameters(mod_lmm1, include_info = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### LMM con intercepto y pendiente aleatorios
+
+```{r}
+#| id: LMM con intercepto y pendiente aleatorios
+mod_lmm2 <- glmmTMB(reaction ~ days + (days | subject), data = sleepstudy)
+
+parameters(mod_lmm2, include_info = TRUE)
 ```
 
 ------------------------------------------------------------------------
@@ -221,9 +225,25 @@ parameters(mod4, effects = "fixed", include_info = TRUE)
 
 ```{r}
 #| id: Comparar modelos
-compare_performance(mod, mod1, mod2, mod3, mod4, metrics = "common")
+compare_performance(
+  mod_lm,
+  mod_rlm1, mod_rlm2,
+  mod_lmm1, mod_lmm2,
+  metrics = "common", rank = TRUE
+)
+```
 
-compare_performance(mod, mod1, mod2, mod3, mod4, metrics = "common", rank = TRUE)
+```{r}
+#| id: Gráfico performance
+#| echo: false
+#| output-location: slide
+compare_performance(
+  mod_lm,
+  mod_rlm1, mod_rlm2,
+  mod_lmm1, mod_lmm2,
+  metrics = "common", rank = TRUE
+) |>  
+    plot()
 ```
 
 ------------------------------------------------------------------------
@@ -235,9 +255,9 @@ compare_performance(mod, mod1, mod2, mod3, mod4, metrics = "common", rank = TRUE
 #| echo: false
 ## Añadir predicciones al dataset
 datos_plot <- sleepstudy |>
-  mutate(pred_i = predict(mod1, type = "response")) |>
+  mutate(pred_i = predict(mod_lmm1, type = "response")) |>
 
-  mutate(pred_p = predict(mod3, type = "response"))
+  mutate(pred_p = predict(mod_lmm2, type = "response"))
 
 ## Spaghetti plot para intercepto aleatorio
 g1 <- datos_plot |>
@@ -258,8 +278,8 @@ g1 +
   scale_color_viridis_d() &
   theme_minimal() &
   theme(
-      legend.position = "bottom",  
-      legend.byrow = TRUE,
+      legend.position = "none",  
+      #legend.byrow = TRUE,
       title = element_text(face = "bold")
   )
 ```
@@ -273,37 +293,45 @@ En la [Unidad 3](https://datos-ine.github.io/curso_avanzada_2025/unidad_3/01_est
 ```{r}
 #| id: Cargar dataset cáncer
 cancer <- read_csv2("cancer_USA.txt")
+
 glimpse(cancer)
 ```
 
 ------------------------------------------------------------------------
 
-Cada estado contiene observaciones de distintos condados:
+-   Cada estado contiene observaciones de distintos condados:
 
-```{r}
-#| id: Frecuencia x estado
-tabyl(cancer, estado)
-```
+    ```{r}
+    #| id: Frecuencia x estado
+    tabyl(cancer, estado)
+    ```
+
+-   En el ejemplo de [regresión lineal múltiple](https://datos-ine.github.io/curso_avanzada_2025/unidad_3/07_reg_lineal_multiple.html), la tasa de mortalidad tenía asociaciones significativas con `mediana_edad`, `mediana_ingresos`, `pct_desempleo` y `estado`.
 
 ------------------------------------------------------------------------
 
-En el ejemplo de regresión lineal múltiple habíamos encontrado asociaciones significativas con las siguientes variables:
+##### Regresión lineal múltiple
 
 ```{r}
 #| id: RLM cáncer
-mod <- glmmTMB(tasa_mortalidad ~ mediana_ingresos + mediana_edad + pct_desempleo + estado, data = cancer)
+mod_rlm <- glmmTMB(
+  tasa_mortalidad ~ mediana_ingresos + mediana_edad + pct_desempleo + estado,
+  data = cancer
+)
 
-parameters(mod, effects = "fixed", include_info = TRUE)
+parameters(mod_rlm, effects = "fixed", include_info = TRUE)
 ```
 
 ------------------------------------------------------------------------
 
-Reajustamos el modelo usando `estado` como intercepto aleatorio:
+##### LMM con `estado` como intercepto aleatorio
 
 ```{r}
 #| id: RLM con intercepto aleatorio
-mod_random <- glmmTMB(tasa_mortalidad ~ mediana_ingresos + mediana_edad + 
-    pct_desempleo + (1|estado), data = cancer)
+mod_random <- glmmTMB(
+  tasa_mortalidad ~ mediana_ingresos + mediana_edad + pct_desempleo +
+    (1 | estado), data = cancer
+)
 
 parameters(mod_random, include_info = TRUE)
 ```
@@ -314,10 +342,11 @@ Comparamos los dos modelos:
 
 ```{r}
 #| id: Comparar performance RLM y LMM
-compare_performance(mod, mod_random, metrics = "common", rank = TRUE)
+compare_performance(mod_rlm, mod_random, metrics = "common", rank = TRUE)
 ```
 
 -   Usar `estado` como intercepto aleatorio mejora la performance del modelo y consume menos grados de libertad que usarlo como efecto fijo (**IMPORTANTE** si tenemos pocas observaciones).
+-   Además, permite considerar los estados como una muestra aleatoria de una población mayor de posibles unidades geográficas.
 
 ------------------------------------------------------------------------
 
@@ -333,16 +362,96 @@ compare_performance(mod, mod_random, metrics = "common", rank = TRUE)
 
 ------------------------------------------------------------------------
 
+En el ejemplo anterior, podríamos considerar que `condado` y `estado` son efectos aleatorios anidados, entonces, podemos plantear el siguiente modelo para aquellos condados con más de 2 observaciones:
+
+```{r}
+#| id: RLM multinivel
+# Filtrar condados con más de 2 observaciones
+cancer2 <- cancer |>
+group_by(condado) |> 
+filter(n() > 2) 
+
+# Modelo mixto anidado
+mod_multi <- glmmTMB(
+  tasa_mortalidad ~ mediana_ingresos + mediana_edad +  pct_desempleo +
+    (1 | estado / condado),  data = cancer2
+)
+```
+
+------------------------------------------------------------------------
+
+```{r}
+#| id: Salida modelo anidado
+parameters(mod_multi, include_info = TRUE)
+```
+
+-   Podemos observar que el componente de varianza se divide en tres partes para reflejar la estructura anidada de los datos:
+    -   Varianza entre estados
+    -   Varianza entre condados del mismo estado
+    -   Varianza residual
+
+------------------------------------------------------------------------
+
 ### Modelos mixtos generalizados (GLMM)
 
 -   Permiten analizar datos agrupados o repetidos con variables respuesta dicotómicas o de conteo, incorporando **efectos aleatorios**.
 -   Los efectos fijos representan el **efecto promedio** de las covariables sobre la respuesta transformada (logit o log).
 -   Los efectos aleatorios capturan la **variabilidad no explicada** entre grupos o unidades de análisis.
--   Permiten modelar la **dependencia intra-clúster** sin violar el supuesto de independencia de los residuos
+-   Permiten modelar la **dependencia intra-clúster** sin violar el supuesto de independencia de los residuos al introducir correlación estructurada mediante efectos aleatorios.
 
 ------------------------------------------------------------------------
 
-#### Diferencias entre LMM y GLMM
+#### Ejemplo: Incidencia de dengue en la Costa Atlántica de PBA
+
+-   En la [Unidad 5](https://datos-ine.github.io/curso_avanzada_2025/unidad_5/03_dispersion.html), usamos el dataset `dengue_costa.txt` para ejemplificar datos de conteo con sobredispersión.
+
+    ```{r}
+    #| id: Cargar datos dengue
+    dengue <- read_delim("dengue_costa.txt")
+
+    glimpse(dengue)
+    ```
+
+-   Ahora, usaremos estos datos para ajustar un GLMM que controle las medidas repetidas por departamento
+
+------------------------------------------------------------------------
+
+##### GLM con distribución binomial negativa
+
+```{r}
+#| id: GLM dengue
+mod_glm <- glmmTMB(casos ~ semana_epi + grupo_edad_cat,                
+               family = nbinom2, data = dengue)  
+
+parameters(mod_glm, include_info = TRUE, exponentiate = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### GLMM con intercepto aleatorio
+
+```{r}
+#| id: GLMM dengue
+mod_glmm <- glmmTMB(casos ~ semana_epi + grupo_edad_cat + (1|departamento),
+               family = nbinom2, data = dengue)
+
+parameters(mod_glmm, include_info = TRUE, exponentiate = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### Comparo modelos
+
+```{r}
+#| id: Comparo GLM y GLMM
+compare_performance(mod_glm, mod_glmm, metrics = c("AIC", "BIC"), rank = TRUE)
+```
+
+-   Al incorporar un intercepto aleatorio por departamento, el modelo reconoce que la incidencia de dengue puede diferir sistemáticamente entre unidades geográficas, más allá de las covariables incluidas.
+
+------------------------------------------------------------------------
+
+Resumen: diferencias entre LMM y GLMM
 
 ```{r}
 #| id: Tabla LMM vs GLMM
