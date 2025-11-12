@@ -10,6 +10,7 @@ format:
     center-title-slide: true
     code-link: true
     code-overflow: wrap
+    code-block-height: 750px
     chalkboard:
       theme: whiteboard
     logo: logos_ine.svg

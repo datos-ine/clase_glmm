@@ -1,0 +1,739 @@
+id;hospital;estrato;edad;sexo;epp;etnia;otro_trabajo;fumador;ig_g;ponde_base
+1;HMFF;Municipal;38;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;6.0867
+2;HMFF;Municipal;28;Mujer;Nunca;No;No;No;No Reactivo;6.0867
+3;HMFF;Municipal;36;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;6.0867
+5;HMFF;Municipal;45;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+6;HMFF;Municipal;31;Mujer;No se cuando esta indicado;No;No;No;No Reactivo;6.0867
+7;HMFF;Municipal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+8;HMFF;Municipal;52;Varon;Nunca;No;No;No;No Reactivo;6.0867
+9;HMFF;Municipal;58;Mujer;Siempre, como se recomienda;No;Si - no salud;Si;No Reactivo;6.0867
+10;HMFF;Municipal;34;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+11;HMFF;Municipal;59;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+12;HMFF;Municipal;30;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+13;HMFF;Municipal;61;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+14;HMFF;Municipal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+15;HMFF;Municipal;27;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+16;HMFF;Municipal;57;Mujer;La mayor parte del tiempo;No;Si - no salud;No;No Reactivo;6.0867
+17;HMFF;Municipal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+18;HMFF;Municipal;27;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+19;HMFF;Municipal;46;Mujer;Ocasionalmente;No;No;No;No Reactivo;6.0867
+20;HMFF;Municipal;46;Mujer;Ocasionalmente;No;Si - salud;No;No Reactivo;6.0867
+21;HMFF;Municipal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+22;HMFF;Municipal;38;Varon;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;6.0867
+23;HMFF;Municipal;39;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+24;HMFF;Municipal;54;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+25;HMFF;Municipal;35;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+26;HMFF;Municipal;33;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+27;HMFF;Municipal;44;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+28;HMFF;Municipal;39;Mujer;Ocasionalmente;No;Si - no salud;No;No Reactivo;6.0867
+29;HMFF;Municipal;35;Mujer;Ocasionalmente;No;No;Si;No Reactivo;6.0867
+30;HMFF;Municipal;42;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+31;HMFF;Municipal;43;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.0867
+32;HMFF;Municipal;31;Mujer;Ocasionalmente;No;No;Si;No Reactivo;6.0867
+33;HMFF;Municipal;49;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;6.0867
+34;HMFF;Municipal;41;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+35;HMFF;Municipal;26;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+36;HMFF;Municipal;62;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+37;HMFF;Municipal;39;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+38;HMFF;Municipal;41;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+39;HMFF;Municipal;42;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;6.0867
+40;HMFF;Municipal;51;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.0867
+41;HMFF;Municipal;49;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.0867
+42;HMFF;Municipal;34;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+43;HMFF;Municipal;48;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+44;HMFF;Municipal;51;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+45;HMFF;Municipal;39;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+46;HMFF;Municipal;54;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+47;HMFF;Municipal;52;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;6.0867
+49;HMFF;Municipal;56;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+51;HMFF;Municipal;51;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.0867
+52;HMFF;Municipal;50;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+53;HMFF;Municipal;64;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+54;HMFF;Municipal;42;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+55;HMFF;Municipal;51;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+56;HMFF;Municipal;44;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.0867
+57;HMFF;Municipal;35;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+58;HMFF;Municipal;58;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+59;HMFF;Municipal;38;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;6.0867
+60;HMFF;Municipal;48;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.0867
+61;HMFF;Municipal;43;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+62;HMFF;Municipal;28;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;6.0867
+63;HMFF;Municipal;48;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+64;HMFF;Municipal;54;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+65;HMFF;Municipal;34;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+66;HMFF;Municipal;49;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+67;HMFF;Municipal;42;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.0867
+68;HMFF;Municipal;28;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;6.0867
+69;HMFF;Municipal;59;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;6.0867
+76;HMMC;Municipal;43;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+77;HMMC;Municipal;50;Mujer;Ocasionalmente;No;No;Si;No Reactivo;10.869
+78;HMMC;Municipal;32;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;10.869
+80;HMMC;Municipal;28;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;10.869
+81;HMMC;Municipal;37;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;10.869
+82;HMMC;Municipal;36;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+83;HMMC;Municipal;39;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;10.869
+84;HMMC;Municipal;54;Mujer;Nunca;No;No;No;No Reactivo;10.869
+85;HMMC;Municipal;30;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+86;HMMC;Municipal;56;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;10.869
+88;HMMC;Municipal;64;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+89;HMMC;Municipal;42;Mujer;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;10.869
+90;HMMC;Municipal;31;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;10.869
+91;HMMC;Municipal;44;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;10.869
+92;HMMC;Municipal;29;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;10.869
+93;HMMC;Municipal;29;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;10.869
+94;HMMC;Municipal;44;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+95;HMMC;Municipal;50;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+96;HMMC;Municipal;52;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;10.869
+97;HMMC;Municipal;37;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+98;HMMC;Municipal;36;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+100;HMMC;Municipal;53;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;10.869
+101;HMMC;Municipal;24;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+102;HMMC;Municipal;46;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;10.869
+103;HMMC;Municipal;53;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;10.869
+104;HMMC;Municipal;29;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+105;HMMC;Municipal;49;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;10.869
+106;HMMC;Municipal;43;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+107;HMMC;Municipal;34;Mujer;Nunca;No;No;No;Reactivo;10.869
+109;HMMC;Municipal;41;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;10.869
+110;HMMC;Municipal;25;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;10.869
+111;HMMC;Municipal;38;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;10.869
+118;HMMG;Municipal;36;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+119;HMMG;Municipal;39;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+120;HMMG;Municipal;41;Mujer;La mayor parte del tiempo;Si;No;No;No Reactivo;8.7788
+122;HMMG;Municipal;47;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+123;HMMG;Municipal;45;Mujer;Nunca;No;Si - no salud;No;No Reactivo;8.7788
+124;HMMG;Municipal;54;Mujer;Ocasionalmente;No;No;Si;No Reactivo;8.7788
+125;HMMG;Municipal;59;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+126;HMMG;Municipal;42;Mujer;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;8.7788
+127;HMMG;Municipal;50;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+128;HMMG;Municipal;60;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+129;HMMG;Municipal;41;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+130;HMMG;Municipal;50;Mujer;Ocasionalmente;No;No;Si;No Reactivo;8.7788
+131;HMMG;Municipal;64;Mujer;Nunca;No;No;No;Reactivo;8.7788
+132;HMMG;Municipal;52;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+133;HMMG;Municipal;51;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;8.7788
+134;HMMG;Municipal;35;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+135;HMMG;Municipal;27;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;8.7788
+136;HMMG;Municipal;49;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.7788
+137;HMMG;Municipal;41;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;8.7788
+138;HMMG;Municipal;44;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+139;HMMG;Municipal;51;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+141;HMMG;Municipal;42;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+143;HMMG;Municipal;37;Mujer;Nunca;No;No;No;No Reactivo;8.7788
+144;HMMG;Municipal;57;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+145;HMMG;Municipal;28;Mujer;Nunca;No;No;No;Reactivo;8.7788
+146;HMMG;Municipal;60;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+147;HMMG;Municipal;40;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+148;HMMG;Municipal;55;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+149;HMMG;Municipal;39;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.7788
+150;HMMG;Municipal;40;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+151;HMMG;Municipal;41;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+152;HMMG;Municipal;60;Varon;La mayor parte del tiempo;No;Si - no salud;No;No Reactivo;8.7788
+153;HMMG;Municipal;31;Mujer;Siempre, como se recomienda;No;Si - no salud;Si;No Reactivo;8.7788
+154;HMMG;Municipal;40;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+155;HMMG;Municipal;42;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+156;HMMG;Municipal;24;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+157;HMMG;Municipal;61;Mujer;Nunca;No;No;No;No Reactivo;8.7788
+158;HMMG;Municipal;42;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.7788
+159;HMMG;Municipal;52;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+160;HMMG;Municipal;38;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.7788
+161;HMMG;Municipal;51;Varon;Siempre, como se recomienda;Si;Si - salud;No;No Reactivo;8.7788
+162;HMMG;Municipal;55;Mujer;Ocasionalmente;No;No;Si;No Reactivo;8.7788
+163;HMMG;Municipal;56;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+165;HMMG;Municipal;47;Mujer;Siempre, como se recomienda;No;No;Si;Reactivo;8.7788
+166;HMMG;Municipal;50;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+167;HMMG;Municipal;39;Mujer;Ocasionalmente;No;No;No;No Reactivo;8.7788
+168;HMMG;Municipal;44;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.7788
+169;HMMG;Municipal;38;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.7788
+170;HMCM;Municipal;65;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+171;HMCM;Municipal;33;Mujer;Ocasionalmente;No;No;No;No Reactivo;6.6159
+172;HMCM;Municipal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+173;HMCM;Municipal;39;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+174;HMCM;Municipal;48;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+175;HMCM;Municipal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+176;HMCM;Municipal;45;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;6.6159
+177;HMCM;Municipal;36;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;6.6159
+178;HMCM;Municipal;63;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+180;HMCM;Municipal;49;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+181;HMCM;Municipal;28;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;6.6159
+182;HMCM;Municipal;33;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+183;HMCM;Municipal;52;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+184;HMCM;Municipal;26;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;6.6159
+186;HMCM;Municipal;48;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+187;HMCM;Municipal;46;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+188;HMCM;Municipal;22;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+189;HMCM;Municipal;36;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;6.6159
+190;HMCM;Municipal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+191;HMCM;Municipal;51;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+192;HMCM;Municipal;31;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;6.6159
+193;HMCM;Municipal;41;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+194;HMCM;Municipal;42;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;6.6159
+195;HMCM;Municipal;62;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.6159
+196;HMCM;Municipal;47;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+197;HMCM;Municipal;36;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;6.6159
+198;HMCM;Municipal;49;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.6159
+199;HMCM;Municipal;31;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+200;HMCM;Municipal;33;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+201;HMCM;Municipal;32;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+202;HMCM;Municipal;38;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+203;HMCM;Municipal;31;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+205;HMCM;Municipal;53;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+206;HMCM;Municipal;32;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+207;HMCM;Municipal;40;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;6.6159
+208;HMCM;Municipal;44;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+209;HMCM;Municipal;35;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+210;HMCM;Municipal;35;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;6.6159
+211;HMCM;Municipal;50;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+212;HMCM;Municipal;39;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;6.6159
+213;HMCM;Municipal;62;Mujer;No se cuando esta indicado;Si;No;No;No Reactivo;6.6159
+214;HMCM;Municipal;35;Mujer;La mayor parte del tiempo;No;Si - no salud;No;No Reactivo;6.6159
+215;HMCM;Municipal;33;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.6159
+216;HMCM;Municipal;52;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+217;HMCM;Municipal;49;Mujer;Siempre, como se recomienda;Si;Si - no salud;No;No Reactivo;6.6159
+218;HMCM;Municipal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+219;HMCM;Municipal;29;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+220;HMCM;Municipal;47;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+221;HMCM;Municipal;43;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+222;HMCM;Municipal;40;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+223;HMCM;Municipal;37;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+224;HMCM;Municipal;42;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;6.6159
+225;HMCM;Municipal;40;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;6.6159
+226;HMCM;Municipal;60;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+227;HMCM;Municipal;44;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;6.6159
+228;HMCM;Municipal;32;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+229;HMCM;Municipal;43;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+230;HMCM;Municipal;69;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;6.6159
+231;HMCM;Municipal;39;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;6.6159
+239;HMGC;Municipal;33;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;14.2656
+240;HMGC;Municipal;32;Mujer;Ocasionalmente;No;Si - salud;Si;No Reactivo;14.2656
+241;HMGC;Municipal;50;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;14.2656
+242;HMGC;Municipal;62;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;14.2656
+243;HMGC;Municipal;51;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+244;HMGC;Municipal;44;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+245;HMGC;Municipal;63;Mujer;Ocasionalmente;No;Si - salud;No;No Reactivo;14.2656
+247;HMGC;Municipal;40;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+248;HMGC;Municipal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+250;HMGC;Municipal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+251;HMGC;Municipal;37;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+252;HMGC;Municipal;30;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+253;HMGC;Municipal;57;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;14.2656
+254;HMGC;Municipal;58;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;14.2656
+255;HMGC;Municipal;25;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;14.2656
+256;HMGC;Municipal;56;Mujer;La mayor parte del tiempo;Si;No;Si;No Reactivo;14.2656
+257;HMGC;Municipal;45;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+258;HMGC;Municipal;55;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;14.2656
+259;HMGC;Municipal;45;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+260;HMGC;Municipal;52;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+261;HMGC;Municipal;57;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;14.2656
+262;HMGC;Municipal;34;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;14.2656
+263;HMGC;Municipal;49;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;14.2656
+264;HMGC;Municipal;57;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+265;HMGC;Municipal;38;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;14.2656
+266;HMGC;Municipal;37;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;14.2656
+271;HLCV;Municipal;36;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+272;HLCV;Municipal;62;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;18.26
+273;HLCV;Municipal;42;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;18.26
+274;HLCV;Municipal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+275;HLCV;Municipal;27;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+276;HLCV;Municipal;30;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;18.26
+277;HLCV;Municipal;45;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+278;HLCV;Municipal;53;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;18.26
+279;HLCV;Municipal;46;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;18.26
+280;HLCV;Municipal;28;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+281;HLCV;Municipal;39;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;18.26
+282;HLCV;Municipal;59;Varon;Siempre, como se recomienda;Si;No;Si;No Reactivo;18.26
+283;HLCV;Municipal;42;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;18.26
+284;HLCV;Municipal;33;Mujer;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;18.26
+285;HLCV;Municipal;51;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;18.26
+286;HLCV;Municipal;42;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+288;HLCV;Municipal;42;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+289;HLCV;Municipal;37;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;18.26
+290;HLCV;Municipal;64;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;18.26
+291;HLCV;Municipal;49;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+292;HLCV;Municipal;41;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;18.26
+293;HLCV;Municipal;52;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;18.26
+294;HLCV;Municipal;42;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+295;HLCV;Municipal;59;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;18.26
+296;HMEF;Municipal;36;Mujer;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;7.1328
+297;HMEF;Municipal;40;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+298;HMEF;Municipal;36;Mujer;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;7.1328
+303;HMEF;Municipal;31;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;7.1328
+304;HMEF;Municipal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+305;HMEF;Municipal;45;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;7.1328
+306;HMEF;Municipal;30;Mujer;Nunca;No;No;Si;Reactivo;7.1328
+307;HMEF;Municipal;43;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+310;HMEF;Municipal;52;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;7.1328
+311;HMEF;Municipal;39;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;7.1328
+312;HMEF;Municipal;40;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;7.1328
+313;HMEF;Municipal;57;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;7.1328
+314;HMEF;Municipal;36;Mujer;La mayor parte del tiempo;No;Si - salud;Si;No Reactivo;7.1328
+315;HMEF;Municipal;33;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;7.1328
+316;HMEF;Municipal;35;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+317;HMEF;Municipal;54;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+318;HMEF;Municipal;48;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;7.1328
+319;HMEF;Municipal;50;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;7.1328
+320;HMEF;Municipal;51;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;7.1328
+321;HMEF;Municipal;59;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;7.1328
+322;HMEF;Municipal;40;Mujer;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;7.1328
+323;HMEF;Municipal;59;Mujer;Nunca;No;No;No;No Reactivo;7.1328
+324;HMEF;Municipal;42;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+326;HMEF;Municipal;24;Mujer;Siempre, como se recomienda;No;Si - salud;No;Reactivo;7.1328
+329;HMEF;Municipal;36;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+331;HMEF;Municipal;38;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;7.1328
+332;HMEF;Municipal;52;Mujer;Nunca;No;Si - salud;No;No Reactivo;7.1328
+333;HMEF;Municipal;49;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;7.1328
+334;HMEF;Municipal;23;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;7.1328
+335;HMEF;Municipal;62;Mujer;Nunca;No;No;No;Reactivo;7.1328
+336;HMEF;Municipal;49;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;7.1328
+337;HMEF;Municipal;27;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;7.1328
+338;HMEF;Municipal;48;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;7.1328
+339;HMEF;Municipal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+341;HMEF;Municipal;41;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;7.1328
+342;HMEF;Municipal;55;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+343;HMEF;Municipal;41;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;7.1328
+344;HMEF;Municipal;33;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+345;HMEF;Municipal;59;Varon;Ocasionalmente;No;Si - salud;No;No Reactivo;7.1328
+346;HMEF;Municipal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+347;HMEF;Municipal;39;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;7.1328
+348;HMEF;Municipal;36;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;7.1328
+349;HMEF;Municipal;41;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;7.1328
+350;HMEF;Municipal;55;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+351;HMEF;Municipal;29;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+352;HMEF;Municipal;42;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;7.1328
+353;HMEF;Municipal;56;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+354;HMEF;Municipal;38;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;7.1328
+355;HMEF;Municipal;59;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+356;HMEF;Municipal;41;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;7.1328
+357;HMEF;Municipal;63;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;7.1328
+359;HMEF;Municipal;31;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;7.1328
+361;HCP;Municipal;38;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+362;HCP;Municipal;52;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+363;HCP;Municipal;29;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+364;HCP;Municipal;44;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+365;HCP;Municipal;44;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+366;HCP;Municipal;42;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;8.4537
+367;HCP;Municipal;41;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+370;HCP;Municipal;28;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+371;HCP;Municipal;61;Mujer;Nunca;No;No;No;No Reactivo;8.4537
+372;HCP;Municipal;63;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+373;HCP;Municipal;39;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+374;HCP;Municipal;52;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.4537
+375;HCP;Municipal;39;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+376;HCP;Municipal;49;Varon;Nunca;No;Si - salud;No;No Reactivo;8.4537
+377;HCP;Municipal;40;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;8.4537
+378;HCP;Municipal;36;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+379;HCP;Municipal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+380;HCP;Municipal;52;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+381;HCP;Municipal;49;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.4537
+382;HCP;Municipal;60;Varon;Siempre, como se recomienda;Si;No;No;No Reactivo;8.4537
+383;HCP;Municipal;49;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+384;HCP;Municipal;63;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+385;HCP;Municipal;36;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+386;HCP;Municipal;32;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+387;HCP;Municipal;40;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.4537
+388;HCP;Municipal;32;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+389;HCP;Municipal;34;Varon;Siempre, como se recomienda;No;No;No;Reactivo;8.4537
+390;HCP;Municipal;50;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;8.4537
+391;HCP;Municipal;35;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+392;HCP;Municipal;43;Mujer;Ocasionalmente;No;No;Si;No Reactivo;8.4537
+393;HCP;Municipal;43;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.4537
+394;HCP;Municipal;54;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.4537
+396;HCP;Municipal;73;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+397;HCP;Municipal;54;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+398;HCP;Municipal;34;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+399;HCP;Municipal;55;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+400;HCP;Municipal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+401;HCP;Municipal;41;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+402;HCP;Municipal;44;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+403;HCP;Municipal;43;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+404;HCP;Municipal;27;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;8.4537
+405;HCP;Municipal;32;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.4537
+407;HCP;Municipal;36;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+408;HCP;Municipal;41;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;8.4537
+409;HCP;Municipal;48;Mujer;Nunca;No;No;Si;No Reactivo;8.4537
+410;HCP;Municipal;45;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.4537
+411;HCP;Municipal;45;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.4537
+412;HCP;Municipal;42;Mujer;Ocasionalmente;No;No;No;No Reactivo;8.4537
+413;HCP;Municipal;40;Varon;Siempre, como se recomienda;Si;No;No;No Reactivo;8.4537
+414;HNDBV;Municipal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;26.8529
+415;HNDBV;Municipal;42;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;26.8529
+416;HNDBV;Municipal;41;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;26.8529
+417;HNDBV;Municipal;36;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;26.8529
+418;HNDBV;Municipal;42;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;26.8529
+419;HNDBV;Municipal;30;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;26.8529
+420;HNDBV;Municipal;32;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;26.8529
+421;HNDBV;Municipal;41;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;26.8529
+422;HNDBV;Municipal;29;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;26.8529
+423;HNDBV;Municipal;53;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;26.8529
+425;HNDBV;Municipal;35;Varon;Ocasionalmente;No;No;No;No Reactivo;26.8529
+426;HNDBV;Municipal;50;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;26.8529
+427;HNDBV;Municipal;41;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;26.8529
+428;HNDBV;Municipal;47;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;26.8529
+429;HNDBV;Municipal;41;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;26.8529
+430;HNDBV;Municipal;28;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;26.8529
+432;HMRS;Municipal;49;Varon;Siempre, como se recomienda;Si;No;Si;No Reactivo;4.7552
+433;HMRS;Municipal;50;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+435;HMRS;Municipal;52;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+438;HMRS;Municipal;65;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;4.7552
+441;HMRS;Municipal;44;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;4.7552
+442;HMRS;Municipal;29;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+443;HMRS;Municipal;43;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+444;HMRS;Municipal;37;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;4.7552
+447;HMRS;Municipal;57;Mujer;La mayor parte del tiempo;Si;No;No;Reactivo;4.7552
+448;HMRS;Municipal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+449;HMRS;Municipal;48;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+454;HMRS;Municipal;31;Mujer;Nunca;No;No;No;No Reactivo;4.7552
+455;HMRS;Municipal;49;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+457;HMRS;Municipal;52;Mujer;Siempre, como se recomienda;Si;No;Si;No Reactivo;4.7552
+458;HMRS;Municipal;49;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;4.7552
+460;HMRS;Municipal;46;Mujer;La mayor parte del tiempo;No;Si - salud;Si;No Reactivo;4.7552
+463;HMRS;Municipal;45;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;4.7552
+464;HMRS;Municipal;37;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+468;HMRS;Municipal;65;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;4.7552
+469;HMRS;Municipal;52;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+470;HMRS;Municipal;45;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+471;HMRS;Municipal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+472;HMRS;Municipal;51;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+473;HMRS;Municipal;39;Mujer;Ocasionalmente;No;No;No;No Reactivo;4.7552
+476;HMRS;Municipal;36;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;4.7552
+477;HMRS;Municipal;37;Mujer;Siempre, como se recomienda;No;Si - salud;No;Reactivo;4.7552
+478;HMRS;Municipal;31;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+479;HMRS;Municipal;55;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+480;HMRS;Municipal;50;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;4.7552
+481;HMRS;Municipal;64;Mujer;Siempre, como se recomienda;Si;No;Si;No Reactivo;4.7552
+482;HMRS;Municipal;30;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+483;HMRS;Municipal;46;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+485;HMRS;Municipal;48;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+486;HMRS;Municipal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+488;HMRS;Municipal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+489;HMRS;Municipal;39;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+490;HMRS;Municipal;42;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+492;HMRS;Municipal;46;Varon;Ocasionalmente;Si;Si - no salud;Si;No Reactivo;4.7552
+495;HMRS;Municipal;53;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;4.7552
+496;HMRS;Municipal;41;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+498;HMRS;Municipal;40;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+499;HMRS;Municipal;26;Mujer;Siempre, como se recomienda;No;Si - salud;No;Reactivo;4.7552
+500;HMRS;Municipal;31;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+503;HMRS;Municipal;35;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+504;HMRS;Municipal;44;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;4.7552
+505;HMRS;Municipal;64;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+506;HMRS;Municipal;44;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+508;HMRS;Municipal;50;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+509;HMRS;Municipal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+514;HMRS;Municipal;45;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+517;HMRS;Municipal;43;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;4.7552
+518;HMRS;Municipal;26;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;4.7552
+521;HMRS;Municipal;36;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;4.7552
+522;HMRS;Municipal;47;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+523;HMRS;Municipal;48;Mujer;Siempre, como se recomienda;Si;Si - salud;No;No Reactivo;4.7552
+526;HMRS;Municipal;48;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;4.7552
+527;HMAI;Municipal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+528;HMAI;Municipal;41;Mujer;Nunca;No;Si - salud;No;No Reactivo;9.5104
+529;HMAI;Municipal;66;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;9.5104
+530;HMAI;Municipal;64;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+531;HMAI;Municipal;43;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+532;HMAI;Municipal;59;Mujer;Nunca;Si;No;Si;No Reactivo;9.5104
+533;HMAI;Municipal;61;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+534;HMAI;Municipal;42;Mujer;Nunca;No;No;No;No Reactivo;9.5104
+535;HMAI;Municipal;38;Mujer;Nunca;No;Si - salud;No;No Reactivo;9.5104
+536;HMAI;Municipal;41;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;9.5104
+537;HMAI;Municipal;40;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+538;HMAI;Municipal;55;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;9.5104
+539;HMAI;Municipal;65;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+540;HMAI;Municipal;53;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;9.5104
+541;HMAI;Municipal;48;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+542;HMAI;Municipal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+543;HMAI;Municipal;35;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+544;HMAI;Municipal;54;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+545;HMAI;Municipal;54;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;9.5104
+546;HMAI;Municipal;51;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;9.5104
+547;HMAI;Municipal;39;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;9.5104
+548;HMAI;Municipal;43;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;9.5104
+549;HMAI;Municipal;49;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+550;HMAI;Municipal;39;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+551;HMAI;Municipal;60;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;9.5104
+552;HMAI;Municipal;35;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+553;HMAI;Municipal;34;Mujer;Ocasionalmente;No;No;No;No Reactivo;9.5104
+554;HMAI;Municipal;41;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;9.5104
+555;HMAI;Municipal;49;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;9.5104
+556;HMAI;Municipal;51;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+557;HMAI;Municipal;19;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;9.5104
+558;HMAI;Municipal;52;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;9.5104
+559;HMAI;Municipal;50;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;9.5104
+560;HMAI;Municipal;36;Mujer;Ocasionalmente;No;No;No;No Reactivo;9.5104
+561;HMAI;Municipal;47;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+562;HMAI;Municipal;71;Varon;Siempre, como se recomienda;Si;No;No;No Reactivo;9.5104
+563;HMAI;Municipal;41;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+564;HMAI;Municipal;43;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;9.5104
+565;HMAI;Municipal;58;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+566;HMAI;Municipal;46;Mujer;Siempre, como se recomienda;Si;No;Si;No Reactivo;9.5104
+567;HMAI;Municipal;36;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;9.5104
+568;HMAI;Municipal;31;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;9.5104
+569;HMAI;Municipal;60;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+570;HMAI;Municipal;33;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+571;HMAI;Municipal;30;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+572;HMAI;Municipal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+573;HMAI;Municipal;41;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;9.5104
+574;HMAI;Municipal;32;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;9.5104
+575;HMST;Municipal;44;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+576;HMST;Municipal;21;Varon;Siempre, como se recomienda;Si;No;No;No Reactivo;8.951
+577;HMST;Municipal;44;Mujer;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;8.951
+578;HMST;Municipal;54;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+579;HMST;Municipal;61;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+580;HMST;Municipal;49;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+581;HMST;Municipal;48;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+583;HMST;Municipal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+584;HMST;Municipal;44;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+585;HMST;Municipal;47;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+586;HMST;Municipal;45;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+587;HMST;Municipal;51;Varon;La mayor parte del tiempo;Si;Si - salud;No;No Reactivo;8.951
+588;HMST;Municipal;60;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+589;HMST;Municipal;39;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+590;HMST;Municipal;37;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;8.951
+591;HMST;Municipal;57;Mujer;Siempre, como se recomienda;Si;Si - no salud;No;No Reactivo;8.951
+592;HMST;Municipal;55;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+593;HMST;Municipal;45;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+594;HMST;Municipal;37;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+595;HMST;Municipal;29;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+596;HMST;Municipal;51;Varon;La mayor parte del tiempo;No;No;Si;No Reactivo;8.951
+597;HMST;Municipal;28;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.951
+598;HMST;Municipal;45;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+599;HMST;Municipal;57;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+600;HMST;Municipal;28;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+601;HMST;Municipal;38;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+602;HMST;Municipal;54;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;8.951
+604;HMST;Municipal;46;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+605;HMST;Municipal;36;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+606;HMST;Municipal;23;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+607;HMST;Municipal;27;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.951
+608;HMST;Municipal;27;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.951
+609;HMST;Municipal;38;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+610;HMST;Municipal;40;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+613;HMST;Municipal;50;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+614;HMST;Municipal;18;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.951
+615;HMST;Municipal;48;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+616;HMST;Municipal;49;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+617;HMST;Municipal;24;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.951
+618;HMST;Municipal;23;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.951
+619;HMST;Municipal;52;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.951
+627;HIEMI;Interzonal;64;Mujer;La mayor parte del tiempo;No;No;Si;Reactivo;8.1158
+628;HIEMI;Interzonal;52;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+629;HIEMI;Interzonal;37;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+630;HIEMI;Interzonal;41;Mujer;Ocasionalmente;No;No;No;No Reactivo;8.1158
+631;HIEMI;Interzonal;26;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+634;HIEMI;Interzonal;48;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+635;HIEMI;Interzonal;42;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+636;HIEMI;Interzonal;50;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+637;HIEMI;Interzonal;42;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+639;HIEMI;Interzonal;42;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+640;HIEMI;Interzonal;42;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+641;HIEMI;Interzonal;44;Varon;La mayor parte del tiempo;No;Si - salud;Si;No Reactivo;8.1158
+642;HIEMI;Interzonal;53;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+644;HIEMI;Interzonal;54;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+645;HIEMI;Interzonal;32;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;8.1158
+646;HIEMI;Interzonal;48;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+647;HIEMI;Interzonal;41;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.1158
+649;HIEMI;Interzonal;33;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+650;HIEMI;Interzonal;36;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+651;HIEMI;Interzonal;56;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.1158
+652;HIEMI;Interzonal;54;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+653;HIEMI;Interzonal;57;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+654;HIEMI;Interzonal;30;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+657;HIEMI;Interzonal;67;Mujer;Nunca;No;No;No;Reactivo;8.1158
+658;HIEMI;Interzonal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+659;HIEMI;Interzonal;62;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+660;HIEMI;Interzonal;48;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+662;HIEMI;Interzonal;56;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+663;HIEMI;Interzonal;54;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+664;HIEMI;Interzonal;40;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+666;HIEMI;Interzonal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+667;HIEMI;Interzonal;32;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+668;HIEMI;Interzonal;47;Mujer;Siempre, como se recomienda;Si;No;Si;No Reactivo;8.1158
+669;HIEMI;Interzonal;67;Mujer;Nunca;No;No;No;No Reactivo;8.1158
+670;HIEMI;Interzonal;62;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+672;HIEMI;Interzonal;34;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+674;HIEMI;Interzonal;33;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+675;HIEMI;Interzonal;51;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+676;HIEMI;Interzonal;30;Mujer;La mayor parte del tiempo;Si;No;No;No Reactivo;8.1158
+677;HIEMI;Interzonal;30;Mujer;Ocasionalmente;No;No;No;Reactivo;8.1158
+678;HIEMI;Interzonal;37;Varon;Nunca;No;No;No;No Reactivo;8.1158
+679;HIEMI;Interzonal;32;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+682;HIEMI;Interzonal;46;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+683;HIEMI;Interzonal;57;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+684;HIEMI;Interzonal;42;Varon;Siempre, como se recomienda;Si;No;No;No Reactivo;8.1158
+685;HIEMI;Interzonal;39;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+686;HIEMI;Interzonal;42;Varon;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+687;HIEMI;Interzonal;41;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+688;HIEMI;Interzonal;43;Varon;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+689;HIEMI;Interzonal;39;Varon;Nunca;No;No;No;No Reactivo;8.1158
+690;HIEMI;Interzonal;35;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+691;HIEMI;Interzonal;46;Mujer;Siempre, como se recomienda;Si;Si - salud;Si;No Reactivo;8.1158
+693;HIEMI;Interzonal;54;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+694;HIEMI;Interzonal;66;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+695;HIEMI;Interzonal;28;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+696;HIEMI;Interzonal;29;Mujer;La mayor parte del tiempo;No;No;No;Reactivo;8.1158
+697;HIEMI;Interzonal;37;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+700;HIEMI;Interzonal;30;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+701;HIEMI;Interzonal;40;Mujer;Siempre, como se recomienda;No;Si - no salud;No;No Reactivo;8.1158
+702;HIEMI;Interzonal;33;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+703;HIEMI;Interzonal;40;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+706;HIEMI;Interzonal;51;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+707;HIEMI;Interzonal;28;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.1158
+708;HIEMI;Interzonal;38;Varon;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+709;HIEMI;Interzonal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+710;HIEMI;Interzonal;42;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+711;HIEMI;Interzonal;61;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;8.1158
+713;HIEMI;Interzonal;24;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+714;HIEMI;Interzonal;35;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+715;HIEMI;Interzonal;41;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+718;HIEMI;Interzonal;58;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+720;HIEMI;Interzonal;56;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+721;HIEMI;Interzonal;34;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+723;HIEMI;Interzonal;45;Varon;Siempre, como se recomienda;No;Si - no salud;Si;No Reactivo;8.1158
+724;HIEMI;Interzonal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+725;HIEMI;Interzonal;22;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+726;HIEMI;Interzonal;24;Mujer;Siempre, como se recomienda;Si;Si - salud;No;No Reactivo;8.1158
+728;HIEMI;Interzonal;58;Mujer;Ocasionalmente;No;No;No;No Reactivo;8.1158
+729;HIEMI;Interzonal;45;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+731;HIEMI;Interzonal;51;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+732;HIEMI;Interzonal;39;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+733;HIEMI;Interzonal;42;Varon;La mayor parte del tiempo;Si;Si - salud;No;Reactivo;8.1158
+734;HIEMI;Interzonal;42;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+736;HIEMI;Interzonal;47;Mujer;Nunca;No;No;Si;Reactivo;8.1158
+737;HIEMI;Interzonal;33;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+738;HIEMI;Interzonal;28;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+739;HIEMI;Interzonal;39;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+740;HIEMI;Interzonal;32;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+742;HIEMI;Interzonal;50;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+743;HIEMI;Interzonal;35;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+747;HIEMI;Interzonal;51;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+748;HIEMI;Interzonal;47;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+749;HIEMI;Interzonal;27;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+752;HIEMI;Interzonal;34;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+753;HIEMI;Interzonal;23;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+754;HIEMI;Interzonal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+755;HIEMI;Interzonal;37;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+756;HIEMI;Interzonal;31;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+763;HIEMI;Interzonal;49;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;8.1158
+764;HIEMI;Interzonal;57;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+765;HIEMI;Interzonal;48;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+766;HIEMI;Interzonal;39;Varon;La mayor parte del tiempo;No;No;Si;No Reactivo;8.1158
+767;HIEMI;Interzonal;33;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+768;HIEMI;Interzonal;41;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.1158
+769;HIEMI;Interzonal;35;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+770;HIEMI;Interzonal;30;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+771;HIEMI;Interzonal;44;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+772;HIEMI;Interzonal;50;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+774;HIEMI;Interzonal;53;Mujer;Nunca;No;No;Si;No Reactivo;8.1158
+775;HIEMI;Interzonal;36;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+776;HIEMI;Interzonal;40;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+777;HIEMI;Interzonal;43;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+778;HIEMI;Interzonal;49;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+780;HIEMI;Interzonal;48;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+781;HIEMI;Interzonal;43;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+783;HIEMI;Interzonal;45;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+785;HIEMI;Interzonal;41;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+786;HIEMI;Interzonal;47;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+787;HIEMI;Interzonal;47;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+789;HIEMI;Interzonal;36;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+790;HIEMI;Interzonal;56;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+791;HIEMI;Interzonal;20;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+793;HIEMI;Interzonal;32;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+794;HIEMI;Interzonal;25;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+795;HIEMI;Interzonal;34;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+796;HIEMI;Interzonal;33;Varon;Siempre, como se recomienda;No;Si - no salud;No;Reactivo;8.1158
+797;HIEMI;Interzonal;42;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+798;HIEMI;Interzonal;27;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;8.1158
+799;HIEMI;Interzonal;42;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.1158
+801;HIEMI;Interzonal;27;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+802;HIEMI;Interzonal;27;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+804;HIEMI;Interzonal;30;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+805;HIEMI;Interzonal;48;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+807;HIEMI;Interzonal;27;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+808;HIEMI;Interzonal;27;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+809;HIEMI;Interzonal;27;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+810;HIEMI;Interzonal;30;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+811;HIEMI;Interzonal;29;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.1158
+812;HIEMI;Interzonal;30;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.1158
+814;HIEMI;Interzonal;32;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.1158
+815;HIEMI;Interzonal;29;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.1158
+816;HIGA;Interzonal;27;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+818;HIGA;Interzonal;33;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+820;HIGA;Interzonal;29;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+823;HIGA;Interzonal;31;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;8.0865
+826;HIGA;Interzonal;50;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+827;HIGA;Interzonal;50;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+832;HIGA;Interzonal;28;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+833;HIGA;Interzonal;26;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;8.0865
+834;HIGA;Interzonal;26;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+837;HIGA;Interzonal;34;Mujer;Siempre, como se recomienda;No;No;No;Reactivo;8.0865
+838;HIGA;Interzonal;33;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+839;HIGA;Interzonal;32;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+840;HIGA;Interzonal;31;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+841;HIGA;Interzonal;43;Varon;Siempre, como se recomienda;No;No;Si;Reactivo;8.0865
+842;HIGA;Interzonal;34;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+843;HIGA;Interzonal;32;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+844;HIGA;Interzonal;28;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+846;HIGA;Interzonal;44;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;8.0865
+852;HIGA;Interzonal;65;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+853;HIGA;Interzonal;45;Mujer;Siempre, como se recomienda;No;Si - salud;No;Reactivo;8.0865
+854;HIGA;Interzonal;44;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+855;HIGA;Interzonal;40;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+858;HIGA;Interzonal;53;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+862;HIGA;Interzonal;52;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+863;HIGA;Interzonal;35;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+864;HIGA;Interzonal;55;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+865;HIGA;Interzonal;39;Varon;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.0865
+870;HIGA;Interzonal;64;Varon;Nunca;No;Si - no salud;Si;No Reactivo;8.0865
+873;HIGA;Interzonal;59;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+874;HIGA;Interzonal;48;Varon;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+875;HIGA;Interzonal;39;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+876;HIGA;Interzonal;30;Mujer;La mayor parte del tiempo;No;Si - salud;No;Reactivo;8.0865
+878;HIGA;Interzonal;41;Varon;Nunca;No;No;No;No Reactivo;8.0865
+880;HIGA;Interzonal;40;Mujer;Siempre, como se recomienda;No;Si - salud;Si;No Reactivo;8.0865
+882;HIGA;Interzonal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+884;HIGA;Interzonal;53;Mujer;Siempre, como se recomienda;No;Si - salud;No;Reactivo;8.0865
+885;HIGA;Interzonal;65;Varon;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+887;HIGA;Interzonal;52;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;8.0865
+889;HIGA;Interzonal;56;Varon;Ocasionalmente;No;Si - salud;No;Reactivo;8.0865
+890;HIGA;Interzonal;49;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+892;HIGA;Interzonal;40;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.0865
+893;HIGA;Interzonal;32;Mujer;Siempre, como se recomienda;No;Si - salud;No;No Reactivo;8.0865
+894;HIGA;Interzonal;31;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.0865
+896;HIGA;Interzonal;63;Mujer;La mayor parte del tiempo;No;No;No;Reactivo;8.0865
+897;HIGA;Interzonal;53;Mujer;No se cuando esta indicado;No;No;No;No Reactivo;8.0865
+898;HIGA;Interzonal;27;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+900;HIGA;Interzonal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+903;HIGA;Interzonal;44;Varon;Ocasionalmente;No;No;No;No Reactivo;8.0865
+907;HIGA;Interzonal;46;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+911;HIGA;Interzonal;29;Mujer;La mayor parte del tiempo;No;No;Si;No Reactivo;8.0865
+914;HIGA;Interzonal;56;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+915;HIGA;Interzonal;39;Varon;La mayor parte del tiempo;No;Si - no salud;Si;No Reactivo;8.0865
+916;HIGA;Interzonal;55;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+919;HIGA;Interzonal;46;Mujer;Siempre, como se recomienda;No;No;Si;Reactivo;8.0865
+920;HIGA;Interzonal;41;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+928;HIGA;Interzonal;33;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+935;HIGA;Interzonal;32;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+936;HIGA;Interzonal;31;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+939;HIGA;Interzonal;36;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+942;HIGA;Interzonal;59;Mujer;Siempre, como se recomienda;Si;No;Si;No Reactivo;8.0865
+943;HIGA;Interzonal;43;Mujer;Siempre, como se recomienda;No;Si - salud;Si;Reactivo;8.0865
+948;HIGA;Interzonal;47;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.0865
+949;HIGA;Interzonal;50;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+950;HIGA;Interzonal;60;Varon;Ocasionalmente;No;No;No;Reactivo;8.0865
+952;HIGA;Interzonal;37;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+953;HIGA;Interzonal;48;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+954;HIGA;Interzonal;31;Varon;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+955;HIGA;Interzonal;58;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+959;HIGA;Interzonal;49;Mujer;Siempre, como se recomienda;Si;No;No;No Reactivo;8.0865
+960;HIGA;Interzonal;40;Varon;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;8.0865
+963;HIGA;Interzonal;58;Mujer;La mayor parte del tiempo;No;Si - salud;No;No Reactivo;8.0865
+966;HIGA;Interzonal;52;Varon;Siempre, como se recomienda;No;No;Si;No Reactivo;8.0865
+969;HIGA;Interzonal;36;Mujer;La mayor parte del tiempo;No;No;No;No Reactivo;8.0865
+970;HIGA;Interzonal;53;Mujer;La mayor parte del tiempo;No;No;No;Reactivo;8.0865
+971;HIGA;Interzonal;33;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+974;HIGA;Interzonal;55;Varon;Nunca;No;No;No;No Reactivo;8.0865
+977;HIGA;Interzonal;44;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+984;HIGA;Interzonal;53;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865
+985;HIGA;Interzonal;60;Mujer;Siempre, como se recomienda;No;No;Si;No Reactivo;8.0865
+996;HIGA;Interzonal;49;Mujer;Siempre, como se recomienda;No;No;No;No Reactivo;8.0865

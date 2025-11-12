@@ -32,11 +32,11 @@ pacman::p_load(
 
 -   En muchos estudios epidemiológicos, las observaciones no son independientes entre sí. Por ejemplo:
 
-    -   Estudios longitudinales con medidas repetidas sobre los mismos individuos.
+    -   Estudios longitudinales con **medidas repetidas** sobre los mismos individuos.
 
-    -   Estudios transversales o caso-control con datos agrupados por unidades espaciales (provincias, ciudades, barrios, etc.).
+    -   Estudios transversales o caso-control con **datos agrupados** por unidades espaciales (provincias, ciudades, barrios, etc.).
 
-    -   Estudios experimentales donde los participantes se asignan a distintos grupos y se evalúan en diferentes momentos.
+    -   Estudios experimentales donde los participantes se asignan a **distintos grupos** y se evalúan en diferentes momentos.
 
 ------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ pacman::p_load(
 
 -   Las observaciones se organizan en **clústers** (individuos, grupos, unidades geográficas, etc.) y suelen estar **correlacionadas**.
 
--   Los modelos lineales y lineales generalizados asumen independencia entre observaciones. Ignorar la correlación dentro de los clústeres puede llevar a subestimar los errores estándar y, en consecuencia, a realizar inferencias incorrectas.
+-   Ignorar la correlación dentro de los clústers puede llevar a **subestimar los errores estándar** y, en consecuencia, a realizar inferencias incorrectas.
 
 ------------------------------------------------------------------------
 
@@ -54,11 +54,11 @@ pacman::p_load(
 
 -   Esto permite modelar simultáneamente:
 
-    -   La relación sistemática entre la media y las covariables.
+    -   La **relación sistemática** entre la media y las covariables.
 
-    -   La estructura de correlación entre observaciones dentro de un mismo grupo.
+    -   La **estructura de correlación** entre observaciones dentro de un mismo grupo.
 
--   De este modo, el modelo permite capturar la dependencia entre observaciones mediante la inclusión explícita de componentes aleatorios que representan la variabilidad entre clústeres.
+-   De este modo, se captura la **dependencia** entre observaciones mediante la inclusión de componentes **aleatorios** que representan la variabilidad entre clústers.
 
 ------------------------------------------------------------------------
 
@@ -66,13 +66,15 @@ pacman::p_load(
 
 -   Los modelos mixtos se componen de dos partes:
 
-    -   **Efectos fijos:** covariables cuyo efecto se estima sobre la media de la respuesta. Son parámetros comunes a toda la población bajo estudio.
+    -   **Efectos fijos:** covariables cuyo efecto se estima sobre la media de la respuesta. Son parámetros **comunes a toda la población** bajo estudio.
 
-    -   **Efectos aleatorios:** variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y representan la variabilidad no explicada entre unidades del mismo grupo.
+    -   **Efectos aleatorios:** variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y representan la **variabilidad no explicada** entre unidades del mismo grupo.
 
-        ::: {.callout-warning appearance="simple"}
-        Los efectos fijos describen la tendencia promedio en la población, mientras que los efectos aleatorios capturan la variabilidad entre los distintos clústeres.
-        :::
+------------------------------------------------------------------------
+
+::: {.callout-warning .center style="font-size: 2.5em;" appearance="simple"}
+Los efectos fijos describen la **tendencia** promedio en la población, mientras que los efectos aleatorios capturan la **variabilidad** entre los distintos clústers.
+:::
 
 ------------------------------------------------------------------------
 
@@ -107,7 +109,7 @@ pacman::p_load(
 
 -   Las rectas de regresión para cada clúster serán paralelas (misma pendiente).
 
--   Las **diferencias entre clústeres** reflejan distintos promedios de la respuesta y permiten modelar la heterogeneidad entre grupos sin estimar un parámetro específico para cada uno.
+-   Las **diferencias entre clústers** permiten modelar la heterogeneidad entre grupos sin estimar un parámetro específico para cada uno.
 
 -   Similar al ANOVA de medidas repetidas o por bloques.
 
@@ -136,10 +138,10 @@ pacman::p_load(
     | Paquete   | Función/es                         | Modelos             |
     |-----------|------------------------------------|---------------------|
     | `nlme`    | `lme()`                            | LMM                 |
-    | `lmer`    | `lmer()`, `glmer()` y `glmer.nb()` | LMM y GLMM          |
+    | `lme4`    | `lmer()`, `glmer()` y `glmer.nb()` | LMM y GLMM          |
     | `glmmTMB` | `glmmTMB()`                        | LM, GLM, LMM y GLMM |
 
--   Usaremos `glmmTMB` por su **mayor flexibilidad,** ya que es compatible con la mayoría de las familias no gaussianas.
+-   Usaremos **`glmmTMB`** por su **flexibilidad**: permite ajustar modelos con/sin efectos aleatorios y usar distribuciones no gaussianas.
 
 ------------------------------------------------------------------------
 
@@ -177,7 +179,7 @@ parameters(mod_lm, effects = "fixed", include_info = TRUE)
 
 ------------------------------------------------------------------------
 
-##### Regresión lineal múltiple (`subject` como efecto fijo)
+##### RLM: `subject` como efecto fijo
 
 ```{r}
 #| id: RLM
@@ -188,7 +190,7 @@ parameters(mod_rlm1, effects = "fixed", include_info = TRUE)
 
 ------------------------------------------------------------------------
 
-##### RLM con interacción entre `subject` y `days`
+##### RLM: interacción entre `subject` y `days`
 
 ```{r}
 #| id: RLM con interacción
@@ -199,7 +201,7 @@ parameters(mod_rlm2, effects = "fixed", include_info = TRUE)
 
 ------------------------------------------------------------------------
 
-##### LMM con intercepto aleatorio
+##### LMM: `subject` como intercepto aleatorio
 
 ```{r}
 #| id: LMM con intercepto aleatorio
@@ -210,7 +212,7 @@ parameters(mod_lmm1, include_info = TRUE)
 
 ------------------------------------------------------------------------
 
-##### LMM con intercepto y pendiente aleatorios
+##### LMM: `subject` como intercepto y `days` como pendiente aleatorios
 
 ```{r}
 #| id: LMM con intercepto y pendiente aleatorios
@@ -221,7 +223,7 @@ parameters(mod_lmm2, include_info = TRUE)
 
 ------------------------------------------------------------------------
 
-##### Comparar performance de los modelos
+##### Comparación de modelos
 
 ```{r}
 #| id: Comparar modelos
@@ -248,7 +250,7 @@ compare_performance(
 
 ------------------------------------------------------------------------
 
-##### Representación gráfica de los efectos aleatorios
+##### Representación gráfica
 
 ```{r}
 #| id: Gráfico efectos aleatorios
@@ -288,7 +290,7 @@ g1 +
 
 #### Ejemplo: mortalidad por cáncer en la costa Este de EEUU
 
-En la [Unidad 3](https://datos-ine.github.io/curso_avanzada_2025/unidad_3/01_est_ecologicos.html) trabajamos con el dataset `cancer_USA.txt` como ejemplo del modelo lineal general. Ahora veremos como ajustar un modelo multinivel a partir de estos datos:
+En la [Unidad 3](https://datos-ine.github.io/curso_avanzada_2025/unidad_3/01_est_ecologicos.html) usamos el dataset `cancer_USA.txt` para ejemplificar los distintos casos del modelo lineal general. Repasemos la estructura de los datos:
 
 ```{r}
 #| id: Cargar dataset cáncer
@@ -299,18 +301,21 @@ glimpse(cancer)
 
 ------------------------------------------------------------------------
 
--   Cada estado contiene observaciones de distintos condados:
+-   En el capítulo de [regresión lineal múltiple](https://datos-ine.github.io/curso_avanzada_2025/unidad_3/07_reg_lineal_multiple.html), encontramos asociaciones significativas con `mediana_edad`, `mediana_ingresos`, `pct_desempleo` y `estado`.
+
+-   Cada estado incluye observaciones correspondientes a distintos condados:
 
     ```{r}
-    #| id: Frecuencia x estado
-    tabyl(cancer, estado)
+    #| id: Tabla frecuencia x estado
+    tabyl(cancer, estado) |>
+    adorn_pct_formatting()
     ```
 
--   En el ejemplo de [regresión lineal múltiple](https://datos-ine.github.io/curso_avanzada_2025/unidad_3/07_reg_lineal_multiple.html), la tasa de mortalidad tenía asociaciones significativas con `mediana_edad`, `mediana_ingresos`, `pct_desempleo` y `estado`.
+-   A continuación, compararemos el modelo de RLM con un LMM, considerando `estado` como **intercepto aleatorio**.
 
 ------------------------------------------------------------------------
 
-##### Regresión lineal múltiple
+##### RLM: `estado` como efecto fijo
 
 ```{r}
 #| id: RLM cáncer
@@ -324,7 +329,7 @@ parameters(mod_rlm, effects = "fixed", include_info = TRUE)
 
 ------------------------------------------------------------------------
 
-##### LMM con `estado` como intercepto aleatorio
+##### LMM: `estado` como intercepto aleatorio
 
 ```{r}
 #| id: RLM con intercepto aleatorio
@@ -350,73 +355,31 @@ compare_performance(mod_rlm, mod_random, metrics = "common", rank = TRUE)
 
 ------------------------------------------------------------------------
 
-#### Modelos multinivel
-
--   En algunos estudios, las observaciones se organizan en **niveles jerárquicos** o **anidados** (por ejemplo, pacientes dentro de hospitales, y hospitales dentro de ciudades).
-
--   Cada nivel jerárquico tiene su **propio intercepto aleatorio**, permitiendo capturar la variabilidad entre unidades dentro de cada nivel.
-
--   Estos modelos permiten incluir variables explicativas **individuales y contextuales**.
-
--   La variabilidad total se descompone en distintos **componentes de varianza**, uno por cada nivel jerárquico.
-
-------------------------------------------------------------------------
-
-En el ejemplo anterior, podríamos considerar que `condado` y `estado` son efectos aleatorios anidados, entonces, podemos plantear el siguiente modelo para aquellos condados con más de 2 observaciones:
-
-```{r}
-#| id: RLM multinivel
-# Filtrar condados con más de 2 observaciones
-cancer2 <- cancer |>
-group_by(condado) |> 
-filter(n() > 2) 
-
-# Modelo mixto anidado
-mod_multi <- glmmTMB(
-  tasa_mortalidad ~ mediana_ingresos + mediana_edad +  pct_desempleo +
-    (1 | estado / condado),  data = cancer2
-)
-```
-
-------------------------------------------------------------------------
-
-```{r}
-#| id: Salida modelo anidado
-parameters(mod_multi, include_info = TRUE)
-```
-
--   Podemos observar que el componente de varianza se divide en tres partes para reflejar la estructura anidada de los datos:
-    -   Varianza entre estados
-    -   Varianza entre condados del mismo estado
-    -   Varianza residual
-
-------------------------------------------------------------------------
-
 ### Modelos mixtos generalizados (GLMM)
 
--   Permiten analizar datos agrupados o repetidos con variables respuesta dicotómicas o de conteo, incorporando **efectos aleatorios**.
--   Los efectos fijos representan el **efecto promedio** de las covariables sobre la respuesta transformada (logit o log).
--   Los efectos aleatorios capturan la **variabilidad no explicada** entre grupos o unidades de análisis.
--   Permiten modelar la **dependencia intra-clúster** sin violar el supuesto de independencia de los residuos al introducir correlación estructurada mediante efectos aleatorios.
+-   Analizan datos agrupados o con medidas repetidas con variables respuesta **no normales**.
+-   Los **efectos fijos** representan el efecto promedio de las covariables y los **aleatorios** capturan la variabilidad no explicada entre grupos o unidades.
+-   Modelan la **dependencia intra-clúster**, evitando violar la independencia de los residuos.
+-   Admiten **distintas distribuciones** (binomial, Poisson, binomial negativa, etc.) y **datos desbalanceados o incompletos**.
 
 ------------------------------------------------------------------------
 
 #### Ejemplo: Incidencia de dengue en la Costa Atlántica de PBA
 
--   En la [Unidad 5](https://datos-ine.github.io/curso_avanzada_2025/unidad_5/03_dispersion.html), usamos el dataset `dengue_costa.txt` para ejemplificar datos de conteo con sobredispersión.
+En la [Unidad 5](https://datos-ine.github.io/curso_avanzada_2025/unidad_5/03_dispersion.html), usamos el dataset `dengue_costa.txt` para controlar sobredispersión mediante la distribución binomial negativa. Repasemos la estructura de los datos:
 
-    ```{r}
-    #| id: Cargar datos dengue
-    dengue <- read_delim("dengue_costa.txt")
+```{r}
+#| id: Cargar datos dengue
+dengue <- read_delim("dengue_costa.txt")
 
-    glimpse(dengue)
-    ```
+glimpse(dengue)
+```
 
--   Ahora, usaremos estos datos para ajustar un GLMM que controle las medidas repetidas por departamento
+-   Ahora, nos interesa controlar la **falta de independencia** entre observaciones de un mismo departamento.
 
 ------------------------------------------------------------------------
 
-##### GLM con distribución binomial negativa
+##### GLM: distribución binomial negativa
 
 ```{r}
 #| id: GLM dengue
@@ -428,7 +391,7 @@ parameters(mod_glm, include_info = TRUE, exponentiate = TRUE)
 
 ------------------------------------------------------------------------
 
-##### GLMM con intercepto aleatorio
+##### GLMM: `departamento` como intercepto aleatorio
 
 ```{r}
 #| id: GLMM dengue
@@ -447,17 +410,92 @@ parameters(mod_glmm, include_info = TRUE, exponentiate = TRUE)
 compare_performance(mod_glm, mod_glmm, metrics = c("AIC", "BIC"), rank = TRUE)
 ```
 
--   Al incorporar un intercepto aleatorio por departamento, el modelo reconoce que la incidencia de dengue puede diferir sistemáticamente entre unidades geográficas, más allá de las covariables incluidas.
+-   Incorporar `departamento` como efecto aleatorio permite que la incidencia difiera sistemáticamente entre unidades geográficas.
+-   Si incorporamos `semana_epi` como pendiente aleatoria el modelo no converge, posiblemente por **poca variabilidad** entre departamentos o datos **desbalanceados**.
 
 ------------------------------------------------------------------------
 
-Resumen: diferencias entre LMM y GLMM
+### Modelos multinivel
+
+-   En algunos estudios, las observaciones se organizan en **niveles jerárquicos** o **anidados** (por ejemplo, pacientes dentro de hospitales, y hospitales dentro de ciudades).
+
+-   Cada nivel jerárquico tiene su **propio intercepto aleatorio**, capturando la variabilidad entre unidades dentro de cada nivel.
+
+-   Estos modelos permiten incluir variables explicativas **individuales y contextuales** y descomponer la variabilidad en **componentes de varianza** para cada nivel.
+
+------------------------------------------------------------------------
+
+#### Efectos aleatorios anidados y cruzados
+
+-   Efectos **anidados:**
+
+    -   Se utilizan cuando cada nivel inferior pertenece a un único nivel superior.
+
+    -   Se especifican como `(1|nivel1/nivel2)`, que equivale a: `(1 | nivel1) + (1 | nivel1:nivel2)`.
+
+-   Efectos **cruzados**:
+
+    -   Se utilizan cuando los factores varían independientemente.
+
+    -   Se especifican como `(1|nivel1) + (1|nivel2)`.
+
+    -   Son **menos frecuentes** en la práctica.
+
+------------------------------------------------------------------------
+
+##### Ejemplo: Seroprevalencia de SARS-CoV2 en PBA
+
+El dataset `seroprevalencia.csv` tiene diseño jerárquico: trabajadores dentro de **hospitales**, y hospitales dentro de **estratos** (interzonales vs. municipales).
+
+```{r}
+#| id: Cargar datos covid
+covid <- read_csv2("seroprevalencia.txt")  |>
+select(estrato, hospital, edad, sexo, epp, ig_g, ponde_base) |>
+mutate(ig_g = if_else(ig_g == "Reactivo", 1, 0)) |> # Respuesta binomial
+mutate(epp = if_else(str_detect(epp, "La ma|Siempre"), "Si", "No"))
+
+glimpse(covid)
+```
+
+-   Ajustaremos un modelo para seroprevalencia según sexo, edad y uso de EPP que refleje la estructura anidada.
+
+------------------------------------------------------------------------
+
+##### GLMM multinivel
+
+```{r}
+#| id: GLMM multinivel
+mod_nest <- glmmTMB(
+  ig_g ~ sexo + edad + epp + (1 | estrato / hospital),
+  family = binomial, data = covid
+)
+
+parameters(mod_nest, include_info = TRUE, exponentiate = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##### Interpretación
+
+-   **Efectos fijos:** `sexo`, `edad` y `epp`.
+
+-   **Efectos aleatorios:** `hospitales` anidados en `estratos`.
+
+-   El modelo estima la probabilidad de IgG reactivo considerando la dependencia intra-hospital en la **muestra**.
+
+-   Para inferir a la **población**, deberíamos incorporar el término `weights = ponde_base`.
+
+-   En este ejemplo, la ponderación produce **sobreajuste** y **parámetros inestables**.
+
+------------------------------------------------------------------------
+
+### Resumen: diferencias entre LMM y GLMM
 
 ```{r}
 #| id: Tabla LMM vs GLMM
 #| echo: false
 
-# Crear dataset
+# Generar datos
 tibble(
     "Característica" = c(
         "Distribución de la VR",
@@ -482,6 +520,8 @@ tibble(
         "Escala transformada"
     )
 ) |>
+
+# Crear tabla
 flextable() |>
 bold(part = "header") |>
 font(fontname = "Calibri", part = "all") |>
@@ -491,8 +531,72 @@ autofit()
 
 ------------------------------------------------------------------------
 
-#### Referencias
+### Alternativas a los modelos mixtos
+
+```{r}
+#| id: Tabla alternativas GLMM
+#| echo: false
+# Generar datos
+tibble(
+    Modelo = c(
+        "GLMM",
+        "GLS",
+        "GAM o GAMM",
+        "Bayesianos"
+        ),
+    Enfoque = c(
+        "Efectos específicos (nivel o unidad de agrupamiento)",
+        "Efectos promedio con estructura de correlación definida",
+        "Relaciones no lineales mediante funciones suaves",
+        "Estimación completa de parámetros bajo distribuciones a priori"
+    ),
+    Utilidad = c(
+        "Datos jerárquicos o medidas repetidas con variabilidad entre clústers",
+        "Dependencia temporal o espacial sin necesidad de efectos aleatorios explícitos",
+        "Captura de curvaturas, estacionalidad o patrones no lineales",
+        "Datos escasos, modelos complejos o incumplimiento de supuestos frecuentistas"
+    ),
+    Paquetes = c(
+        "nlme, lme4, glmmTMB",
+        "nlme",
+        "mgcv",
+        "brms, INLA"
+    )
+) |> 
+
+# Crear tabla
+flextable() |>
+bold(part = "header") |>
+font(fontname = "Calibri", part = "all") |>
+fontsize(size = 20, part = "all") |>
+autofit()
+
+```
+
+------------------------------------------------------------------------
+
+### Referencias
 
 ::: hidden
 [@agresti2015; @fieberg2024; @mixed-ef2000; @bates2015; @brooks2017]
 :::
+
+::: {#refs}
+:::
+
+------------------------------------------------------------------------
+
+## Muchas gracias!!!
+:::: {.columns}
+::: {.column width="60%"}
+💬 **Preguntas o comentarios**
+
+📧 *tamararicardo83@gmail.com*
+
+🏛️ Instituto Nacional de Epidemiología "Dr. Juan H. Jara"
+:::
+
+::: {.column width="40%"}
+![](dt-1.webp){fig-align="center"}
+:::
+::::
