@@ -453,17 +453,14 @@ tibble(
 
 ### Cursos Applied Epi
 
-Curso de R para epidemiología aplicada, en español, en línea y con sesiones síncronas (2027):
-
 ![](QR_espanol_R_cursos_epi.png){fig-align="center"}
 
-🌍 Becas para participantes de países de ingresos bajos y medios: 
-
-https://appliedepi.org/es/training/scholarships.html
+🌍 Becas para participantes de países de ingresos bajos y medios
 
 #
 ### Grupo Argentino de Bioestadística (GAB)
 ![](qrcode_www.gab.com.ar.png){fig-align="center"}
 
+##
 ### Sociedad Argentina de Estadística
 ![](qrcode_www.s-a-e.org.ar.png){fig-align="center"}
