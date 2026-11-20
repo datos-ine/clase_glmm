@@ -33,6 +33,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 <link rel="stylesheet" href="clase_glmm_files/libs/revealjs/dist/theme/quarto-194d749671a54b4845226940fed4d9ee.css">
 <link rel="stylesheet" href="custom.css">
@@ -143,50 +209,62 @@
 
 </section><section id="qué-pasa-cuando-nuestro-modelo-no-cumple-los-supuestos" class="slide level2"><h2>¿Qué pasa cuando nuestro modelo no cumple los supuestos?</h2>
 <ul>
-<li class="fragment">Durante la cursada trabajamos tanto con datos reales como simulados que cumplían con todos los supuestos para la distribución que estábamos modelando.</li>
-<li class="fragment">En la vida real, suele suceder que uno o más de los supuestos del modelo no se cumplen.</li>
-<li class="fragment">En este caso, debemos explorar alternativas a los GLM clásicos que vimos anteriormente.</li>
+<li class="fragment"><p>Durante la cursada utilizamos sets de datos que cumplían con todos los supuestos para la distribución que queríamos modelar.</p></li>
+<li class="fragment"><p>Cuando trabajamos con datos reales, suele pasar que uno o más de los supuestos del modelo no se cumplen.</p></li>
+<li class="fragment"><p>En estos casos, debemos explorar alternativas a los modelos que vimos anteriormente.</p></li>
 </ul></section><section id="section" class="slide level2"><h2></h2>
-<h3 id="variable-respuesta-continua-residuales-no-normales">Variable respuesta continua: residuales no normales</h3>
+<h3 id="vr-continua-residuales-no-normales">VR continua: residuales no normales</h3>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="tabwid">
-<style>.cl-a1f6ff90{}.cl-a1d63940{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a1d63986{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 255, 1.00);background-color:transparent;}.cl-a1e0d166{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1.5;background-color:transparent;}.cl-a1e17468{width:1.446in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e17490{width:3.367in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e1749a{width:3.842in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174ae{width:5.242in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174b8{width:1.446in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174c2{width:3.367in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174d6{width:3.842in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174d7{width:5.242in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174ea{width:1.446in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174eb{width:3.367in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174f4{width:3.842in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1e174fe{width:5.242in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="cl-a1f6ff90">
+<style>.cl-f4462520{}.cl-f4260222{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f4260268{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 255, 1.00);background-color:transparent;}.cl-f4338cf8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1.5;background-color:transparent;}.cl-f4347cbc{width:1.446in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347cda{width:1.15in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347cee{width:3.756in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347cf8{width:5.157in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d02{width:3.842in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d0c{width:5.242in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d16{width:1.446in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d2a{width:1.15in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d34{width:3.756in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d3e{width:5.157in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d48{width:3.842in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d52{width:5.242in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d5c{width:1.446in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d66{width:1.15in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d7a{width:3.756in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d84{width:5.157in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d85{width:3.842in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f4347d98{width:5.242in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-f4462520">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-a1e17468"><p class="cl-a1e0d166"><span class="cl-a1d63940">Distribución</span></p></th>
-<th class="cl-a1e17490"><p class="cl-a1e0d166"><span class="cl-a1d63940">Variable respuesta</span></p></th>
-<th class="cl-a1e1749a"><p class="cl-a1e0d166"><span class="cl-a1d63940">Interpretación</span></p></th>
-<th class="cl-a1e174ae"><p class="cl-a1e0d166"><span class="cl-a1d63940">Funciones en R</span></p></th>
+<th class="cl-f4347cbc"><p class="cl-f4338cf8"><span class="cl-f4260222">Distribución</span></p></th>
+<th class="cl-f4347cda"><p class="cl-f4338cf8"><span class="cl-f4260222">VR</span></p></th>
+<th class="cl-f4347cee"><p class="cl-f4338cf8"><span class="cl-f4260222">Sesgo</span></p></th>
+<th class="cl-f4347cf8"><p class="cl-f4338cf8"><span class="cl-f4260222">Parámetros</span></p></th>
+<th class="cl-f4347d02"><p class="cl-f4338cf8"><span class="cl-f4260222">Interpretación</span></p></th>
+<th class="cl-f4347d0c"><p class="cl-f4338cf8"><span class="cl-f4260222">Funciones en R</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="2" class="cl-a1e174b8"><p class="cl-a1e0d166"><span class="cl-a1d63940">Log-normal</span></p></td>
-<td class="cl-a1e174c2"><p class="cl-a1e0d166"><span class="cl-a1d63940">y &gt; 0, asimétrica</span></p></td>
-<td class="cl-a1e174d6"><p class="cl-a1e0d166"><span class="cl-a1d63940">Cambio multiplicativo en la mediana</span></p></td>
-<td class="cl-a1e174d7"><p class="cl-a1e0d166"><span class="cl-a1d63986">lm(log(y) ~ x)</span></p></td>
+<td rowspan="2" class="cl-f4347d16"><p class="cl-f4338cf8"><span class="cl-f4260222">Log-normal</span></p></td>
+<td class="cl-f4347d2a"><p class="cl-f4338cf8"><span class="cl-f4260222">y&nbsp;&gt;&nbsp;0</span></p></td>
+<td class="cl-f4347d34"><p class="cl-f4338cf8"><span class="cl-f4260222">Asimetría positiva</span></p></td>
+<td class="cl-f4347d3e"><p class="cl-f4338cf8"><span class="cl-f4260222">Forma (α) y Escala (θ) o Tasa (β)</span></p></td>
+<td class="cl-f4347d48"><p class="cl-f4338cf8"><span class="cl-f4260222">Cambio multiplicativo en la mediana</span></p></td>
+<td class="cl-f4347d52"><p class="cl-f4338cf8"><span class="cl-f4260268">lm(log(y)&nbsp;~&nbsp;x)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a1e174c2"><p class="cl-a1e0d166"><span class="cl-a1d63940"></span></p></td>
-<td class="cl-a1e174d6"><p class="cl-a1e0d166"><span class="cl-a1d63940"></span></p></td>
-<td class="cl-a1e174d7"><p class="cl-a1e0d166"><span class="cl-a1d63986">glmmTMB(y ~ x, family = lognormal(link = 'log'))</span></p></td>
+<td class="cl-f4347d2a"><p class="cl-f4338cf8"><span class="cl-f4260222"></span></p></td>
+<td class="cl-f4347d34"><p class="cl-f4338cf8"><span class="cl-f4260222"></span></p></td>
+<td class="cl-f4347d3e"><p class="cl-f4338cf8"><span class="cl-f4260222"></span></p></td>
+<td class="cl-f4347d48"><p class="cl-f4338cf8"><span class="cl-f4260222"></span></p></td>
+<td class="cl-f4347d52"><p class="cl-f4338cf8"><span class="cl-f4260268">glmmTMB(y&nbsp;~&nbsp;x,&nbsp;family&nbsp;=&nbsp;lognormal(link&nbsp;=&nbsp;'log'))</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="2" class="cl-a1e174b8"><p class="cl-a1e0d166"><span class="cl-a1d63940">Gamma</span></p></td>
-<td class="cl-a1e174c2"><p class="cl-a1e0d166"><span class="cl-a1d63940">y &gt; 0, asimétrica, CV constante</span></p></td>
-<td class="cl-a1e174d6"><p class="cl-a1e0d166"><span class="cl-a1d63940">Cambio multiplicativo en la media</span></p></td>
-<td class="cl-a1e174d7"><p class="cl-a1e0d166"><span class="cl-a1d63986">glm(y ~ x, family = Gamma(link = 'log'))</span></p></td>
+<td rowspan="2" class="cl-f4347d16"><p class="cl-f4338cf8"><span class="cl-f4260222">Gamma</span></p></td>
+<td class="cl-f4347d2a"><p class="cl-f4338cf8"><span class="cl-f4260222">y&nbsp;&gt;&nbsp;0</span></p></td>
+<td class="cl-f4347d34"><p class="cl-f4338cf8"><span class="cl-f4260222">Asimetría positiva</span></p></td>
+<td class="cl-f4347d3e"><p class="cl-f4338cf8"><span class="cl-f4260222">Media (μ) y Desviación estándar (σ) del logaritmo</span></p></td>
+<td class="cl-f4347d48"><p class="cl-f4338cf8"><span class="cl-f4260222">Cambio multiplicativo en la media</span></p></td>
+<td class="cl-f4347d52"><p class="cl-f4338cf8"><span class="cl-f4260268">glm(y&nbsp;~&nbsp;x,&nbsp;family&nbsp;=&nbsp;Gamma(link&nbsp;=&nbsp;'log'))</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a1e174c2"><p class="cl-a1e0d166"><span class="cl-a1d63940"></span></p></td>
-<td class="cl-a1e174d6"><p class="cl-a1e0d166"><span class="cl-a1d63940"></span></p></td>
-<td class="cl-a1e174d7"><p class="cl-a1e0d166"><span class="cl-a1d63986">glmmTMB((y ~ x, family = Gamma(link = 'log'))</span></p></td>
+<td class="cl-f4347d2a"><p class="cl-f4338cf8"><span class="cl-f4260222"></span></p></td>
+<td class="cl-f4347d34"><p class="cl-f4338cf8"><span class="cl-f4260222"></span></p></td>
+<td class="cl-f4347d3e"><p class="cl-f4338cf8"><span class="cl-f4260222"></span></p></td>
+<td class="cl-f4347d48"><p class="cl-f4338cf8"><span class="cl-f4260222"></span></p></td>
+<td class="cl-f4347d52"><p class="cl-f4338cf8"><span class="cl-f4260268">glmmTMB((y&nbsp;~&nbsp;x,&nbsp;family&nbsp;=&nbsp;Gamma(link&nbsp;=&nbsp;'log'))</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a1e174ea"><p class="cl-a1e0d166"><span class="cl-a1d63940">Beta</span></p></td>
-<td class="cl-a1e174eb"><p class="cl-a1e0d166"><span class="cl-a1d63940">y ∈ (0, 1): proporciones, tasas</span></p></td>
-<td class="cl-a1e174f4"><p class="cl-a1e0d166"><span class="cl-a1d63940">Cambio en los log-odds de la media</span></p></td>
-<td class="cl-a1e174fe"><p class="cl-a1e0d166"><span class="cl-a1d63986">glmmTMB(y ~ x, family = beta_family(link = 'logit'))</span></p></td>
+<td class="cl-f4347d5c"><p class="cl-f4338cf8"><span class="cl-f4260222">Beta</span></p></td>
+<td class="cl-f4347d66"><p class="cl-f4338cf8"><span class="cl-f4260222">0&nbsp;&lt;&nbsp;y&nbsp;&lt;&nbsp;1</span></p></td>
+<td class="cl-f4347d7a"><p class="cl-f4338cf8"><span class="cl-f4260222">Simétrica, en U, uniforme, sesgada</span></p></td>
+<td class="cl-f4347d84"><p class="cl-f4338cf8"><span class="cl-f4260222">Dos parámetros de forma (α y β)</span></p></td>
+<td class="cl-f4347d85"><p class="cl-f4338cf8"><span class="cl-f4260222">Cambio en los log-odds de la media</span></p></td>
+<td class="cl-f4347d98"><p class="cl-f4338cf8"><span class="cl-f4260268">glmmTMB(y&nbsp;~&nbsp;x,&nbsp;family&nbsp;=&nbsp;beta_family(link&nbsp;=&nbsp;'logit'))</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -194,40 +272,64 @@
 </div>
 </div>
 </section><section id="section-1" class="slide level2"><h2></h2>
-<h3 id="variable-respuesta-categórica-más-de-dos-niveles">Variable respuesta categórica: más de dos niveles</h3>
+<h3 id="chequear-distribuciones-con-fitdistrplus">Chequear distribuciones con <code>fitdistrplus</code>
+</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb1-2"><a href="" aria-label="2"></a></span>
+<span id="cb1-3"><a href="" aria-label="3"></a><span class="fu">descdist</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">boot =</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+
+<div class="cell-output cell-output-stdout">
+<pre><code>summary statistics
+------
+min:  4.3   max:  7.9 
+median:  5.8 
+mean:  5.843333 
+estimated sd:  0.8280661 
+estimated skewness:  0.314911 
+estimated kurtosis:  2.447936 </code></pre>
+</div>
+</div>
+<img data-src="clase_glmm_files/figure-revealjs/dist1-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section><section id="section-2" class="slide level2"><h2></h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-label="1"></a>lnorm <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(iris<span class="sc">$</span>Sepal.Length, <span class="st">"lnorm"</span>)</span>
+<span id="cb3-2"><a href="" aria-label="2"></a>gamma <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(iris<span class="sc">$</span>Sepal.Length, <span class="st">"gamma"</span>)</span>
+<span id="cb3-3"><a href="" aria-label="3"></a>norm <span class="ot">&lt;-</span> <span class="fu">fitdist</span>(iris<span class="sc">$</span>Sepal.Length, <span class="st">"norm"</span>)</span>
+<span id="cb3-4"><a href="" aria-label="4"></a></span>
+<span id="cb3-5"><a href="" aria-label="5"></a><span class="fu">qqcomp</span>(<span class="fu">list</span>(lnorm, gamma), <span class="at">legendtext =</span> <span class="fu">c</span>(<span class="st">"normal"</span>, <span class="st">"log-normal"</span>, <span class="st">"gamma"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="clase_glmm_files/figure-revealjs/dist2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section><section id="section-3" class="slide level2"><h2></h2>
+<h3 id="vr-categórica-más-de-dos-niveles">VR categórica: más de dos niveles</h3>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="tabwid">
-<style>.cl-a2da9d54{}.cl-a2c10a24{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a2c10a38{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 255, 1.00);background-color:transparent;}.cl-a2cc41be{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1.5;background-color:transparent;}.cl-a2ccdf84{width:4.028in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfa2{width:2.138in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfac{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfb6{width:7.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfc0{width:3.52in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfca{width:4.028in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfcb{width:2.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfd4{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfde{width:7.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdfe8{width:3.52in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdff2{width:4.028in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2ccdffc{width:2.138in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2cce006{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2cce007{width:7.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a2cce010{width:3.52in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="cl-a2da9d54">
+<style>.cl-f8fe44ee{}.cl-f8d8883a{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f8d88858{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 255, 1.00);background-color:transparent;}.cl-f8ea39fe{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1.5;background-color:transparent;}.cl-f8eb790e{width:4.028in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb7972{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb797c{width:7.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb7986{width:3.52in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb7990{width:4.028in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb799a{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb79ae{width:7.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb79b8{width:3.52in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb79c2{width:4.028in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb79c3{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb79cc{width:7.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f8eb79d6{width:3.52in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-f8fe44ee">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-a2ccdf84"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Modelo</span></p></th>
-<th class="cl-a2ccdfa2"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Variable respuesta</span></p></th>
-<th class="cl-a2ccdfac"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Ordinal</span></p></th>
-<th class="cl-a2ccdfb6"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Interpretación</span></p></th>
-<th class="cl-a2ccdfc0"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Funciones en R</span></p></th>
+<th class="cl-f8eb790e"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Modelo</span></p></th>
+<th class="cl-f8eb7972"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Ordinal</span></p></th>
+<th class="cl-f8eb797c"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Interpretación</span></p></th>
+<th class="cl-f8eb7986"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Funciones en R</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a2ccdfca"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Logística uno-contra-todos (dummies)</span></p></td>
-<td class="cl-a2ccdfcb"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Categórica</span></p></td>
-<td class="cl-a2ccdfd4"><p class="cl-a2cc41be"><span class="cl-a2c10a24">No</span></p></td>
-<td class="cl-a2ccdfde"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Cambio en los log-odds de pertenecer al nivel k vs. el resto</span></p></td>
-<td class="cl-a2ccdfe8"><p class="cl-a2cc41be"><span class="cl-a2c10a38">glm(y_k ~ x, family = binomial)</span></p></td>
+<td class="cl-f8eb7990"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Logística uno-contra-todos (dummies)</span></p></td>
+<td class="cl-f8eb799a"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">No</span></p></td>
+<td class="cl-f8eb79ae"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Cambio en los log-odds de pertenecer al nivel k vs. el resto</span></p></td>
+<td class="cl-f8eb79b8"><p class="cl-f8ea39fe"><span class="cl-f8d88858">glm(y&nbsp;~&nbsp;x,&nbsp;family&nbsp;=&nbsp;binomial)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a2ccdfca"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Multinomial</span></p></td>
-<td class="cl-a2ccdfcb"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Categórica</span></p></td>
-<td class="cl-a2ccdfd4"><p class="cl-a2cc41be"><span class="cl-a2c10a24">No</span></p></td>
-<td class="cl-a2ccdfde"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Cambio en los log-odds de cada nivel vs. una categoría de referencia</span></p></td>
-<td class="cl-a2ccdfe8"><p class="cl-a2cc41be"><span class="cl-a2c10a38">nnet::multinom(y ~ x)</span></p></td>
+<td class="cl-f8eb7990"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Multinomial</span></p></td>
+<td class="cl-f8eb799a"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">No</span></p></td>
+<td class="cl-f8eb79ae"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Cambio en los log-odds de cada nivel vs. una categoría de referencia</span></p></td>
+<td class="cl-f8eb79b8"><p class="cl-f8ea39fe"><span class="cl-f8d88858">nnet::multinom(y&nbsp;~&nbsp;x)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a2ccdff2"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Ordinal</span></p></td>
-<td class="cl-a2ccdffc"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Categórica</span></p></td>
-<td class="cl-a2cce006"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Si</span></p></td>
-<td class="cl-a2cce007"><p class="cl-a2cc41be"><span class="cl-a2c10a24">Cambio en los log-odds acumulados, común a todos los puntos de corte</span></p></td>
-<td class="cl-a2cce010"><p class="cl-a2cc41be"><span class="cl-a2c10a38">MASS::polr(y ~ x, Hess = TRUE)</span></p></td>
+<td class="cl-f8eb79c2"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Ordinal</span></p></td>
+<td class="cl-f8eb79c3"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Si</span></p></td>
+<td class="cl-f8eb79cc"><p class="cl-f8ea39fe"><span class="cl-f8d8883a">Cambio en los log-odds acumulados, común a todos los puntos de corte</span></p></td>
+<td class="cl-f8eb79d6"><p class="cl-f8ea39fe"><span class="cl-f8d88858">MASS::polr(y&nbsp;~&nbsp;x,&nbsp;Hess&nbsp;=&nbsp;TRUE)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -238,38 +340,38 @@
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="tabwid">
-<style>.cl-a382e9dc{}.cl-a36a3586{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a36a359a{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 255, 1.00);background-color:transparent;}.cl-a3753f8a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1.5;background-color:transparent;}.cl-a375b816{width:4.646in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b834{width:4.583in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b83e{width:7.128in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b852{width:5.472in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b853{width:4.646in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b866{width:4.583in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b870{width:7.128in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b87a{width:5.472in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b884{width:4.646in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b88e{width:4.583in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b898{width:7.128in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a375b8a2{width:5.472in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="cl-a382e9dc">
+<style>.cl-f9d32d8a{}.cl-f9b17866{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f9b17884{font-family:'Arial';font-size:16pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 255, 1.00);background-color:transparent;}.cl-f9bfd122{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1.5;background-color:transparent;}.cl-f9c0ab06{width:4.646in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0ab24{width:4.583in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0ab2e{width:7.128in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0ac8c{width:5.472in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0ac96{width:4.646in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0ac97{width:4.583in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0aca0{width:7.128in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0acb4{width:5.472in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0acbe{width:4.646in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0acc8{width:4.583in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0acc9{width:7.128in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f9c0acd2{width:5.472in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-f9d32d8a">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-a375b816"><p class="cl-a3753f8a"><span class="cl-a36a3586">Modelo</span></p></th>
-<th class="cl-a375b834"><p class="cl-a3753f8a"><span class="cl-a36a3586">Variable respuesta</span></p></th>
-<th class="cl-a375b83e"><p class="cl-a3753f8a"><span class="cl-a36a3586">Interpretación</span></p></th>
-<th class="cl-a375b852"><p class="cl-a3753f8a"><span class="cl-a36a3586">Funciones en R</span></p></th>
+<th class="cl-f9c0ab06"><p class="cl-f9bfd122"><span class="cl-f9b17866">Modelo</span></p></th>
+<th class="cl-f9c0ab24"><p class="cl-f9bfd122"><span class="cl-f9b17866">Variable respuesta</span></p></th>
+<th class="cl-f9c0ab2e"><p class="cl-f9bfd122"><span class="cl-f9b17866">Interpretación</span></p></th>
+<th class="cl-f9c0ac8c"><p class="cl-f9bfd122"><span class="cl-f9b17866">Funciones en R</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a375b853"><p class="cl-a3753f8a"><span class="cl-a36a3586">Binomial negativa</span></p></td>
-<td class="cl-a375b866"><p class="cl-a3753f8a"><span class="cl-a36a3586">Discreta, sobredispersión</span></p></td>
-<td class="cl-a375b870"><p class="cl-a3753f8a"><span class="cl-a36a3586">Cambio multiplicativo en la media</span></p></td>
-<td class="cl-a375b87a"><p class="cl-a3753f8a"><span class="cl-a36a359a">glmmTMB(y ~ x, family = nbinom2())</span></p></td>
+<td class="cl-f9c0ac96"><p class="cl-f9bfd122"><span class="cl-f9b17866">Binomial negativa</span></p></td>
+<td class="cl-f9c0ac97"><p class="cl-f9bfd122"><span class="cl-f9b17866">Discreta, sobredispersión</span></p></td>
+<td class="cl-f9c0aca0"><p class="cl-f9bfd122"><span class="cl-f9b17866">Cambio multiplicativo en la media</span></p></td>
+<td class="cl-f9c0acb4"><p class="cl-f9bfd122"><span class="cl-f9b17884">glmmTMB(y&nbsp;~&nbsp;x,&nbsp;family&nbsp;=&nbsp;nbinom2())</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a375b853"><p class="cl-a3753f8a"><span class="cl-a36a3586">Conway-Maxwell-Poisson</span></p></td>
-<td class="cl-a375b866"><p class="cl-a3753f8a"><span class="cl-a36a3586">Discreta, sobre o subdispersión</span></p></td>
-<td class="cl-a375b870"><p class="cl-a3753f8a"><span class="cl-a36a3586">Cambio multiplicativo en el parámetro de ubicación (aprox. la media)</span></p></td>
-<td class="cl-a375b87a"><p class="cl-a3753f8a"><span class="cl-a36a359a">glmmTMB(y ~ x, family = compois())</span></p></td>
+<td class="cl-f9c0ac96"><p class="cl-f9bfd122"><span class="cl-f9b17866">Conway-Maxwell-Poisson</span></p></td>
+<td class="cl-f9c0ac97"><p class="cl-f9bfd122"><span class="cl-f9b17866">Discreta, sobre o subdispersión</span></p></td>
+<td class="cl-f9c0aca0"><p class="cl-f9bfd122"><span class="cl-f9b17866">Cambio multiplicativo en el parámetro de ubicación (aprox. la media)</span></p></td>
+<td class="cl-f9c0acb4"><p class="cl-f9bfd122"><span class="cl-f9b17884">glmmTMB(y&nbsp;~&nbsp;x,&nbsp;family&nbsp;=&nbsp;compois())</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a375b853"><p class="cl-a3753f8a"><span class="cl-a36a3586">Quasi-Poisson</span></p></td>
-<td class="cl-a375b866"><p class="cl-a3753f8a"><span class="cl-a36a3586">Discreta, sobredispersión (sin verosimilitud)</span></p></td>
-<td class="cl-a375b870"><p class="cl-a3753f8a"><span class="cl-a36a3586">Cambio multiplicativo en la media, con errores estándar corregidos</span></p></td>
-<td class="cl-a375b87a"><p class="cl-a3753f8a"><span class="cl-a36a359a">glm(y ~ x, family = quasipoisson)</span></p></td>
+<td class="cl-f9c0ac96"><p class="cl-f9bfd122"><span class="cl-f9b17866">Quasi-Poisson</span></p></td>
+<td class="cl-f9c0ac97"><p class="cl-f9bfd122"><span class="cl-f9b17866">Discreta, sobredispersión (sin verosimilitud)</span></p></td>
+<td class="cl-f9c0aca0"><p class="cl-f9bfd122"><span class="cl-f9b17866">Cambio multiplicativo en la media, con errores estándar corregidos</span></p></td>
+<td class="cl-f9c0acb4"><p class="cl-f9bfd122"><span class="cl-f9b17884">glm(y&nbsp;~&nbsp;x,&nbsp;family&nbsp;=&nbsp;quasipoisson)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a375b884"><p class="cl-a3753f8a"><span class="cl-a36a3586">Poisson / Binomial negativa inflada en ceros</span></p></td>
-<td class="cl-a375b88e"><p class="cl-a3753f8a"><span class="cl-a36a3586">Discreta, exceso de ceros</span></p></td>
-<td class="cl-a375b898"><p class="cl-a3753f8a"><span class="cl-a36a3586">Cambio multiplicativo en la media del conteo; ceros extra en log-odds</span></p></td>
-<td class="cl-a375b8a2"><p class="cl-a3753f8a"><span class="cl-a36a359a">glmmTMB(y ~ x, ziformula = ~ 1, family = nbinom2())</span></p></td>
+<td class="cl-f9c0acbe"><p class="cl-f9bfd122"><span class="cl-f9b17866">Poisson / Binomial negativa inflada en ceros</span></p></td>
+<td class="cl-f9c0acc8"><p class="cl-f9bfd122"><span class="cl-f9b17866">Discreta, exceso de ceros</span></p></td>
+<td class="cl-f9c0acc9"><p class="cl-f9bfd122"><span class="cl-f9b17866">Cambio multiplicativo en la media del conteo; ceros extra en log-odds</span></p></td>
+<td class="cl-f9c0acd2"><p class="cl-f9bfd122"><span class="cl-f9b17884">glmmTMB(y&nbsp;~&nbsp;x,&nbsp;ziformula&nbsp;=&nbsp;~&nbsp;1,&nbsp;family&nbsp;=&nbsp;nbinom2())</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -286,7 +388,7 @@
 <li class="fragment"><p>Estudios experimentales donde los participantes se asignan a <strong>distintos grupos</strong> y se evalúan en diferentes momentos.</p></li>
 </ul>
 </li>
-</ul></section><section id="section-2" class="slide level2"><h2></h2>
+</ul></section><section id="section-4" class="slide level2"><h2></h2>
 <ul>
 <li class="fragment">
 <p>Estos contextos generan dependencia espacial y/o temporal, dando lugar a una estructura de datos <strong>agrupada</strong> o <strong>jerárquica</strong>:</p>
@@ -307,7 +409,7 @@ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigm
 <ul>
 <li class="fragment"><p>Permiten modelar simultáneamente la <strong>relación sistemática</strong> entre la VR y las covariables y la <strong>estructura de correlación</strong> entre estudios de un mismo clúster.</p></li>
 <li class="fragment"><p>Supone normalidad e independencia de los errores y los efectos aleatorios.</p></li>
-</ul></section><section id="section-3" class="slide level2"><h2></h2>
+</ul></section><section id="section-5" class="slide level2"><h2></h2>
 <h3 id="componentes-del-modelo-mixto">Componentes del modelo mixto</h3>
 <ul>
 <li class="fragment">
@@ -317,7 +419,7 @@ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigm
 <li class="fragment"><p><strong>Efectos aleatorios:</strong> variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y representan la <strong>variabilidad no explicada</strong> entre unidades del mismo grupo.</p></li>
 </ul>
 </li>
-</ul></section><section id="section-4" class="slide level2"><h2></h2>
+</ul></section><section id="section-6" class="slide level2"><h2></h2>
 <h3 id="cuándo-incluir-efectos-aleatorios">¿Cuándo incluir efectos aleatorios?</h3>
 <ul>
 <li class="fragment"><p>La variable que define los clústers tiene al menos <strong>cinco niveles</strong>.</p></li>
@@ -326,16 +428,16 @@ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigm
 <li class="fragment"><p>La variable es parte de la <strong>estructura de diseño</strong> del estudio.</p></li>
 <li class="fragment"><p>El efecto de esa variable <strong>no es de interés directo</strong>.</p></li>
 <li class="fragment"><p>No nos interesa realizar <strong>comparaciones</strong> ni <strong>inferencias</strong> sobre sus niveles.</p></li>
-</ul></section><section id="section-5" class="slide level2"><h2></h2>
-<h3 id="intercepto-aleatorio">Intercepto aleatorio</h3>
+</ul></section><section id="section-7" class="slide level2"><h2></h2>
+<h3 id="efectos-aleatorios-intercepto">Efectos aleatorios: intercepto</h3>
 <ul>
 <li class="fragment"><p>Cuando <span class="math inline">\(z_{ij} = 1\)</span>, el efecto aleatorio está dado por una <strong>variable categórica</strong> que identifica los clústers.</p></li>
 <li class="fragment"><p>En este caso, cada clúster va a tener su propio <strong>intercepto</strong> para la variable respuesta.</p></li>
 <li class="fragment"><p>Las rectas de regresión para cada clúster serán paralelas (misma pendiente).</p></li>
 <li class="fragment"><p>Las <strong>diferencias entre clústers</strong> permiten modelar la heterogeneidad entre grupos sin estimar un parámetro específico para cada uno.</p></li>
 <li class="fragment"><p>Similar al ANOVA de medidas repetidas o por bloques.</p></li>
-</ul></section><section id="section-6" class="slide level2"><h2></h2>
-<h3 id="pendiente-aleatoria">Pendiente aleatoria</h3>
+</ul></section><section id="section-8" class="slide level2"><h2></h2>
+<h3 id="efectos-aleatorios-pendiente">Efectos aleatorios: pendiente</h3>
 <ul>
 <li class="fragment"><p>Cada clúster puede responder de forma <strong>diferente</strong> a una covariable numérica.</p></li>
 <li class="fragment"><p>Las pendientes aleatorias permiten que la <strong>magnitud y/o dirección</strong> del efecto varíe entre clústers.</p></li>
@@ -345,6 +447,35 @@ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigm
 <li class="fragment"><p>Los parámetros específicos de cada clúster muestran una alta variabilidad.</p></li>
 <li class="fragment"><p>La variabilidad intra-clúste<strong>r</strong> es baja.</p></li>
 <li class="fragment"><p>Hay un gran número de observaciones por clúster.</p></li>
+</ul>
+</li>
+</ul></section><section id="modelos-lineales-generalizados-mixtos-glmm" class="slide level2"><h2>Modelos lineales generalizados mixtos (GLMM)</h2>
+<ul>
+<li class="fragment"><p>Analizan datos agrupados o con medidas repetidas con variables respuesta <strong>no normales</strong>.</p></li>
+<li class="fragment"><p>Los <strong>efectos fijos</strong> representan el efecto promedio de las covariables y los <strong>aleatorios</strong> capturan la variabilidad no explicada entre grupos o unidades.</p></li>
+<li class="fragment"><p>Modelan la <strong>dependencia intra-clúster</strong>, evitando violar la independencia de los residuos.</p></li>
+<li class="fragment"><p>Admiten <strong>distintas distribuciones</strong> (binomial, Poisson, binomial negativa, etc.) y <strong>datos desbalanceados o incompletos</strong>.</p></li>
+</ul></section><section id="modelos-multinivel" class="slide level2"><h2>Modelos multinivel</h2>
+<ul>
+<li class="fragment"><p>En algunos estudios, las observaciones se organizan en <strong>niveles jerárquicos</strong> o <strong>anidados</strong> (por ejemplo, pacientes dentro de hospitales, y hospitales dentro de ciudades).</p></li>
+<li class="fragment"><p>Cada nivel jerárquico tiene su <strong>propio intercepto aleatorio</strong>, capturando la variabilidad entre unidades dentro de cada nivel.</p></li>
+<li class="fragment"><p>Estos modelos permiten incluir variables explicativas <strong>individuales y contextuales</strong> y descomponer la variabilidad en <strong>componentes de varianza</strong> para cada nivel.</p></li>
+</ul></section><section id="section-9" class="slide level2"><h2></h2>
+<h3 id="efectos-aleatorios-anidados-y-cruzados">Efectos aleatorios anidados y cruzados</h3>
+<ul>
+<li class="fragment">
+<p>Efectos <strong>anidados:</strong></p>
+<ul>
+<li class="fragment"><p>Se utilizan cuando cada nivel inferior pertenece a un único nivel superior.</p></li>
+<li class="fragment"><p>Se especifican como <code>(1|nivel1/nivel2)</code>, que equivale a: <code>(1 | nivel1) + (1 | nivel1:nivel2)</code>.</p></li>
+</ul>
+</li>
+<li class="fragment">
+<p>Efectos <strong>cruzados</strong>:</p>
+<ul>
+<li class="fragment"><p>Se utilizan cuando los factores varían independientemente.</p></li>
+<li class="fragment"><p>Se especifican como <code>(1|nivel1) + (1|nivel2)</code>.</p></li>
+<li class="fragment"><p>Son <strong>menos frecuentes</strong> en la práctica.</p></li>
 </ul>
 </li>
 </ul></section><section id="modelos-lineales-mixtos-en-r" class="slide level2"><h2>Modelos lineales mixtos en R</h2>
@@ -379,76 +510,47 @@ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigm
 </table>
 </li>
 <li class="fragment"><p>Conviene utilizar <strong><code>glmmTMB</code></strong> por su <strong>flexibilidad</strong>, ya que permite ajustar modelos con/sin efectos aleatorios y usar distribuciones no gaussianas.</p></li>
-</ul></section><section id="modelos-lineales-generalizados-mixtos-glmm" class="slide level2"><h2>Modelos lineales generalizados mixtos (GLMM)</h2>
-<ul>
-<li class="fragment"><p>Analizan datos agrupados o con medidas repetidas con variables respuesta <strong>no normales</strong>.</p></li>
-<li class="fragment"><p>Los <strong>efectos fijos</strong> representan el efecto promedio de las covariables y los <strong>aleatorios</strong> capturan la variabilidad no explicada entre grupos o unidades.</p></li>
-<li class="fragment"><p>Modelan la <strong>dependencia intra-clúster</strong>, evitando violar la independencia de los residuos.</p></li>
-<li class="fragment"><p>Admiten <strong>distintas distribuciones</strong> (binomial, Poisson, binomial negativa, etc.) y <strong>datos desbalanceados o incompletos</strong>.</p></li>
-</ul></section><section id="modelos-multinivel" class="slide level2"><h2>Modelos multinivel</h2>
-<ul>
-<li class="fragment"><p>En algunos estudios, las observaciones se organizan en <strong>niveles jerárquicos</strong> o <strong>anidados</strong> (por ejemplo, pacientes dentro de hospitales, y hospitales dentro de ciudades).</p></li>
-<li class="fragment"><p>Cada nivel jerárquico tiene su <strong>propio intercepto aleatorio</strong>, capturando la variabilidad entre unidades dentro de cada nivel.</p></li>
-<li class="fragment"><p>Estos modelos permiten incluir variables explicativas <strong>individuales y contextuales</strong> y descomponer la variabilidad en <strong>componentes de varianza</strong> para cada nivel.</p></li>
-</ul></section><section id="section-7" class="slide level2"><h2></h2>
-<h3 id="efectos-aleatorios-anidados-y-cruzados">Efectos aleatorios anidados y cruzados</h3>
-<ul>
-<li class="fragment">
-<p>Efectos <strong>anidados:</strong></p>
-<ul>
-<li class="fragment"><p>Se utilizan cuando cada nivel inferior pertenece a un único nivel superior.</p></li>
-<li class="fragment"><p>Se especifican como <code>(1|nivel1/nivel2)</code>, que equivale a: <code>(1 | nivel1) + (1 | nivel1:nivel2)</code>.</p></li>
-</ul>
-</li>
-<li class="fragment">
-<p>Efectos <strong>cruzados</strong>:</p>
-<ul>
-<li class="fragment"><p>Se utilizan cuando los factores varían independientemente.</p></li>
-<li class="fragment"><p>Se especifican como <code>(1|nivel1) + (1|nivel2)</code>.</p></li>
-<li class="fragment"><p>Son <strong>menos frecuentes</strong> en la práctica.</p></li>
-</ul>
-</li>
 </ul></section><section id="resumen-diferencias-entre-lmm-y-glmm" class="slide level2"><h2>Resumen: diferencias entre LMM y GLMM</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="tabwid">
-<style>.cl-a45290c4{}.cl-a43b272c{font-family:'Calibri';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a43b274a{font-family:'Calibri';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a444b24c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a44510e8{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a44510fc{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4451106{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4451110{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a445111a{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4451124{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4451125{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a445112e{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4451138{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="cl-a45290c4">
+<style>.cl-fa9adaa6{}.cl-fa7a7e14{font-family:'Calibri';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fa7a7e3c{font-family:'Calibri';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fa88b3e4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fa896f50{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa896f78{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa896f82{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa896f8c{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa896f8d{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa896f96{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa896fa0{width:3.005in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa896faa{width:5.832in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fa896fb4{width:7.426in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-fa9adaa6">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-a44510e8"><p class="cl-a444b24c"><span class="cl-a43b272c">Característica</span></p></th>
-<th class="cl-a44510fc"><p class="cl-a444b24c"><span class="cl-a43b272c">LMM</span></p></th>
-<th class="cl-a4451106"><p class="cl-a444b24c"><span class="cl-a43b272c">GLMM</span></p></th>
+<th class="cl-fa896f50"><p class="cl-fa88b3e4"><span class="cl-fa7a7e14">Característica</span></p></th>
+<th class="cl-fa896f78"><p class="cl-fa88b3e4"><span class="cl-fa7a7e14">LMM</span></p></th>
+<th class="cl-fa896f82"><p class="cl-fa88b3e4"><span class="cl-fa7a7e14">GLMM</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4451110"><p class="cl-a444b24c"><span class="cl-a43b274a">Distribución de la VR</span></p></td>
-<td class="cl-a445111a"><p class="cl-a444b24c"><span class="cl-a43b274a">Normal</span></p></td>
-<td class="cl-a4451124"><p class="cl-a444b24c"><span class="cl-a43b274a">Binomial, Poisson, Gamma, etc.</span></p></td>
+<td class="cl-fa896f8c"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Distribución de la VR</span></p></td>
+<td class="cl-fa896f8d"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Normal</span></p></td>
+<td class="cl-fa896f96"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Binomial, Poisson, Gamma, etc.</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4451110"><p class="cl-a444b24c"><span class="cl-a43b274a">Escala de interpretación</span></p></td>
-<td class="cl-a445111a"><p class="cl-a444b24c"><span class="cl-a43b274a">Original de la VR</span></p></td>
-<td class="cl-a4451124"><p class="cl-a444b24c"><span class="cl-a43b274a">Escala de la función de enlace</span></p></td>
+<td class="cl-fa896f8c"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Escala de interpretación</span></p></td>
+<td class="cl-fa896f8d"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Original de la VR</span></p></td>
+<td class="cl-fa896f96"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Escala de la función de enlace</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4451110"><p class="cl-a444b24c"><span class="cl-a43b274a">Efectos fijos</span></p></td>
-<td class="cl-a445111a"><p class="cl-a444b24c"><span class="cl-a43b274a">Cambios absolutos en la media</span></p></td>
-<td class="cl-a4451124"><p class="cl-a444b24c"><span class="cl-a43b274a">Cambios en la media transformada</span></p></td>
+<td class="cl-fa896f8c"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Efectos fijos</span></p></td>
+<td class="cl-fa896f8d"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Cambios absolutos en la media</span></p></td>
+<td class="cl-fa896f96"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Cambios en la media transformada</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4451110"><p class="cl-a444b24c"><span class="cl-a43b274a">Efectos aleatorios</span></p></td>
-<td class="cl-a445111a"><p class="cl-a444b24c"><span class="cl-a43b274a">Desvíos del intercepto y/o pendiente en la media</span></p></td>
-<td class="cl-a4451124"><p class="cl-a444b24c"><span class="cl-a43b274a">Desvíos del intercepto y/o pendiente en la escala transformada</span></p></td>
+<td class="cl-fa896f8c"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Efectos aleatorios</span></p></td>
+<td class="cl-fa896f8d"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Desvíos del intercepto y/o pendiente en la media</span></p></td>
+<td class="cl-fa896f96"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Desvíos del intercepto y/o pendiente en la escala transformada</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4451110"><p class="cl-a444b24c"><span class="cl-a43b274a">Método de estimación</span></p></td>
-<td class="cl-a445111a"><p class="cl-a444b24c"><span class="cl-a43b274a">ML o REML</span></p></td>
-<td class="cl-a4451124"><p class="cl-a444b24c"><span class="cl-a43b274a">ML con integración</span></p></td>
+<td class="cl-fa896f8c"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Método de estimación</span></p></td>
+<td class="cl-fa896f8d"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">ML o REML</span></p></td>
+<td class="cl-fa896f96"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">ML con integración</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4451125"><p class="cl-a444b24c"><span class="cl-a43b274a">Interpretación varianza</span></p></td>
-<td class="cl-a445112e"><p class="cl-a444b24c"><span class="cl-a43b274a">Escala original</span></p></td>
-<td class="cl-a4451138"><p class="cl-a444b24c"><span class="cl-a43b274a">Escala transformada</span></p></td>
+<td class="cl-fa896fa0"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Interpretación varianza</span></p></td>
+<td class="cl-fa896faa"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Escala original</span></p></td>
+<td class="cl-fa896fb4"><p class="cl-fa88b3e4"><span class="cl-fa7a7e3c">Escala transformada</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -459,38 +561,38 @@ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigm
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="tabwid">
-<style>.cl-a4fa451c{}.cl-a4e04f7c{font-family:'Calibri';font-size:20pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a4e04f9a{font-family:'Calibri';font-size:20pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a4ebfab6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a4ec862a{width:1.942in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec8648{width:7.435in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec8652{width:9.314in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec8653{width:2.846in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec865c{width:1.942in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec8666{width:7.435in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec8670{width:9.314in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec867a{width:2.846in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec867b{width:1.942in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec8684{width:7.435in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec868e{width:9.314in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4ec8698{width:2.846in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="cl-a4fa451c">
+<style>.cl-fb5160b4{}.cl-fb3b7a4c{font-family:'Calibri';font-size:18pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fb3b7a60{font-family:'Calibri';font-size:18pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fb44ce44{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fb452baa{width:1.776in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452bbe{width:8.021in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452bc8{width:11.251in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452bd2{width:2.59in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452bdc{width:1.776in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452bdd{width:8.021in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452be6{width:11.251in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452be7{width:2.59in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452bf0{width:1.776in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452bf1{width:8.021in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452bfa{width:11.251in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fb452c04{width:2.59in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-fb5160b4">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-a4ec862a"><p class="cl-a4ebfab6"><span class="cl-a4e04f7c">Modelo</span></p></th>
-<th class="cl-a4ec8648"><p class="cl-a4ebfab6"><span class="cl-a4e04f7c">Enfoque</span></p></th>
-<th class="cl-a4ec8652"><p class="cl-a4ebfab6"><span class="cl-a4e04f7c">Utilidad</span></p></th>
-<th class="cl-a4ec8653"><p class="cl-a4ebfab6"><span class="cl-a4e04f7c">Paquetes</span></p></th>
+<th class="cl-fb452baa"><p class="cl-fb44ce44"><span class="cl-fb3b7a4c">Modelo</span></p></th>
+<th class="cl-fb452bbe"><p class="cl-fb44ce44"><span class="cl-fb3b7a4c">Supuesto</span></p></th>
+<th class="cl-fb452bc8"><p class="cl-fb44ce44"><span class="cl-fb3b7a4c">Enfoque</span></p></th>
+<th class="cl-fb452bd2"><p class="cl-fb44ce44"><span class="cl-fb3b7a4c">Paquetes</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4ec865c"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">GLMM</span></p></td>
-<td class="cl-a4ec8666"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Efectos específicos (nivel o unidad de agrupamiento)</span></p></td>
-<td class="cl-a4ec8670"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Datos jerárquicos o medidas repetidas con variabilidad entre clústers</span></p></td>
-<td class="cl-a4ec867a"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">nlme, lme4, glmmTMB</span></p></td>
+<td class="cl-fb452bdc"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">GLMM</span></p></td>
+<td class="cl-fb452bdd"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Independencia: observaciones agrupadas (jerárquicas o medidas repetidas)</span></p></td>
+<td class="cl-fb452be6"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Efectos aleatorios específicos de cada clúster o unidad</span></p></td>
+<td class="cl-fb452be7"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">lme4, glmmTMB, nlme</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4ec865c"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">GLS</span></p></td>
-<td class="cl-a4ec8666"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Efectos promedio con estructura de correlación definida</span></p></td>
-<td class="cl-a4ec8670"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Dependencia temporal o espacial sin necesidad de efectos aleatorios explícitos</span></p></td>
-<td class="cl-a4ec867a"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">nlme</span></p></td>
+<td class="cl-fb452bdc"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">GLS</span></p></td>
+<td class="cl-fb452bdd"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Independencia (correlación temporal o espacial) y homocedasticidad</span></p></td>
+<td class="cl-fb452be6"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Estructura de correlación (AR1, espacial) y de varianza (varPower, varIdent) definidas, con efectos promedio</span></p></td>
+<td class="cl-fb452be7"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">nlme</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4ec865c"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">GAM o GAMM</span></p></td>
-<td class="cl-a4ec8666"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Relaciones no lineales mediante funciones suaves</span></p></td>
-<td class="cl-a4ec8670"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Captura de curvaturas, estacionalidad o patrones no lineales</span></p></td>
-<td class="cl-a4ec867a"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">mgcv</span></p></td>
+<td class="cl-fb452bdc"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">GAM o GAMM</span></p></td>
+<td class="cl-fb452bdd"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Linealidad de la relación entre predictores y respuesta</span></p></td>
+<td class="cl-fb452be6"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Funciones suaves estimadas a partir de los datos; el GAMM agrega efectos aleatorios</span></p></td>
+<td class="cl-fb452be7"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">mgcv</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-a4ec867b"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Bayesianos</span></p></td>
-<td class="cl-a4ec8684"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Estimación completa de parámetros bajo distribuciones a priori</span></p></td>
-<td class="cl-a4ec868e"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">Datos escasos, modelos complejos o incumplimiento de supuestos frecuentistas</span></p></td>
-<td class="cl-a4ec8698"><p class="cl-a4ebfab6"><span class="cl-a4e04f9a">brms, INLA</span></p></td>
+<td class="cl-fb452bf0"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Bayesianos</span></p></td>
+<td class="cl-fb452bf1"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Varios a la vez: distribución de la respuesta, varianza constante, pocos datos</span></p></td>
+<td class="cl-fb452bfa"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">Distribuciones a priori y verosimilitudes flexibles; permite modelar también la varianza (sigma ~ x)</span></p></td>
+<td class="cl-fb452c04"><p class="cl-fb44ce44"><span class="cl-fb3b7a60">brms, INLA</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -509,6 +611,27 @@ y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigm
 </figure>
 </div>
 </div></div>
+</section><section id="section-10" class="slide level2"><h2></h2>
+<h3 id="otros-cursos-del-ine">Otros cursos del INE</h3>
+
+<img data-src="qrcode_ine.gov.ar.png" class="quarto-figure quarto-figure-center r-stretch"></section><section id="section-11" class="slide level2"><h2></h2>
+<h3 id="cursos-applied-epi">Cursos Applied Epi</h3>
+<p>Curso de R para epidemiología aplicada, en español, en línea y con sesiones síncronas (2027):</p>
+
+<img data-src="QR_espanol_R_cursos_epi.png" class="quarto-figure quarto-figure-center r-stretch"><p>🌍 Becas para participantes de países de ingresos bajos y medios:</p>
+<p>https://appliedepi.org/es/training/scholarships.html</p>
+</section><section><section id="section-12" class="title-slide slide level1 center"><h1></h1>
+
+</section><h3 id="grupo-argentino-de-bioestadística-gab">Grupo Argentino de Bioestadística (GAB)</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="qrcode_www.gab.com.ar.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<h3 id="sociedad-argentina-de-estadística">Sociedad Argentina de Estadística</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="qrcode_www.s-a-e.org.ar.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
 </section>
 </div>
   <div class="quarto-auto-generated-content" style="display: none;">

@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
 pacman::p_load(
   patchwork,
   flextable,
+  fitdistrplus,
   MASS,
   glmmTMB,
   easystats,
@@ -31,31 +32,41 @@ pacman::p_load(
 
 ## ¿Qué pasa cuando nuestro modelo no cumple los supuestos?
 
-- Durante la cursada trabajamos tanto con datos reales como simulados que cumplían con todos los supuestos para la distribución que estábamos modelando.
-- En la vida real, suele suceder que uno o más de los supuestos del modelo no se cumplen.
-- En este caso, debemos explorar alternativas a los GLM clásicos que vimos anteriormente.
+- Durante la cursada utilizamos sets de datos que cumplían con todos los supuestos para la distribución que queríamos modelar.
+
+- Cuando trabajamos con datos reales, suele pasar que uno o más de los supuestos del modelo no se cumplen.
+
+- En estos casos, debemos explorar alternativas a los modelos que vimos anteriormente.
 
 ## 
 
-### Variable respuesta continua: residuales no normales
+### VR continua: residuales no normales
 
 ```{r}
 #| echo: false
 #| id: tab1
 tibble(
   dist = c(
-    "Log-normal",
-    "Log-normal",
-    "Gamma",
-    "Gamma",
+    rep("Log-normal", 2),
+    rep("Gamma", 2),
     "Beta"
   ),
   resp = c(
-    "y > 0, asimétrica",
+    rep(c("y > 0", ""), 2),
+    "0 < y < 1"
+  ),
+
+  sesgo = c(
+    rep(c("Asimetría positiva", ""), 2),
+    "Simétrica, en U, uniforme, sesgada"
+  ),
+
+  param = c(
+    "Forma (α) y Escala (θ) o Tasa (β)",
     "",
-    "y > 0, asimétrica, CV constante",
+    "Media (μ) y Desviación estándar (σ) del logaritmo",
     "",
-    "y ∈ (0, 1): proporciones, tasas"
+    "Dos parámetros de forma (α y β)"
   ),
 
   interp = c(
@@ -66,11 +77,11 @@ tibble(
     "Cambio en los log-odds de la media"
   ),
   fun = c(
-    "lm(log(y) ~ x)",
-    "glmmTMB(y ~ x, family = lognormal(link = 'log'))",
-    "glm(y ~ x, family = Gamma(link = 'log'))",
-    "glmmTMB((y ~ x, family = Gamma(link = 'log'))",
-    "glmmTMB(y ~ x, family = beta_family(link = 'logit'))"
+    "lm(log(y) ~ x)",
+    "glmmTMB(y ~ x, family = lognormal(link = 'log'))",
+    "glm(y ~ x, family = Gamma(link = 'log'))",
+    "glmmTMB((y ~ x, family = Gamma(link = 'log'))",
+    "glmmTMB(y ~ x, family = beta_family(link = 'logit'))"
   )
 ) |>
 
@@ -78,7 +89,9 @@ tibble(
   flextable() |>
   set_header_labels(
     dist = "Distribución",
-    resp = "Variable respuesta",
+    resp = "VR",
+    sesgo = "Sesgo",
+    param = "Parámetros",
     interp = "Interpretación",
     fun = "Funciones en R"
   ) |>
@@ -91,7 +104,29 @@ tibble(
 
 ## 
 
-### Variable respuesta categórica: más de dos niveles
+### Chequear distribuciones con `fitdistrplus`
+
+```{r}
+#| id: dist1
+data(iris)
+
+descdist(iris$Sepal.Length, boot = 100)
+```
+
+## 
+
+```{r}
+#| id: dist2
+lnorm <- fitdist(iris$Sepal.Length, "lnorm")
+gamma <- fitdist(iris$Sepal.Length, "gamma")
+norm <- fitdist(iris$Sepal.Length, "norm")
+
+qqcomp(list(lnorm, gamma), legendtext = c("normal", "log-normal", "gamma"))
+```
+
+## 
+
+### VR categórica: más de dos niveles
 
 ```{r}
 #| echo: false
@@ -102,11 +137,6 @@ tibble(
     "Multinomial",
     "Ordinal"
   ),
-  resp = c(
-    "Categórica",
-    "Categórica",
-    "Categórica"
-  ),
   orden = c("No", "No", "Si"),
   interp = c(
     "Cambio en los log-odds de pertenecer al nivel k vs. el resto",
@@ -114,15 +144,14 @@ tibble(
     "Cambio en los log-odds acumulados, común a todos los puntos de corte"
   ),
   fun = c(
-    "glm(y_k ~ x, family = binomial)",
-    "nnet::multinom(y ~ x)",
-    "MASS::polr(y ~ x, Hess = TRUE)"
+    "glm(y ~ x, family = binomial)",
+    "nnet::multinom(y ~ x)",
+    "MASS::polr(y ~ x, Hess = TRUE)"
   )
 ) |>
   flextable() |>
   set_header_labels(
     dist = "Modelo",
-    resp = "Variable respuesta",
     orden = "Ordinal",
     interp = "Interpretación",
     fun = "Funciones en R"
@@ -158,10 +187,10 @@ tibble(
     "Cambio multiplicativo en la media del conteo; ceros extra en log-odds"
   ),
   fun = c(
-    "glmmTMB(y ~ x, family = nbinom2())",
-    "glmmTMB(y ~ x, family = compois())",
-    "glm(y ~ x, family = quasipoisson)",
-    "glmmTMB(y ~ x, ziformula = ~ 1, family = nbinom2())"
+    "glmmTMB(y ~ x, family = nbinom2())",
+    "glmmTMB(y ~ x, family = compois())",
+    "glm(y ~ x, family = quasipoisson)",
+    "glmmTMB(y ~ x, ziformula = ~ 1, family = nbinom2())"
   )
 ) |>
 
@@ -201,8 +230,7 @@ tibble(
 
 - Son una extensión del modelo lineal general, que incorpora **efectos aleatorios** en el predictor lineal.
 
-
-::: {.fragment}
+::: fragment
 $$ 
 y_{ij} = x_{ij}\beta + z_{ij} u_i + \epsilon_{ij} \qquad donde:~u_i ~ N(0, \sigma^2_u) ~ y ~ \epsilon_{ij} ~ N(0, \sigma^2_\epsilon)
 $$
@@ -212,17 +240,18 @@ $$
 
 - Supone normalidad e independencia de los errores y los efectos aleatorios.
 
-##
+## 
+
 ### Componentes del modelo mixto
 
 - Los modelos mixtos se componen de dos partes:
-
 
   - **Efectos fijos:** covariables cuyo efecto se estima sobre la media de la respuesta. Son parámetros **comunes a toda la población** bajo estudio.
 
   - **Efectos aleatorios:** variabilidad adicional atribuible a los clústers. Modelan la correlación intra-clúster y representan la **variabilidad no explicada** entre unidades del mismo grupo.
 
-##
+## 
+
 ### ¿Cuándo incluir efectos aleatorios?
 
 - La variable que define los clústers tiene al menos **cinco niveles**.
@@ -237,8 +266,10 @@ $$
 
 - No nos interesa realizar **comparaciones** ni **inferencias** sobre sus niveles.
 
-##
-### Intercepto aleatorio
+## 
+
+### Efectos aleatorios: intercepto
+
 - Cuando $z_{ij} = 1$, el efecto aleatorio está dado por una **variable categórica** que identifica los clústers.
 
 - En este caso, cada clúster va a tener su propio **intercepto** para la variable respuesta.
@@ -249,8 +280,10 @@ $$
 
 - Similar al ANOVA de medidas repetidas o por bloques.
 
-##
-### Pendiente aleatoria
+## 
+
+### Efectos aleatorios: pendiente
+
 - Cada clúster puede responder de forma **diferente** a una covariable numérica.
 
 - Las pendientes aleatorias permiten que la **magnitud y/o dirección** del efecto varíe entre clústers.
@@ -263,20 +296,8 @@ $$
 
   - Hay un gran número de observaciones por clúster.
 
-
-## Modelos lineales mixtos en R
-- Los paquetes más comunes para ajustar GLMMs son:
-
-  | Paquete   | Función/es                         | Modelos             |
-  |-----------|------------------------------------|---------------------|
-  | `nlme`    | `lme()`                            | LMM                 |
-  | `lme4`    | `lmer()`, `glmer()` y `glmer.nb()` | LMM y GLMM          |
-  | `glmmTMB` | `glmmTMB()`                        | LM, GLM, LMM y GLMM |
-
-- Conviene utilizar **`glmmTMB`** por su **flexibilidad**, ya que permite ajustar modelos con/sin efectos aleatorios y usar distribuciones no gaussianas.
-
-
 ## Modelos lineales generalizados mixtos (GLMM)
+
 - Analizan datos agrupados o con medidas repetidas con variables respuesta **no normales**.
 
 - Los **efectos fijos** representan el efecto promedio de las covariables y los **aleatorios** capturan la variabilidad no explicada entre grupos o unidades.
@@ -293,7 +314,8 @@ $$
 
 - Estos modelos permiten incluir variables explicativas **individuales y contextuales** y descomponer la variabilidad en **componentes de varianza** para cada nivel.
 
-##
+## 
+
 ### Efectos aleatorios anidados y cruzados
 
 - Efectos **anidados:**
@@ -310,6 +332,17 @@ $$
 
   - Son **menos frecuentes** en la práctica.
 
+## Modelos lineales mixtos en R
+
+- Los paquetes más comunes para ajustar GLMMs son:
+
+  | Paquete   | Función/es                         | Modelos             |
+  |-----------|------------------------------------|---------------------|
+  | `nlme`    | `lme()`                            | LMM                 |
+  | `lme4`    | `lmer()`, `glmer()` y `glmer.nb()` | LMM y GLMM          |
+  | `glmmTMB` | `glmmTMB()`                        | LM, GLM, LMM y GLMM |
+
+- Conviene utilizar **`glmmTMB`** por su **flexibilidad**, ya que permite ajustar modelos con/sin efectos aleatorios y usar distribuciones no gaussianas.
 
 ## Resumen: diferencias entre LMM y GLMM
 
@@ -366,20 +399,20 @@ tibble(
         "GAM o GAMM",
         "Bayesianos"
     ),
-    Enfoque = c(
-        "Efectos específicos (nivel o unidad de agrupamiento)",
-        "Efectos promedio con estructura de correlación definida",
-        "Relaciones no lineales mediante funciones suaves",
-        "Estimación completa de parámetros bajo distribuciones a priori"
+    Supuesto = c(
+        "Independencia: observaciones agrupadas (jerárquicas o medidas repetidas)",
+        "Independencia (correlación temporal o espacial) y homocedasticidad",
+        "Linealidad de la relación entre predictores y respuesta",
+        "Varios a la vez: distribución de la respuesta, varianza constante, pocos datos"
     ),
-    Utilidad = c(
-        "Datos jerárquicos o medidas repetidas con variabilidad entre clústers",
-        "Dependencia temporal o espacial sin necesidad de efectos aleatorios explícitos",
-        "Captura de curvaturas, estacionalidad o patrones no lineales",
-        "Datos escasos, modelos complejos o incumplimiento de supuestos frecuentistas"
+    Enfoque = c(
+        "Efectos aleatorios específicos de cada clúster o unidad",
+        "Estructura de correlación (AR1, espacial) y de varianza (varPower, varIdent) definidas, con efectos promedio",
+        "Funciones suaves estimadas a partir de los datos; el GAMM agrega efectos aleatorios",
+        "Distribuciones a priori y verosimilitudes flexibles; permite modelar también la varianza (sigma ~ x)"
     ),
     Paquetes = c(
-        "nlme, lme4, glmmTMB",
+        "lme4, glmmTMB, nlme",
         "nlme",
         "mgcv",
         "brms, INLA"
@@ -390,7 +423,7 @@ tibble(
     flextable() |>
     bold(part = "header") |>
     font(fontname = "Calibri", part = "all") |>
-    fontsize(size = 20, part = "all") |>
+    fontsize(size = 18, part = "all") |>
     autofit()
 ```
 
@@ -408,3 +441,29 @@ tibble(
 ::: {.column width="40%"}
 ![](dt-1.webp){fig-align="center"}
 :::
+
+:::::
+
+##
+### Otros cursos del INE
+![](qrcode_ine.gov.ar.png){fig-align="center"}
+
+
+## 
+
+### Cursos Applied Epi
+
+Curso de R para epidemiología aplicada, en español, en línea y con sesiones síncronas (2027):
+
+![](QR_espanol_R_cursos_epi.png){fig-align="center"}
+
+🌍 Becas para participantes de países de ingresos bajos y medios: 
+
+https://appliedepi.org/es/training/scholarships.html
+
+#
+### Grupo Argentino de Bioestadística (GAB)
+![](qrcode_www.gab.com.ar.png){fig-align="center"}
+
+### Sociedad Argentina de Estadística
+![](qrcode_www.s-a-e.org.ar.png){fig-align="center"}
